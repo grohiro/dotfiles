@@ -1,0 +1,38 @@
+# .bashrc.functions
+
+function sjis() {
+    cp $1 $1.bak
+	iconv -f UTF-8 -t cp932 $1.bak > $1
+}
+
+function utf8() {
+    cp $1 $1.bak
+	iconv -t UTF-8 -f cp932 $1.bak > $1
+}
+
+function ddir() {
+	d=`LANG=C date +%Y%m%d`
+	mkdirc ${d}_${1}
+}
+
+function mkdirc() {
+	mkdir $1 && cd $1
+}
+
+function find_dir() {
+  local target=${1:-.}
+  local dir=$(find $target -type d -maxdepth 5 | sed -e '/.svn/d' -e '/.git/d' | peco)
+  if [ ! -z "$dir" ]; then
+    cd $dir
+  fi
+}
+
+function vimbg() {
+  local count=$(jobs | grep "Stopped\s*vim" | wc -l)
+  if [ $count -gt 0 ]
+  then
+    echo "|vim"
+  fi
+}
+
+export -f sjis utf8 ddir mkdirc find_dir vimbg
