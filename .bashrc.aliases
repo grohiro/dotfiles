@@ -1,0 +1,53 @@
+# .bashrc.aliases
+
+# User specific aliases and functions
+alias rm='rm -i'
+alias mv='mv -i'
+alias cp='cp -i'
+
+alias ls='ls -F --color=auto'
+alias ll='ls -l'
+alias la='ls -al'
+alias l='ll'
+
+alias less='less -R' # color less
+
+alias grep='grep --exclude=*.svn-base --exclude=tags -I'
+
+alias ..='cd ..'
+alias ...='cd ../../'
+
+alias c='cd'
+alias vi='vim'
+alias v='vim'
+
+#alias s='tmux'
+alias s='screen'
+
+# Git
+export GIT_EDITOR=vim
+alias gs='git status'
+alias gb='git branch'
+alias gc='git checkout'
+alias gg='git graph'
+alias ga='git add .'
+
+# Subversion
+export SVN_EDITOR=vim
+alias ss='svn status'
+alias sc='svn commit'
+
+alias files='find . -type f'
+alias lsfiles='files | xargs ls -l'
+
+# string 
+alias toupper='tr [a-z] [A-Z]'
+alias tolower='tr [A-Z] [a-z]'
+
+# youtube-dl
+alias youtube-mp3='youtube-dl -x --audio-format mp3 --audio-quality 320'
+
+alias html='w3m -T text/html -dump'
+alias hless='html | less'
+
+alias D='find_dir'
