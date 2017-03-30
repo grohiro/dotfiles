@@ -1,0 +1,19 @@
+#!/usr/bin/env php
+<?php
+
+$input = file_get_contents("php://stdin");
+$lines = explode("\n", $input);
+foreach ($lines as $line) {
+  $line = strtolower($line);
+  $words = explode("_", $line);
+  $name = "";
+  for ($i = 0; $i < count($words); $i++) {
+    if ($i == 0) {
+      $name .= $words[$i];
+    } else {
+      $name .= ucfirst($words[$i]);
+    }
+  }
+  echo $name . "\n";
+}
+

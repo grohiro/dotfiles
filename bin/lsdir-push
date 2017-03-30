@@ -1,0 +1,14 @@
+#!/bin/bash
+d=`pwd`
+
+for dir in ${LSDIR[*]}
+do
+  if [ "$d" == "$dir" ]
+  then
+    return
+  fi
+done
+
+unset LSDIR[29]
+LSDIR=($d ${LSDIR[*]})
+

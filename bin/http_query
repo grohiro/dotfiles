@@ -1,0 +1,32 @@
+#!/opt/local/bin/php
+<?php
+/**
+ * Excel で作ったKey,ValueデータをHTTPクエリに変換する.
+ *
+ */
+
+if ($argc != 2) {
+	echo "Usage: http-query.php filename\n";
+	exit(1);
+}
+
+$fp = fopen($argv[1], "r") or die("Failed to open file: ${argv[0]}");
+
+$params = array();
+while (($line = fgets($fp))) {
+	$line = trim($line);
+	if ($line == "") {
+		echo http_build_query($params);
+		echo "\n";
+		$params = array();
+		continue;
+	}
+	@list($key, $value) = @preg_split("/\t/", $line);
+	$params[$key] = trim($value);
+}
+
+
+fclose($fp);
+
+
+

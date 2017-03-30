@@ -1,0 +1,24 @@
+#!/bin/bash
+# Usage: line2csv [-n]
+# 行データをCSV形式に変換する
+# データを数値として扱うときは -n オプションを指定する
+
+. $(cd $(dirname $0); pwd)/functions
+
+while getopts "n" flag; do
+  case $flag in
+    n) opt_n=true;;
+  esac
+done
+shift `expr $OPTIND - 1`
+
+data=`read_stdin_or_file $@`
+
+if test $opt_n; then
+  pattern="\1,"
+else
+  pattern="\"\1\","
+fi
+
+echo -e $data | sed -e "s/\(.*\)/$pattern/g" | tr -d "\n"
+

@@ -46,6 +46,6 @@ alias hless='html | less'
 
 alias ucfirst="php -r 'echo ucfirst(fgets(STDIN));'"
 
-alias j='source ~/bin/jump.sh'
-alias lsdir='cd $(source ~/bin/lsdir.sh | peco)'
+alias j='source ~/dotfiles/bin/jump.sh'
+alias lsdir='cd $(source ~/dotfiles/bin/lsdir.sh | peco)'
 alias D='find_dir'

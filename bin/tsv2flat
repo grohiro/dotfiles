@@ -1,0 +1,23 @@
+#!/usr/bin/env php
+<?php
+// vim:set ft=php:
+
+$contents = file_get_contents("php://stdin");
+$data = [];
+foreach (explode("\n", $contents) as $line) {
+  $row = [];
+  foreach (explode("\t", $line) as $value) {
+    $row[] = $value;
+  }
+  $data[] = $row;
+}
+
+$colIndex = $data[0];
+
+for ($i = 1; $i < count($data); $i++) {
+  $row = $data[$i];
+  for ($j = 1; $j < count($row); $j++) {
+    echo $row[0].",".$colIndex[$j].",".$data[$i][$j]."\n";
+  } 
+}
+

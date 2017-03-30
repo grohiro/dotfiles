@@ -1,0 +1,3 @@
+#!/bin/bash
+
+vim $(git status --short | cut -b 4- | peco)

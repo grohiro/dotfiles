@@ -1,0 +1,9 @@
+#!/bin/bash
+# Print a string 'vim' when it runs in background.
+
+count=`jobs | grep "Stopped\s*vim" | wc -l`
+
+if [ $count -gt 0 ]
+then
+  echo "vim"
+fi

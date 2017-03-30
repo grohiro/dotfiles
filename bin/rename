@@ -1,0 +1,21 @@
+#!/bin/bash
+# Usage: rename word replace files
+#   Sample: rename FROM TO *
+
+if [ $# -lt 3 ]
+then
+	echo Usage: rename word replace files
+	exit 1
+fi
+
+word=$1
+shift
+rep=$1
+shift
+
+for f in $@
+do
+	mv $f ${f/$word/$rep} 
+done
+
+

@@ -1,0 +1,27 @@
+#!/bin/bash
+
+#if [ "$TERM" != "screen" ]; then
+  #echo "No screen session"
+  #exit 1
+#fi
+
+RCDIR=$HOME/.screenset/
+
+if [ $# -lt 1 ]
+then
+  echo Usage: screenset SETNAME
+  ls $RCDIR
+  exit 1
+fi
+
+name=$1
+
+if [ ! -f $RCDIR/$name ]
+then
+  echo screenset: $name not found
+  ls $RCDIR
+  exit 1
+fi
+
+bash $RCDIR/$name
+ 

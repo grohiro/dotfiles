@@ -1,0 +1,50 @@
+#!/bin/bash
+#
+# 稼働中のインスタンスから新しいAMIを作成する。
+#
+# Usage: ec2-update-image INSTANCE-NAME
+
+if [ $# -lt 1 ]; then
+  echo "instance-name required."
+  exit 1
+fi
+
+EC2_NAME=$1
+DATE_SUFFIX=`LANG=C date +%Y%m%d_%H%M%S`
+
+# AMI作成対象のインスタンス検索
+INSTANCE_ID=$(aws ec2 describe-instances --filters Name=tag:Name,Values=$EC2_NAME | jq -r .Reservations[].Instances[].InstanceId)
+if [ -z $INSTANCE_ID ]; then
+  echo "Instance not found"
+  exit 1
+fi
+echo "Instance-ID: $INSTANCE_ID"
+
+# 作成済みの古いAMI検索
+OLD_AMI_ID=$(aws ec2 describe-images --filters Name=tag:Name,Values=${EC2_NAME}-latest | jq -r .Images[].ImageId)
+if [ -z $OLD_AMI_ID ]; then
+  echo "AMI not found"
+  exit 1
+fi
+echo "OLD AMI: $OLD_AMI_ID"
+
+# 新しいイメージを作成
+echo -n "Creating new AMI..."
+IMAGE_NAME=${EC2_NAME}-${DATE_SUFFIX}
+NEW_AMI_ID=$(aws ec2 create-image --instance-id ${INSTANCE_ID} --name ${IMAGE_NAME} --description "Created by ec2-update-image" --reboot | jq -r .ImageId)
+if [ -z $NEW_AMI_ID ]; then
+  echo "       Failed to create image."
+  exit 1
+fi
+echo "         Created: $NEW_AMI_ID"
+
+# 旧AMIの名前を変更する
+echo -n "Rename old image..."
+aws ec2 delete-tags --resources ${OLD_AMI_ID} --tags Key=Name
+aws ec2 create-tags --resources ${OLD_AMI_ID} --tags Key=Name,Value=${EC2_NAME}-${DATE_SUFFIX}
+
+# 新しいイメージに最新のタグを設定する
+aws ec2 create-tags --resources ${NEW_AMI_ID} --tags Key=Name,Value=${EC2_NAME}-latest
+echo "         Done"
+
+

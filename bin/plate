@@ -1,0 +1,33 @@
+#!/usr/bin/perl -w
+#
+# 軽量テンプレートエンジン.
+# SHELL 環境変数の値で変数を置換します.
+# 
+# Usage:
+#   REP=hogehoge plate test.txt
+#
+# test.txt
+#   This is a plate template file: {$REP} => `hogehoge`
+#
+use strict;
+use String::CamelCase qw(camelize);
+
+my $file = $ARGV[0];
+unless ( -f $file ) {
+  $file = $ENV{'HOME'} . "/.plate/" . $ARGV[0];
+}
+
+open FP, "<".$file or die "file cannot open: $file";
+while (my $line = <FP>) {
+  while ($line =~ /{\$(.*?)}/) {
+    my $pattern = $1;
+    my $replace = $ENV{$1};
+    $line =~ s/{\$$pattern}/$replace/;
+  }
+
+  $line =~ s/{\\\$(.*?)}/{\$$1}/g;
+
+  print $line;
+}
+close FP;
+

@@ -1,0 +1,7 @@
+#!/bin/bash
+#
+# ワーキングディレクトリに存在しないファイルを svn から削除する.
+# svn rm 以外でファイルを削除したときのコマンド
+#
+svn status | grep -i '^!' | awk '{print "\""$2"\""}' | xargs svn rm
+

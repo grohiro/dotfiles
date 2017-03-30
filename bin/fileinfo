@@ -1,0 +1,13 @@
+#!/usr/bin/php
+<?php
+
+$args = array_slice($argv, 1);
+
+foreach ($args as $fname) {
+	if (is_file($fname)) {
+		$stat = stat($fname);
+		$enc = mb_detect_encoding(file_get_contents($fname));
+		printf("%10s %10s\n", $fname, $enc);
+	}
+}
+

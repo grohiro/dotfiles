@@ -1,0 +1,7 @@
+#!/bin/bash
+# Print column names on the table for MySQL.
+
+tableName=$1
+dbName=$2
+echo 'show columns from '$tableName';' | mysql -u root $dbName | awk '{print $1}' | sed 1d
+

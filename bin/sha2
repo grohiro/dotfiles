@@ -1,0 +1,22 @@
+#!/usr/bin/env php
+<?php
+
+if (count($argv) == 1) {
+  $fp = fopen("php://stdin", "r");
+  $data = [];
+  while (($line = fgets($fp)) !== false) {
+    $data[] = trim($line);
+  }
+  fclose($fp);
+} else {
+  $data = array_slice($argv, 1);
+}
+
+for ($i = 0; $i < count($data); $i++) {
+  if (empty($data[$i])) {
+    continue;
+  }
+  echo hash("sha256", $data[$i]);
+  echo "\n";
+}
+

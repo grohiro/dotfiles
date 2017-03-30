@@ -1,0 +1,37 @@
+#!/usr/bin/env ruby
+
+# CSVとTSVの相互変換.
+# Usage: xsv
+#   標準入力から1行読み込んで変換する.
+
+class Xsv
+    def convert(string)
+        format = Xsv.detectFmt(string)
+        return csv2tsv(string) if format == "csv"
+        return tsv2csv(string) if format == "tsv"
+        return string
+    end
+
+    def tsv2csv(string)
+		'"' + string.split("\t").join('","') + '"'
+    end
+
+    def csv2tsv(string)
+		string.gsub(/\"/, "").split(",").join("\t")
+    end
+
+    def self.detectFmt(string)
+        comma = string.index(",")
+        tab = string.index("\t")
+
+        return ""    if comma == nil && tab == nil
+        return "tsv" if comma == nil && tab != nil
+        return "csv" if comma != nil && tab == nil
+        return (comma < tab) ? "csv" : "tsv"
+    end
+end
+
+puts Xsv.new.convert STDIN.gets.chomp
+
+
+# vim: set ft=ruby:

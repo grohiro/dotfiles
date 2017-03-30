@@ -1,0 +1,28 @@
+#vim:ft=bash:
+
+# Read data from STDIN
+# Usage: contents=`read_stdin()`
+function read_stdin() {
+  IFS= read line
+  while [ "x$line" != "x" ]; do
+    if [ "x$contents" != "x" ]; then
+      contents=$contents"\n"
+    fi
+    contents=$contents$line
+    IFS= read line
+  done
+  echo "$contents"
+}
+
+# データをファイルまたは標準入力から読み込む
+# Usage: contents=`read_data_from_stdin_or_file $@`
+function read_stdin_or_file()
+{
+  echo $*
+  if [ $# = 0 ]; then
+    echo `read_stdin`
+  else
+    cat $PWD/$1
+  fi
+}
+

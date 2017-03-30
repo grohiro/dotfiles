@@ -1,0 +1,40 @@
+#!/usr/bin/env php
+<?php
+error_reporting(0);
+$cmd = basename($argv[0]);
+if ($argc <= 2) {
+  die("Usage: $cmd [-hqp] URL\n");
+}
+
+$opt = $argv[1];
+$url = new UrlParse($argv[2]);
+
+switch ($opt) {
+  case "-h":
+    println($url->host()); break;
+  case "-p":
+    println($url->path()); break;
+  case "-q":
+    println($url->query()); break;
+  default:
+}
+
+class UrlParse
+{
+  public function __construct($url)
+  {
+    $this->url = $url;
+    $this->parts = parse_url($url);
+  }
+
+  public function host() { return $this->parts['host']; }
+  public function path() { return $this->parts['path']; }
+  public function query() { return $this->parts['query']; }
+}
+
+function println($line) {
+  echo $line;
+  echo "\n";
+}
+
+// vim:set filetype=php:

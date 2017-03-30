@@ -1,0 +1,10 @@
+#!/usr/bin/env php
+<?php
+if (count($argv) == 1) {
+  $contents = file_get_contents("php://stdin");
+} else {
+  $contents = $argv[1];
+}
+echo urlencode($contents);
+echo "\n";
+

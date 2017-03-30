@@ -1,0 +1,26 @@
+#!/usr/bin/env php
+<?php
+// vim:ft=php:
+/**
+ * 文字列中に出現するPHPの変数リストを出力する。
+ */
+function phpvar($string) {
+  preg_match_all('/\$[\w_][\w\d_]*/', $string, $matches);
+  $vars = array_unique($matches[0]);
+  if (($index = array_search('$this', $vars)) !== false) {
+    unset($vars[$index]);
+  }
+  
+  return $vars;
+}
+
+$source = file_get_contents("php://stdin");
+$phpvar = phpvar($source);
+$args = implode(', ', $phpvar);
+echo "method(".$args.");\n";
+echo "function method(".$args.") {\n";
+echo $source;
+echo "\n}\n"; 
+print_r($phpvar);
+
+

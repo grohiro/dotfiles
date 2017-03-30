@@ -1,0 +1,4 @@
+#!/bin/bash
+
+content=$(cat -)
+echo -e "$content" | sed -l -f ~/dotfiles/bin/phpstring.sed

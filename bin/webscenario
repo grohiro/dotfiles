@@ -1,0 +1,67 @@
+#!/bin/bash
+# Usage: webscenario scenario.txt
+#
+# scenario.txt
+#  G,http://www.yahoo.co.jp/,"yahoo.html"
+#  P,http://www.example.com/login?user=Admin&password=hoge,
+
+APP_HOME=$HOME/.webscenario
+COOKIE=$APP_HOME/cookie.$$
+WGET_DEFAULT_OPT="" # -q
+
+# Check command argument
+if [ $# -lt 1 ]
+then
+  echo Usage: webscenario FILENAME
+  exit 1
+fi
+
+# Create webscenario HOME directory
+if [ ! -d $APP_HOME ]
+then
+  mkdir -p $APP_HOME
+fi
+
+FILE=$1
+SCENARIO=`cat $FILE`
+for LINE in $SCENARIO
+do
+  WGET_OPT="--keep-session-cookies $WGET_DEFAULT_OPT"
+  FIELDS=($(echo $LINE | tr ',' ' ' ))
+  METHOD=${FIELDS[0]}
+  URL=`eval echo \"${FIELDS[1]}\"`
+  OUTPUT=${FIELDS[2]}
+
+  if [ $METHOD == "#" ]; then
+    continue
+  fi
+
+  # Save or Read Cookies
+  if [ -f $COOKIE ]
+  then
+    WGET_OPT="$WGET_OPT --load-cookies=$COOKIE"
+  else
+    WGET_OPT="$WGET_OPT --save-cookies=$COOKIE"
+  fi
+
+  # HTT method
+  if [ $METHOD == "P" ]
+  then
+    QUERY_STRING=$(urlparse -q $URL)
+    WGET_OPT="$WGET_OPT --post-data=$QUERY_STRING"
+  fi
+
+  # OUTPUT filename
+  if [ x$OUTPUT == "x" ]
+  then
+    WGET_OPT="$WGET_OPT -O /dev/null"
+  else
+    WGET_OPT="$WGET_OPT -O $OUTPUT"
+  fi
+
+  # fetch url
+  wget $WGET_OPT $URL
+done
+
+rm -f $COOKIE
+

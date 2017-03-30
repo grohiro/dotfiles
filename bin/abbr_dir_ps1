@@ -1,0 +1,24 @@
+#!/bin/bash
+#
+# カレントディレクトリのパスが長すぎる場合に省略して表示する.
+# PS1で使う
+#
+
+# この文字数を超えたら省略表示する
+MAXLEN=25
+# この文字数だけ表示する
+LEN=4
+
+cwd=${PWD/$HOME/"~"}
+
+if [ ${#cwd} -gt $MAXLEN ]
+then
+	p=""
+	for d in ${cwd//\// }
+	do
+		p=$p"/"${d:0:$LEN}
+	done
+  echo ${p:1}
+else
+  echo $cwd
+fi

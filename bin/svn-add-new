@@ -1,0 +1,16 @@
+#!/bin/bash
+
+SVN=svn
+
+list=$($SVN status | grep -E '^\?' | awk '{print $2}')
+
+if [ x$1 == "x-e" ]
+then
+	$SVN add $list
+else
+	for f in $list
+	do
+		echo $f
+	done
+fi
+

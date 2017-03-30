@@ -1,0 +1,13 @@
+#!/opt/local/bin/php
+<?php
+
+$data = "";
+$key = "";
+
+$iv = mcrypt_create_iv(mcrypt_get_iv_size(MCRYPT_BLOWFISH, MCRYPT_MODE_CBC), MCRYPT_DEV_URANDOM);
+
+// 暗号化処理
+$encrypted_data = mcrypt_cbc(MCRYPT_BLOWFISH, $key, $data, MCRYPT_ENCRYPT, $iv);
+echo "encrypted data : " .$encrypted_data."\n";
+
+

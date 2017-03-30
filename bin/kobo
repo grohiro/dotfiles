@@ -1,0 +1,10 @@
+#!/bin/bash
+
+command=$@
+
+while true
+do
+  $command
+  sleep 1
+done
+

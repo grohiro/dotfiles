@@ -1,0 +1,22 @@
+#!/bin/bash
+
+# Usage: git-export from-id to-id dirname
+
+if [ $# -lt 3 ]
+then
+	echo "Usage: git-export from-id to-id dirname"
+	exit 1
+fi
+
+from=$1
+to=$2
+dir=$3
+
+mkdir -p $dir
+
+for f in $(git diff --name-only $from..$to)
+do
+	mkdir -p $dir/$(dirname $f)
+	cp $f $dir/$f
+done
+

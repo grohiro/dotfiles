@@ -1,0 +1,14 @@
+#!/bin/bash
+# MySQL query log highlight
+# Usage: tail -f /var/log/mysql/query.log | myloghi
+
+cat -u - | gsed -r \
+  -e "/Prepare/d" \
+  -e "/Close stmt/d" \
+  -e "/Quit/d" \
+  -e "/Connect/d" \
+  -e "/Query\s*use /d" \
+  -e "s/(^[0-9a-zA-Z:.-]*\s*[0-9]* (Query|Init DB|Connect|Quit|Prepare|Close|Execute))/[32m\1[m/" \
+  -e "s/(START TRANSACTION|COMMIT|ROLLBACK)/[31m\1[m/" \
+  -e "s/ (FROM\s*[a-zA-Z0-9_\`]*)/ [1;36m\1[m/i"
+

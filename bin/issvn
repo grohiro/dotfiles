@@ -1,0 +1,19 @@
+#!/bin/bash
+#
+# This script returns string 'svn' when you are in a SVN working tree.
+# カレントディレクトリがSVNのワーキングコピーの場合に文字列 "svn" を返す.
+# shell のプロンプト(PS1)とかで使う.
+# example: PS1="\w\$(issvn @)$ "
+#    ~/path/to/svn@svn$ 
+#
+SVN=/usr/bin/svn
+
+if [ $($SVN info > /dev/null 2>&1; echo $?) == 0 ]
+then
+	if [ $# -gt 0 ]
+	then
+		echo -n $1
+	fi
+	echo "svn"
+fi
+

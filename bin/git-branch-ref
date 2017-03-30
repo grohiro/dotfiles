@@ -1,0 +1,15 @@
+#!/bin/bash
+#
+# カレントディレクトリの git ブランチ名を出力する.
+#
+
+if [ $# -gt 0 ]
+then
+	prefix=$1
+fi
+branch=$(git symbolic-ref HEAD 2> /dev/null)
+if [ "x$branch" != "x" ]
+then
+	echo $prefix${branch/refs\/heads\//}
+fi
+

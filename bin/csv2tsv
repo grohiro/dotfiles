@@ -1,0 +1,23 @@
+#!/bin/bash
+# Convert CSV to TSV
+
+function read_stdin() {
+  IFS= read line
+  while [ "x$line" != "x" ]; do
+    if [ "x$contents" != "x" ]; then
+      contents=$contents"\n"
+    fi
+    contents=$contents$line
+    IFS= read line
+  done
+  echo "$contents"
+}
+
+if [ $# = 0 ]; then
+  contents=`read_stdin`
+else
+  contents=`cat $1`
+fi
+
+echo -e "$contents" | sed -e "s/\"//g" -e "s/,/	/g"
+

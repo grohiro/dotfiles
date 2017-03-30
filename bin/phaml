@@ -1,0 +1,19 @@
+#!/usr/bin/env php
+<?php
+mb_language("Japanese");
+mb_internal_encoding("UTF-8");
+ini_set('mbstring.func_overload', 7);
+ini_set('mbstring.func_overload', 7);
+error_reporting(E_ALL & ~E_NOTICE & ~E_DEPRECATED & ~E_STRICT);
+require_once(dirname(dirname(__FILE__)).DIRECTORY_SEPARATOR."haml/HamlParser.php");
+$haml = new HamlParser(array(
+  'ugly' => false,
+  'style' => 'nested',
+  'helperFile' => null,
+));
+
+$in = $argv[1];
+$out = dirname($in).DIRECTORY_SEPARATOR.basename($in, "phaml")."php";
+file_put_contents($out, $haml->parse($in));
+
+

@@ -1,0 +1,13 @@
+#!/bin/bash
+# 複数行の入力を結合する
+# Usage: join_line ,
+#
+# cat hoge.txt | join_line ","
+#   #=> 複数行をCSVにする
+
+if [ -z "$1" ]; then
+  cat - | tr -d "\n" | sed -e "s/$1\$//"
+else
+  cat - | tr "\n" "$1"  | sed -e "s/$1\$//"
+fi
+
