@@ -21,11 +21,9 @@ alias c='cd'
 alias vi='vim'
 alias v='vim'
 
-#alias s='tmux'
 alias s='screen'
 
 # Git
-export GIT_EDITOR=vim
 alias gs='git status'
 alias gb='git branch'
 alias gc='git checkout'
@@ -33,7 +31,6 @@ alias gg='git graph'
 alias ga='git add .'
 
 # Subversion
-export SVN_EDITOR=vim
 alias ss='svn status'
 alias sc='svn commit'
 
@@ -44,10 +41,11 @@ alias lsfiles='files | xargs ls -l'
 alias toupper='tr [a-z] [A-Z]'
 alias tolower='tr [A-Z] [a-z]'
 
-# youtube-dl
-alias youtube-mp3='youtube-dl -x --audio-format mp3 --audio-quality 320'
-
 alias html='w3m -T text/html -dump'
 alias hless='html | less'
 
+alias ucfirst="php -r 'echo ucfirst(fgets(STDIN));'"
+
+alias j='source ~/bin/jump.sh'
+alias lsdir='cd $(source ~/bin/lsdir.sh | peco)'
 alias D='find_dir'
