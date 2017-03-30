@@ -18,6 +18,11 @@ if [ -f /etc/bashrc ]; then
 	. /etc/bashrc
 fi
 
+# environment variables
+if [ -f ~/.bashrc.env ]; then
+  . ~/.bashrc.env
+fi
+
 # command aliases 
 if [ -f ~/.bashrc.aliases ]; then
   . ~/.bashrc.aliases
@@ -31,5 +36,5 @@ fi
 # local settings
 if [ -f ~/.bashrc.local ]
 then
-	source ~/.bashrc.local
+  source ~/.bashrc.local
 fi
