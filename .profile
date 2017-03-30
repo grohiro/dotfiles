@@ -1,6 +1,6 @@
 # Environment variables
 if [ -z "$PROMPT_COMMAND" ]; then
-  export PROMPT_COMMAND="source $HOME/bin/lsdir-push"
+  export PROMPT_COMMAND="source ~/dotfiles/bin/lsdir-push"
 fi
 
 export SCREENDIR=~/.screen/session
