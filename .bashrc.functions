@@ -1,22 +1,22 @@
 # .bashrc.functions
 
 function sjis() {
-    cp $1 $1.bak
-	iconv -f UTF-8 -t cp932 $1.bak > $1
+  cp $1 $1.bak
+  iconv -f UTF-8 -t cp932 $1.bak > $1
 }
 
 function utf8() {
-    cp $1 $1.bak
-	iconv -t UTF-8 -f cp932 $1.bak > $1
+  cp $1 $1.bak
+  iconv -t UTF-8 -f cp932 $1.bak > $1
 }
 
 function ddir() {
-	d=`LANG=C date +%Y%m%d`
-	mkdirc ${d}_${1}
+  d=`LANG=C date +%Y%m%d`
+  mkdirc ${d}_${1}
 }
 
 function mkdirc() {
-	mkdir $1 && cd $1
+  mkdir $1 && cd $1
 }
 
 function find_dir() {
@@ -35,4 +35,51 @@ function vimbg() {
   fi
 }
 
-export -f sjis utf8 ddir mkdirc find_dir vimbg
+function pecho() {
+  php -r "echo $1"
+  echo
+}
+
+# 指定ディレクトリのパスをツリー表示する
+function dirtree() {
+  if [ $# -lt 1 ]
+  then
+    cwd=`pwd`
+  else
+    cwd=$1
+  fi
+  indent=0
+  paths=${cwd//\// }
+  arr=($paths)
+  depth=${#arr[@]}
+  for d in $paths
+  do
+    no=$(($depth - $indent - 1))
+    echo -n $no
+    echo -n " "
+    for ((s=0; s<$indent; s++))
+    do
+      echo -n " "
+    done
+    echo $d
+    indent=$(($indent + 1))
+  done
+}
+
+# ディレクトリを駆け上がる
+function up() {
+  level=$1
+  if [ x$level == "x" ]
+  then
+    level=1
+  fi
+
+  cmd=""
+  for i in `seq 1 $level`
+  do
+    cmd="${cmd}../"
+  done
+  cd $cmd
+}
+
+export -f sjis utf8 ddir mkdirc find_dir vimbg pecho dirtree up
