@@ -1,6 +1,6 @@
 #!/bin/bash
 DOT_FILES=( .bashrc .bashrc.aliases .bashrc.color .bashrc.env .bashrc.functions .gitconfig .profile .screenrc .vimrc)
-DOT_DIRS=( .lftp)
+DOT_DIRS=( .lftp .vim)
 
 # dot files
 for file in ${DOT_FILES[@]}
