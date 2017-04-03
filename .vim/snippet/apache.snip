@@ -1,0 +1,6 @@
+snippet BasicAuth
+	AuthType Basic
+	AuthName "Restricted contents"
+	AuthUserFile ./htpasswd
+	AuthGroupFile /dev/null
+	require valid-user

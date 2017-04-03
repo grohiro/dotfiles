@@ -1,0 +1,33 @@
+snippet     log
+  console.log(${1});
+
+snippet     lambda
+abbr        Lambda function
+  'use strict';
+
+  module.exports.myHandler = (event, context, callback) => {
+
+    callback(null, "success");
+  };
+
+snippet     enc
+abbr        URI encode
+options     head
+  encodeURIComponent(${1});
+
+snippet     require
+  const ${1} = require('$1${0}');
+
+snippet     foreach
+  Object.keys(${1}).forEach(key => {
+    let value = $1[key];
+  });
+
+snippet     route
+abbr        Define new route
+options     head
+	router.get('${1}', function (req, res, next) {
+		let data = {};
+		res.render('${2}', data);
+	});
+

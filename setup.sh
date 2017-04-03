@@ -8,13 +8,14 @@ do
   ln -s $HOME/dotfiles/$file $HOME/$file
 done
 
-# dot directories
+# dot directories (depth 1)
 for dir in ${DOT_DIRS[@]}
 do
   mkdir -p $HOME/$dir
-  for file in $(find $HOME/dotfiles/$dir -type f -depth 1)
+  for file in $(find $HOME/dotfiles/$dir -depth 1)
   do
     fname=$(basename $file)
     ln -s $file $HOME/$dir/$fname
   done
 done
+

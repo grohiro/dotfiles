@@ -1,0 +1,18 @@
+# vim:set noexpandtab:
+snippet getopts
+	while getopts "ac:" flag; do
+		case $flag in
+			\?) OPT_ERROR=1
+					;;
+			a) opt_a=true
+					;;
+			c) opt_c="$OPTARG"
+					;;
+		esac
+	done
+	shift \`expr $OPTIND - 1\`
+
+snippet if_pipe
+	if [ ! -t 0 ]; then
+		echo "Pipe used"
+	fi
