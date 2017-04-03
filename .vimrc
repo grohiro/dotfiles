@@ -171,11 +171,13 @@ endfunction
 " }}}
 "
 " {{{ showmarks 
-  noremap <Nop>(showmarks-toggle) <Plug>ShowmarksShowMarksToggle
-  noremap <Nop>(showmarks-on) <Plug>ShowmarksShowMarksOn
-  noremap <Nop>(showmarks-clear) <Plug>ShowmarksClearMark
-  noremap <Nop>(showmarks-clear-all) <Plug>ShowmarksClearAll
-  noremap <Nop>(showmarks-place) <Plug>ShowmarksPlaceMark
+  " Disable plugin mappings
+  " http://stackoverflow.com/questions/16059716/vim-remove-mapping-created-by-vim-plugin#comment22920168_16059873
+  noremap <Plug>ShowmarksShowMarksToggle <Plug>ShowmarksShowMarksToggle
+  noremap <Plug>ShowmarksShowMarksOn <Plug>ShowmarksShowMarksOn
+  noremap <Plug>ShowmarksClearMark <Plug>ShowmarksClearMark
+  noremap <Plug>ShowmarksClearAll <Plug>ShowmarksClearAll
+  noremap <Plug>ShowmarksPlaceMark <Plug>ShowmarksPlaceMark
 " }}}
 
 " }}}
