@@ -55,6 +55,7 @@ endfunction
   NeoBundle 'vim-scripts/Align'
   NeoBundle 'vim-scripts/taglist.vim'
   NeoBundle 'vim-scripts/yanktmp.vim'
+  NeoBundle 'jwalton512/vim-blade'
 
   call neobundle#end()
   filetype plugin indent on
