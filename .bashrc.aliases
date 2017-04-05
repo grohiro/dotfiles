@@ -49,3 +49,4 @@ alias ucfirst="php -r 'echo ucfirst(fgets(STDIN));'"
 alias j='source ~/dotfiles/bin/jump.sh'
 alias lsdir='cd $(source ~/dotfiles/bin/lsdir.sh | peco)'
 alias D='find_dir'
+alias dt='dirtree'
