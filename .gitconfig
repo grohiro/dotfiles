@@ -12,7 +12,7 @@
 [color]
   ui = auto
 [core]
-  excludesfile = ~/.git/gitignore
+  excludesfile = ~/.gitignore
   whitespace = cr-at-eol
 [difftool "sourcetree"]
   cmd = opendiff \"$LOCAL\" \"$REMOTE\"

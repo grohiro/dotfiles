@@ -1,0 +1,40 @@
+# Backup files
+*.swp
+*.swo
+*~
+*.bak
+
+tags
+GTAGS
+GPATH
+GRTAGS
+
+.vimrc.local
+.vim/
+
+.DS_Store
+
+# Ansible retry file
+*.retry
+
+# IntelliJ
+projectFilesBackup
+.idea
+*.iml
+
+.jshintrc
+tslint.json
+
+# Redis?
+dump.rdb
+
+# Visual Studio Code
+.vscode/
+
+#
+.node_modules
+.serverless
+.serverless_plugins
+
+.node-dev.json
+php_errors.log
