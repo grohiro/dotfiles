@@ -5,7 +5,7 @@ fi
 
 export SCREENDIR=~/.screen/session
 export GOPATH=~/go
-export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_77.jdk/Contents/Home/
+export JAVA_HOME=/usr
 export EDITOR="vim"
 export LANG=ja_JP.UTF-8
 
