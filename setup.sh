@@ -19,3 +19,6 @@ do
   done
 done
 
+# Install utilities
+curl https://raw.githubusercontent.com/git/git/master/contrib/diff-highlight/diff-highlight > ~/bin/diff-highlight
+chmod 755 ~/bin/diff-highlight
