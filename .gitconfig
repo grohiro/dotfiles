@@ -5,7 +5,7 @@
   name = grohiro
   email = khirokawa@growk.jp
 [http]
-  sslVerify = false
+	sslVerify = true
   receivepack = true 
   postBuffer = 524288000
 [https]
