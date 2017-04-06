@@ -1,5 +1,5 @@
 #!/bin/bash
-DOT_FILES=( .bashrc .bashrc.aliases .bashrc.color .bashrc.env .bashrc.functions .gitconfig .profile .screenrc .vimrc .gitignore .ansible.cfg .gvim)
+DOT_FILES=( .bashrc .bashrc.aliases .bashrc.color .bashrc.env .bashrc.functions .gitconfig .profile .screenrc .vimrc .gitignore .ansible.cfg .gvimrc)
 DOT_DIRS=( .lftp .vim)
 
 # dot files
