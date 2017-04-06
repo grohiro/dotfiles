@@ -40,6 +40,7 @@ endfunction
   NeoBundle 'grohiro/vim-testing-pair'
   NeoBundle 'janko-m/vim-test'
   NeoBundle 'jelera/vim-javascript-syntax'
+  NeoBundle 'jwalton512/vim-blade'
   NeoBundle 'kchmck/vim-coffee-script'
   NeoBundle 'leafgarland/typescript-vim'
   NeoBundle 'mattn/emmet-vim'
@@ -52,9 +53,9 @@ endfunction
   NeoBundle 'tpope/vim-surround'
   NeoBundle 'tyru/current-func-info.vim'
   NeoBundle 'vim-scripts/Align'
+  NeoBundle 'vim-scripts/gtags.vim'
   NeoBundle 'vim-scripts/taglist.vim'
   NeoBundle 'vim-scripts/yanktmp.vim'
-  NeoBundle 'jwalton512/vim-blade'
   NeoBundle 'Shougo/vimproc.vim', {
         \ 'build' : {
         \     'windows' : 'tools\\update-dll-mingw',
