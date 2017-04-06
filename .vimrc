@@ -3,7 +3,6 @@ set nocompatible
 let mapleader = "\<Space>"
 imap <C-j> <Esc>
 
-
 " vimrc.local {{{
 " http://vim-users.jp/2009/12/hack112/
 " Load settings for each location.
@@ -56,6 +55,15 @@ endfunction
   NeoBundle 'vim-scripts/taglist.vim'
   NeoBundle 'vim-scripts/yanktmp.vim'
   NeoBundle 'jwalton512/vim-blade'
+  NeoBundle 'Shougo/vimproc.vim', {
+        \ 'build' : {
+        \     'windows' : 'tools\\update-dll-mingw',
+        \     'cygwin' : 'make -f make_cygwin.mak',
+        \     'mac' : 'make',
+        \     'linux' : 'make',
+        \     'unix' : 'gmake',
+        \    },
+        \ }
 
   call neobundle#end()
   filetype plugin indent on
