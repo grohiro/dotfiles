@@ -20,18 +20,19 @@ PATH=/usr/local/opt/coreutils/bin:$PATH
 PATH=/usr/local/postgresql83/bin:$PATH
 
 # User path
+PATH="$HOME/.anyenv/bin:$PATH"
+eval "$(anyenv init -)"
 PATH=$GOPATH/bin:$PATH
 PATH=~/.composer/vendor/bin:$PATH
 PATH=~/.nodebrew/current/bin:$PATH
 PATH=~/git/phplint:$PATH
 PATH=~/bin:$PATH
 PATH=./node_modules/.bin:$PATH
-PATH="$HOME/.anyenv/bin:$PATH"
+PATH=./vendor/.bin:$PATH
 export PATH
 
 test -r ~/.bashrc && . ~/.bashrc
 test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
 
-eval "$(anyenv init -)"
 
 screen -ls
