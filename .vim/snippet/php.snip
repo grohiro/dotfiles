@@ -16,6 +16,14 @@ options     head
 		${0}
 	}
 
+snippet     constructor
+abbr        construct
+options     head
+	public function __construct()
+	{
+		${0:parent::__construct()}
+	}
+
 snippet function
 abbr public function () {}
 	/**
