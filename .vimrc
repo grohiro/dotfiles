@@ -1,7 +1,9 @@
 set nocompatible
 
 let mapleader = "\<Space>"
-imap <C-j> <Esc>
+noremap <C-j> <Esc>
+inoremap <C-j> <Esc>
+vnoremap <C-j> <Esc>
 
 " vimrc.local {{{
 " http://vim-users.jp/2009/12/hack112/
@@ -28,10 +30,12 @@ endfunction
   call neobundle#begin(expand('~/.vim/bundle/'))
 
   " Packages
-  NeoBundle 'Shougo/neocomplcache'
+  NeoBundle 'Shougo/neocomplete'
   NeoBundle 'Shougo/neosnippet'
+  "NeoBundleDisable neosnippet
   NeoBundle 'Shougo/neosnippet-snippets'
   NeoBundle 'Shougo/unite.vim'
+  NeoBundleDisable unite.vim
   NeoBundle 'Shougo/vimproc'
   NeoBundle 'b4winckler/vim-angry'
   NeoBundle 'ctrlpvim/ctrlp.vim'
@@ -40,19 +44,24 @@ endfunction
   NeoBundle 'grohiro/vim-testing-pair'
   NeoBundle 'janko-m/vim-test'
   NeoBundle 'jelera/vim-javascript-syntax'
+  NeoBundleDisable vim-javascript-syntax
   NeoBundle 'jwalton512/vim-blade'
   NeoBundle 'kchmck/vim-coffee-script'
   NeoBundle 'leafgarland/typescript-vim'
   NeoBundle 'mattn/emmet-vim'
   NeoBundle 'scrooloose/nerdtree'
   NeoBundle 'tacroe/unite-mark'
+  NeoBundleDisable unite-mark
   NeoBundle 'thinca/vim-quickrun'
   NeoBundle 'thinca/vim-ref'
+  NeoBundleDisable vim-ref
   NeoBundle 'thoughtbot/vim-rspec'
   NeoBundle 'tpope/vim-dispatch'
+  NeoBundleDisable vim-dispatch
   NeoBundle 'tpope/vim-surround'
   NeoBundle 'tyru/current-func-info.vim'
   NeoBundle 'vim-scripts/Align'
+  NeoBundleDisable Align
   NeoBundle 'vim-scripts/gtags.vim'
   NeoBundle 'vim-scripts/taglist.vim'
   NeoBundle 'vim-scripts/yanktmp.vim'
@@ -71,55 +80,108 @@ endfunction
   NeoBundleCheck
   " }}}
 
-  " {{{ neocomplcache
-  let g:neocomplcache_enable_at_startup = 1
-  " Use smartcase.
-  let g:neocomplcache_enable_smart_case = 1
-  " Use camel case completion.
-  let g:neocomplcache_enable_camel_case_completion = 0
-  " Use underscore completion.
-  let g:neocomplcache_enable_underbar_completion = 0
-  " Sets minimum char length of syntax keyword.
-  let g:neocomplcache_min_syntax_length = 3
-  " Vim標準の omni 補完を置き換える
-  set omnifunc=neocomplcache#manual_omni_complete
+  " {{{ neocomplete
+    "Note: This option must be set in .vimrc(_vimrc).  NOT IN .gvimrc(_gvimrc)!
+    " Disable AutoComplPop.
+    let g:acp_enableAtStartup = 0
+    " Use neocomplete.
+    let g:neocomplete#enable_at_startup = 1
+    " Use smartcase.
+    let g:neocomplete#enable_smart_case = 1
+    " Set minimum syntax keyword length.
+    let g:neocomplete#sources#syntax#min_keyword_length = 3
 
-  " Plugin key-mappings.
-  "imap <TAB>     <Plug>(neosnippet_expand_or_jump)
-  "smap <TAB>     <Plug>(neosnippet_expand_or_jump)
-  imap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-        \ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
-  smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-        \ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+    " Define dictionary.
+    let g:neocomplete#sources#dictionary#dictionaries = {
+        \ 'default' : '',
+        \ 'vimshell' : $HOME.'/.vimshell_hist',
+        \ 'scheme' : $HOME.'/.gosh_completions'
+            \ }
 
-  "inoremap <expr><C-g>     neocomplcache#undo_completion()
-  "inoremap <expr><C-l>     neocomplcache#complete_common_string()
+    " Define keyword.
+    if !exists('g:neocomplete#keyword_patterns')
+        let g:neocomplete#keyword_patterns = {}
+    endif
+    let g:neocomplete#keyword_patterns['default'] = '\h\w*'
 
-  " SuperTab like snippets behavior.
+    " Plugin key-mappings.
+    inoremap <expr><C-g>     neocomplete#undo_completion()
+    inoremap <expr><C-l>     neocomplete#complete_common_string()
 
-  " Recommended key-mappings.
-  " <CR>: close popup and save indent.
-  inoremap <expr><CR>  neocomplcache#smart_close_popup() . "\<CR>"
-  " <TAB>: completion.
-  "inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-  " <C-h>, <BS>: close popup and delete backword char.
-  "inoremap <expr><C-h> neocomplcache#smart_close_popup()."\<C-h>"
-  "inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
-  "inoremap <expr><C-y>  neocomplcache#close_popup()
-  "inoremap <expr><C-e>  neocomplcache#cancel_popup()
+    " Recommended key-mappings.
+    " <CR>: close popup and save indent.
+    inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+    function! s:my_cr_function()
+      return (pumvisible() ? "\<C-y>" : "" ) . "\<CR>"
+      " For no inserting <CR> key.
+      "return pumvisible() ? "\<C-y>" : "\<CR>"
+    endfunction
+    " <TAB>: completion.
+    "inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+    " <C-h>, <BS>: close popup and delete backword char.
+    inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
+    inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
+    " Close popup by <Space>.
+    "inoremap <expr><Space> pumvisible() ? "\<C-y>" : "\<Space>"
 
-  " AutoComplPop like behavior.
-  "let g:neocomplcache_enable_auto_select = 1
+    " AutoComplPop like behavior.
+    "let g:neocomplete#enable_auto_select = 1
 
+    " Shell like behavior(not recommended).
+    "set completeopt+=longest
+    "let g:neocomplete#enable_auto_select = 1
+    "let g:neocomplete#disable_auto_complete = 1
+    "inoremap <expr><TAB>  pumvisible() ? "\<Down>" : "\<C-x>\<C-u>"
+
+    " Enable omni completion.
+    autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+    autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+    autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+    autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+    autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+
+    " Enable heavy omni completion.
+    if !exists('g:neocomplete#sources#omni#input_patterns')
+      let g:neocomplete#sources#omni#input_patterns = {}
+    endif
+    "let g:neocomplete#sources#omni#input_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
+    "let g:neocomplete#sources#omni#input_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
+    "let g:neocomplete#sources#omni#input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
+
+    " For perlomni.vim setting.
+    " https://github.com/c9s/perlomni.vim
+    let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
   " }}}
 
 " neosnippet {{{
   " 自分用 snippet ファイルの場所
+  let g:neosnippet#enable_auto_clear_markers = 0
   let g:neosnippet#snippets_directory = [
         \ '~/.vim/snippet/',
         \ '~/.vim/bundle/vim-go/gosnippets/snippets/',
         \ '~/.vim/bundle/neosnippet-snippets/neosnippets/',
         \ ]
+
+  " Plugin key-mappings.
+  " Note: It must be "imap" and "smap".  It uses <Plug> mappings.
+  imap <C-l>     <Plug>(neosnippet_expand_or_jump)
+  smap <C-l>     <Plug>(neosnippet_expand_or_jump)
+  xmap <C-l>     <Plug>(neosnippet_expand_target)
+
+  " SuperTab like snippets behavior.
+  " Note: It must be "imap" and "smap".  It uses <Plug> mappings.
+  imap <C-l>     <Plug>(neosnippet_expand_or_jump)
+  "imap <expr><TAB>
+  " \ pumvisible() ? "\<C-n>" :
+  " \ neosnippet#expandable_or_jumpable() ?
+  " \    "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+  smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+  \ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+
+  " For conceal markers.
+  if has('conceal')
+    set conceallevel=2 concealcursor=niv
+  endif
 
   augroup neosnippet
     autocmd!
@@ -221,8 +283,8 @@ nnoremap <F2> :buf #<CR>
 nnoremap L :CtrlPBuffer<CR>
 
 " Close all other windows
-nnoremap <leader>m :only<CR>
-nnoremap <leader>M :only<CR>:tabonly<CR>
+nnoremap <silent><leader>m :only<CR>
+nnoremap <silent><leader>M :only<CR>:tabonly<CR>
 nnoremap <leader>wl <C-W>l
 nnoremap <leader>wh <C-W>h
 nnoremap <leader>ww <C-W>w
@@ -273,7 +335,7 @@ set scrolloff=3
 " 移動コマンドを使ったとき、行頭に移動しない
 set nostartofline
 " 対応括弧に<と>のペアを追加
-set matchpairs& matchpairs+=<:>
+"set matchpairs& matchpairs+=<:>
 " インデントをshiftwidthの倍数に丸める
 set shiftround
 " 行頭の余白内で Tab を打ち込むとshiftwidthの数だけインデントする
@@ -415,7 +477,7 @@ endfunction
 
 " {{{ editing
 " 対応する括弧をハイライト
-set showmatch
+"set showmatch
 
 " }}}
 
@@ -505,7 +567,7 @@ endif
 
 " Plugins
 
-source $VIMRUNTIME/macros/matchit.vim
+"source $VIMRUNTIME/macros/matchit.vim
 
 " {{{ NERDTree
 nnoremap <F12> :NERDTreeToggle %:p:h<CR>
