@@ -10,7 +10,7 @@ augroup phpcmd
   autocmd FileType php set makeprg=php\ -l\ %
   autocmd FileType php set nosmartindent
   " ファイル保存時に QuickRun を実行する
-  autocmd BufWritePost *.php :MyQuickRun "lint/php"
+  "autocmd BufWritePost *.php :MyQuickRun "lint/php"
   " PHPUnit
   "autocmd BufWinEnter,BufNewFile *Test.php set filetype=phpunit
   "autocmd BufWinEnter,BufNewFile *Test.php map <Leader>r :MyQuickRun phpunit<CR>
