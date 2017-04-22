@@ -32,7 +32,6 @@ endfunction
   " Packages
   NeoBundle 'Shougo/neocomplete'
   NeoBundle 'Shougo/neosnippet'
-  "NeoBundleDisable neosnippet
   NeoBundle 'Shougo/neosnippet-snippets'
   NeoBundle 'Shougo/unite.vim'
   NeoBundleDisable unite.vim
@@ -90,6 +89,10 @@ endfunction
     let g:neocomplete#enable_smart_case = 1
     " Set minimum syntax keyword length.
     let g:neocomplete#sources#syntax#min_keyword_length = 3
+
+    "let g:neocomplete#disable_auto_complete = 1
+    "inoremap <expr><nul> pumvisible() ? "\<down>" : neocomplete#start_manual_complete()
+    "let g:neocomplete#enable_auto_select = 1
 
     " Define dictionary.
     let g:neocomplete#sources#dictionary#dictionaries = {
@@ -171,12 +174,11 @@ endfunction
   " SuperTab like snippets behavior.
   " Note: It must be "imap" and "smap".  It uses <Plug> mappings.
   imap <C-l>     <Plug>(neosnippet_expand_or_jump)
-  "imap <expr><TAB>
-  " \ pumvisible() ? "\<C-n>" :
-  " \ neosnippet#expandable_or_jumpable() ?
-  " \    "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+  imap <expr><TAB>
+    \ neosnippet#expandable_or_jumpable() ?
+    \    "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
   smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-  \ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+    \ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
 
   " For conceal markers.
   if has('conceal')
