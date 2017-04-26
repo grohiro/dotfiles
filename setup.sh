@@ -23,9 +23,12 @@ do
 done
 
 # Install utilities
-curl https://raw.githubusercontent.com/git/git/master/contrib/diff-highlight/diff-highlight > ~/bin/diff-highlight
-chmod 755 ~/bin/diff-highlight
 
+if [ ! -e ~/bin/diff-highlight ]
+then
+  curl https://raw.githubusercontent.com/git/git/master/contrib/diff-highlight/diff-highlight > ~/bin/diff-highlight
+  chmod 755 ~/bin/diff-highlight
+fi
 
 if [ ! -e ~/.bash/git-completion.bash ]
 then
