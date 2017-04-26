@@ -1,4 +1,7 @@
 #!/bin/bash
+
+install -d -m 755 ~/.bash/
+
 DOT_FILES=( .bashrc .bashrc.aliases .bashrc.color .bashrc.env .bashrc.functions .gitconfig .profile .screenrc .vimrc .gitignore .ansible.cfg .gvimrc .globalrc)
 DOT_DIRS=( .lftp .vim)
 
@@ -22,3 +25,11 @@ done
 # Install utilities
 curl https://raw.githubusercontent.com/git/git/master/contrib/diff-highlight/diff-highlight > ~/bin/diff-highlight
 chmod 755 ~/bin/diff-highlight
+
+
+if [ ! -e ~/.bash/git-completion.bash ]
+then
+  curl https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash > /tmp/git-completion.bash
+  install -m 755 /tmp/git-completion.bash ~/.bash/
+fi
+
