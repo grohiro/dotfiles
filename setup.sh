@@ -36,3 +36,9 @@ then
   install -m 755 /tmp/git-completion.bash ~/.bash/
 fi
 
+# HomeBrew
+which brew
+if [ $? == 0 ]
+then
+  brew install bash-completion
+fi
