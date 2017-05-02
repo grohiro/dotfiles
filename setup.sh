@@ -4,6 +4,7 @@ install -d -m 755 ~/.bash/
 
 DOT_FILES=( .bashrc .bashrc.aliases .bashrc.color .bashrc.env .bashrc.functions .gitconfig .profile .screenrc .vimrc .gitignore .ansible.cfg .gvimrc .globalrc)
 DOT_DIRS=( .lftp .vim)
+HOME_BREW_PKGS="bash-completion"
 
 # dot files
 for file in ${DOT_FILES[@]}
@@ -43,8 +44,14 @@ then
 fi
 
 # HomeBrew
-which brew
+which brew > /dev/null
 if [ $? == 0 ]
 then
-  brew install bash-completion
+  for pkg in $HOME_BREW_PKGS
+  do
+    if [ ! $(brew --prefix $pkg) ]
+    then
+      brew install $pkg
+    fi
+  done
 fi
