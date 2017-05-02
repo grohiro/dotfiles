@@ -8,7 +8,10 @@ DOT_DIRS=( .lftp .vim)
 # dot files
 for file in ${DOT_FILES[@]}
 do
-  ln -s $HOME/dotfiles/$file $HOME/$file
+  if [ ! -e $HOME/$file ]
+  then
+    ln -s $HOME/dotfiles/$file $HOME/$file
+  fi
 done
 
 # dot directories (depth 1)
@@ -17,8 +20,11 @@ do
   mkdir -p $HOME/$dir
   for file in $(find $HOME/dotfiles/$dir -depth 1)
   do
-    fname=$(basename $file)
-    ln -s $file $HOME/$dir/$fname
+    if [ ! -e $HOME/$dir/$fname ]
+    then
+      fname=$(basename $file)
+      ln -s $file $HOME/$dir/$fname
+    fi
   done
 done
 
