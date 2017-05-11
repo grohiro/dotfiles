@@ -2,8 +2,8 @@
 
 install -d -m 755 ~/.bash/
 
-DOT_FILES=( .bashrc .bashrc.aliases .bashrc.color .bashrc.env .bashrc.functions .gitconfig .profile .screenrc .vimrc .gitignore .ansible.cfg .gvimrc .globalrc)
-DOT_DIRS=( .lftp .vim)
+DOT_FILES=(.bashrc .bashrc.aliases .bashrc.color .bashrc.env .bashrc.functions .gitconfig .profile .screenrc .vimrc .gitignore .ansible.cfg .gvimrc .globalrc)
+DOT_DIRS=(.lftp .vim)
 HOME_BREW_PKGS="bash-completion"
 
 # dot files
@@ -21,9 +21,9 @@ do
   mkdir -p $HOME/$dir
   for file in $(find $HOME/dotfiles/$dir -depth 1)
   do
+    fname=$(basename $file)
     if [ ! -e $HOME/$dir/$fname ]
     then
-      fname=$(basename $file)
       ln -s $file $HOME/$dir/$fname
     fi
   done
