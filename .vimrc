@@ -25,6 +25,12 @@ endfunction
 
 " {{{ plugin initialize
 
+
+  " Vim bundled
+  " Do not use matchparen
+  " http://itchyny.hatenablog.com/entry/2016/03/30/210000
+  let g:loaded_matchparen = 1
+
   " {{{ NeoBundle
   set runtimepath+=~/.vim/bundle/neobundle.vim
   call neobundle#begin(expand('~/.vim/bundle/'))
