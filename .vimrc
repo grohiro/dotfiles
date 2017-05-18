@@ -1,9 +1,9 @@
 set nocompatible
 
 let mapleader = "\<Space>"
-noremap <C-j> <Esc>
-inoremap <C-j> <Esc>
-vnoremap <C-j> <Esc>
+"noremap <C-j> <Esc>
+"inoremap <C-j> <Esc>
+"vnoremap <C-j> <Esc>
 
 " vimrc.local {{{
 " http://vim-users.jp/2009/12/hack112/
