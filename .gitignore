@@ -38,3 +38,5 @@ dump.rdb
 
 .node-dev.json
 php_errors.log
+
+node_modules/
