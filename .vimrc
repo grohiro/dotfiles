@@ -70,6 +70,7 @@ endfunction
   NeoBundle 'vim-scripts/gtags.vim'
   NeoBundle 'vim-scripts/taglist.vim'
   NeoBundle 'vim-scripts/yanktmp.vim'
+  NeoBundle 'itchyny/vim-parenmatch'
   NeoBundle 'Shougo/vimproc.vim', {
         \ 'build' : {
         \     'windows' : 'tools\\update-dll-mingw',
