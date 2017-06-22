@@ -4,7 +4,7 @@ install -d -m 755 ~/.bash/
 
 DOT_FILES=(.bashrc .bashrc.aliases .bashrc.color .bashrc.env .bashrc.functions .gitconfig .profile .screenrc .vimrc .gitignore .ansible.cfg .gvimrc .globalrc .bash_completion)
 DOT_DIRS=(.lftp .vim .bash_completion.d)
-HOME_BREW_PKGS="bash-completion"
+HOME_BREW_PKGS="bash-completion gawk"
 
 # dot files
 for file in ${DOT_FILES[@]}

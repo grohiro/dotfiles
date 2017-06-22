@@ -50,3 +50,6 @@ alias j='source ~/dotfiles/bin/jump.sh'
 alias lsdir='cd $(source ~/dotfiles/bin/lsdir.sh | peco)'
 alias D='find_dir'
 alias dt='dirtree'
+
+# Laravel
+alias artisan='php "$(_get_artisan_dir)/artisan" --ansi'
