@@ -4,7 +4,7 @@ install -d -m 755 ~/.bash/
 
 DOT_FILES=(.bashrc .bashrc.aliases .bashrc.color .bashrc.env .bashrc.functions .gitconfig .profile .screenrc .vimrc .gitignore .ansible.cfg .gvimrc .globalrc .bash_completion)
 DOT_DIRS=(.lftp .vim .bash_completion.d)
-HOME_BREW_PKGS="bash-completion gawk"
+HOME_BREW_PKGS="bash-completion gawk bash"
 
 # dot files
 for file in ${DOT_FILES[@]}
@@ -56,5 +56,10 @@ then
   done
 fi
 
+# Use bash version4
+sudo bash -c 'echo /usr/local/bin/bash >> /etc/shells'
+chsh -s /usr/local/bin/bash
+
 # Install bash completion files
 bash ~/.bash_completion.d/install
+
