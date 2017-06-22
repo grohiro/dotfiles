@@ -16,8 +16,14 @@ options     head
 		${0}
 	}
 
-snippet     constructor
-abbr        construct
+snippet function_literal
+options word
+abbr function () {}
+	function (${1})${2: use } {
+		${3:TARGET}
+	}${4:);}
+
+snippet     construct
 options     head
 	public function __construct()
 	{
