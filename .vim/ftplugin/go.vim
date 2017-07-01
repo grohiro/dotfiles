@@ -11,7 +11,7 @@ augroup golang
   au FileType go nmap <Leader>gd <Plug>(go-doc)
   au FileType go nmap <Leader>gv <Plug>(go-doc-vertical)
   au FileType go nmap <Leader>gb <Plug>(go-doc-browser)
-  au BufWritePost *.go :GoBuild
+  "au BufWritePost *.go :GoBuild
   let g:go_fmt_command = "goimports"
   let g:go_highlight_functions = 1
   let g:go_highlight_methods = 1
