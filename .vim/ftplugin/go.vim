@@ -12,6 +12,8 @@ augroup golang
   au FileType go nmap <Leader>gv <Plug>(go-doc-vertical)
   au FileType go nmap <Leader>gb <Plug>(go-doc-browser)
   "au BufWritePost *.go :GoBuild
+  autocmd BufWritePost,FileWritePost *.go execute 'Lint' | cwindow
+
   let g:go_fmt_command = "goimports"
   let g:go_highlight_functions = 1
   let g:go_highlight_methods = 1
@@ -19,5 +21,6 @@ augroup golang
   let g:go_highlight_types = 1
   let g:go_highlight_operators = 1
   let g:go_highlight_build_constraints = 1
+  set rtp+=$GOPATH/src/github.com/golang/lint/misc/vim
   exe "set rtp+=".globpath($GOPATH, "src/github.com/nsf/gocode/vim")
 augroup END
