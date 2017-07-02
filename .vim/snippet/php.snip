@@ -83,5 +83,9 @@ snippet     phpcs-comment
 	// @codingStandardsIgnoreStart
 	// @codingStandardsIgnoreEnd
 
-
-
+snippet     testFunction
+abbr        PHPUnit test function
+options     head
+	public function test${1}() {
+		${0}
+	}
