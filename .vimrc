@@ -37,7 +37,9 @@ endfunction
 
   " Packages
   NeoBundle 'Shougo/neocomplete'
+  NeoBundleDisable neocomplete
   NeoBundle 'Shougo/neosnippet'
+  NeoBundleDisable neosnippet
   NeoBundle 'Shougo/neosnippet-snippets'
   NeoBundle 'Shougo/unite.vim'
   NeoBundleDisable unite.vim
