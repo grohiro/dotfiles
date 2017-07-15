@@ -48,6 +48,7 @@ NeoBundle 'Shougo/vimproc.vim', {
 			\     'unix' : 'gmake',
 			\    },
 			\ }
+NeoBundle 'mattn/emmet-vim'
 call neobundle#end()
 
 NeoBundleCheck
