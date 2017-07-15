@@ -32,3 +32,17 @@ endfunction
 command! PhpVar :call PhpVar()
 vnoremap <Leader>pv <ESC>:call PhpVar()<CR>
 
+" QuickRun
+let g:quickrun_config["lint/php"] = {
+\ "command": "phplint",
+\ "cmdopt": "",
+\ "exec": "%c %o %s:p",
+\ "errorformat": "%A%m\ in\ %f\ on\ line\ %l,%-GFile\\,%m,\"%f\"\\,%l\\,%c\\,%*\\w\\,\"%m\"\\,%*[a-z0-9A-Z\.]\\,%*\\d\\,%*\\d,%Z,%f:%l%%m,%f:%l%m"
+\}
+
+let g:quickrun_config['phpunit'] = {
+\ 'command': 'phpunit',
+\ 'cmdopt': '',
+\ 'exec': "%c %o %s | sed -e '1d' -e '/^\\$/d' -e '/^Time:/d'",
+\}
+"'exec': "%c %o %s | sed -e '1d' -e '/^\\$/d' -e '/^Time:/d'",
