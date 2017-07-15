@@ -49,6 +49,7 @@ NeoBundle 'Shougo/vimproc.vim', {
 			\    },
 			\ }
 NeoBundle 'mattn/emmet-vim'
+NeoBundle 'vim-scripts/yanktmp.vim'
 call neobundle#end()
 
 NeoBundleCheck
