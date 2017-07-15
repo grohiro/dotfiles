@@ -40,3 +40,7 @@ dump.rdb
 php_errors.log
 
 node_modules/
+vendor/
+
+#
+.env
