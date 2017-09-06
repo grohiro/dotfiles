@@ -29,7 +29,7 @@ PATH=~/.nodebrew/current/bin:$PATH
 PATH=~/git/phplint:$PATH
 PATH=~/bin:$PATH
 PATH=./node_modules/.bin:$PATH
-PATH=./vendor/.bin:$PATH
+PATH=./vendor/bin:$PATH
 export PATH
 
 test -r ~/.bashrc && . ~/.bashrc
