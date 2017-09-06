@@ -39,6 +39,7 @@ NeoBundle 'tyru/current-func-info.vim'
 NeoBundle 'thinca/vim-quickrun'
 NeoBundle 'vim-scripts/gtags.vim'
 NeoBundle 'vim-scripts/taglist.vim'
+NeoBundle 'fatih/vim-go'
 NeoBundle 'Shougo/vimproc.vim', {
 			\ 'build' : {
 			\     'windows' : 'tools\\update-dll-mingw',
