@@ -242,6 +242,11 @@ set statusline=%f%m%{GetStatusEx()}\ %r\ line\ %l\ of\ %L\ %{cfi#format(\"(%s)\"
 set breakindent
 " }}}
 
+" Color {{{
+hi SpecialKey ctermfg=DarkGray
+hi NonText ctermfg=DarkGray
+" }}}
+
 " {{{ encoding
 " 端末で使用するの文字コード
 set termencoding=utf-8
