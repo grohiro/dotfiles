@@ -143,7 +143,7 @@ endfunction
 " 自分用 snippet ファイルの場所
 let g:neosnippet#enable_auto_clear_markers = 0
 let g:neosnippet#snippets_directory = [
-			\ '~/.vim/snippet/',
+			\ '~/.vim/snippets/',
 			\ '~/.vim/bundle/vim-go/gosnippets/snippets/',
 			\ '~/.vim/bundle/neosnippet-snippets/neosnippets/',
 			\ ]
