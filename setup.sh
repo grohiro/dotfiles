@@ -19,7 +19,13 @@ done
 for dir in ${DOT_DIRS[@]}
 do
   mkdir -p $HOME/$dir
-  for file in $(find $HOME/dotfiles/$dir -depth 1)
+  if [ "`uname`" == 'Linux' ]; then
+    files=$(find $HOME/dotfiles/$dir -maxdepth 1)
+  else
+    files=$(find $HOME/dotfiles/$dir -depth 1)
+  fi
+
+  for file in $files
   do
     fname=$(basename $file)
     if [ ! -e $HOME/$dir/$fname ]
@@ -44,7 +50,7 @@ then
 fi
 
 # HomeBrew
-which brew > /dev/null
+which brew 2>&1 > /dev/null
 if [ $? == 0 ]
 then
   for pkg in $HOME_BREW_PKGS
@@ -57,9 +63,15 @@ then
 fi
 
 # Use bash version4
-sudo bash -c 'echo /usr/local/bin/bash >> /etc/shells'
-chsh -s /usr/local/bin/bash
+if [ -f /usr/local/bin/bash ]; then
+  sudo bash -c 'echo /usr/local/bin/bash >> /etc/shells'
+  chsh -s /usr/local/bin/bash
+fi
 
 # Install bash completion files
 bash ~/.bash_completion.d/install
 
+# Install NeoBundle
+mkdir -p ~/.vim/bundle
+git clone git://github.com/Shougo/neobundle.vim ~/.vim/bundle/neobundle.vim
+vim
