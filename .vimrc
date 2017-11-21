@@ -35,7 +35,6 @@ NeoBundle 'Shougo/neosnippet-snippets'
 NeoBundle 'ctrlpvim/ctrlp.vim'
 NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'grohiro/vim-testing-pair'
-NeoBundle 'tyru/current-func-info.vim'
 NeoBundle 'thinca/vim-quickrun'
 NeoBundle 'vim-scripts/gtags.vim'
 NeoBundle 'vim-scripts/taglist.vim'
@@ -51,6 +50,7 @@ NeoBundle 'Shougo/vimproc.vim', {
 			\ }
 NeoBundle 'mattn/emmet-vim'
 NeoBundle 'vim-scripts/yanktmp.vim'
+NeoBundle 'posva/vim-vue'
 call neobundle#end()
 
 NeoBundleCheck
@@ -221,6 +221,7 @@ set smarttab
 set ambiwidth=double
 
 set nobackup
+set noundofile
 
 " }}}
 
@@ -238,7 +239,8 @@ set listchars=eol:¬,tab:▸\
 " Status line
 set laststatus=2
 "set statusline=%f%m%{GetStatusEx()}\ %r\ line\ %l\ of\ %L\ %{cfi#format(\"(%s)\",\"\")}
-set statusline=%f%m%{GetStatusEx()}\ %r\ line\ %l\ of\ %L
+"set statusline=%f%m%{GetStatusEx()}\ %r\ line\ %l\ of\ %L
+set statusline=%f%m\ %r\ line\ %l\ of\ %L
 
 set breakindent
 " }}}
