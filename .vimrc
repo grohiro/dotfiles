@@ -51,6 +51,7 @@ NeoBundle 'Shougo/vimproc.vim', {
 NeoBundle 'mattn/emmet-vim'
 NeoBundle 'vim-scripts/yanktmp.vim'
 NeoBundle 'posva/vim-vue'
+NeoBundle 'arnaud-lb/vim-php-namespace'
 call neobundle#end()
 
 NeoBundleCheck
@@ -539,5 +540,23 @@ let g:Gtags_Close_When_Single = 1
 
 " }}}
 
+" {{{ php-namespace
+" https://github.com/arnaud-lb/vim-php-namespace
+let g:php_namespace_sort_after_insert = 1
+
+function! IPhpInsertUse()
+  call PhpInsertUse()
+  call feedkeys('a',  'n')
+endfunction
+autocmd FileType php inoremap <Leader>u <Esc>:call IPhpInsertUse()<CR>
+autocmd FileType php noremap <Leader>u :call PhpInsertUse()<CR>
+
+function! IPhpExpandClass()
+  call PhpExpandClass()
+  call feedkeys('a', 'n')
+endfunction
+autocmd FileType php inoremap <Leader>e <Esc>:call IPhpExpandClass()<CR>
+autocmd FileType php noremap <Leader>e :call PhpExpandClass()<CR>
+" }}}
 filetype plugin indent on
 syntax on
