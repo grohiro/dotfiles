@@ -43,6 +43,6 @@ let g:quickrun_config["lint/php"] = {
 let g:quickrun_config['phpunit'] = {
 \ 'command': 'phpunit',
 \ 'cmdopt': '',
-\ 'exec': "%c %o %s | sed -e '1d' -e '/^\\$/d' -e '/^Time:/d'",
+\ 'exec': "%c %o %s | grep -v -e '^\\$'",
 \}
 "'exec': "%c %o %s | sed -e '1d' -e '/^\\$/d' -e '/^Time:/d'",
