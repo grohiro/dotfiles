@@ -44,6 +44,9 @@ let g:quickrun_config['phpunit'] = {
 \ 'command': 'phpunit',
 \ 'cmdopt': '',
 \ 'exec': "%c %o %s",
-\ "errorformat": '%A%[0-9]%#)\ %.%#,%C,%CFailed%m,%C%f:%l,%ZFAILURES!,%-GPHPUnit%.%#,%-GTime:\ %.%#,%-G'
+\ "errorformat": 'PHP\ Fatal\ error:\ %m\ in\ %f\ on\ line\ %l,%f:%l,%-GPHPUnit%.%#,%-GFAILURES!%.%#,%-GTime:\ %.%#,%-G,%f:%l',
+\ "outputter/error/success": 'quickfix'
 \}
+"\ "errorformat": 'PHP\ Fatal\ error:\ %m\ in\ %f\ on\ line\ %l,%A%[0-9])\ %.%#,%+CFailed\ %m,%Z%f:%l,%C%m,%-C,%-GPHPUnit%.%#,%-GFAILURES!%.%#,%-GTime:\ %.%#,%-G,%f:%l',
+"\ "errorformat": '%A%[0-9])\ %.%#,%+CFailed\ %m,%Z%f:%l,%C%m,%-C,%-GPHPUnit%.%#,%-GFAILURES!%.%#,%-GTime:\ %.%#,%-G',
 "'exec': "%c %o %s | sed -e '1d' -e '/^\\$/d' -e '/^Time:/d'",
