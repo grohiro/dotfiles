@@ -284,7 +284,7 @@ set smartcase
 
 noremap <C-x><C-v> :source ~/.vimrc<CR>
 noremap <C-x><C-b> :tabnew ~/.vimrc<CR>
-noremap <F9> :ccl<CR>
+noremap <silent><F9> :ccl<CR>:silent! bw! \[quickrun\ buffer\]<CR>
 
 " c*でカーソル下のキーワードを置換
 nnoremap <expr> c* ':%s /\<' . expand('<cword>') . '\>/'
@@ -384,13 +384,15 @@ let g:quickrun_config = {
 \   'outputter/buffer/running_mark': ':-)',
 \   'outputter/buffer/close_on_empty': 1,
 \   'outputter/quickfix/close_on_empty': 1,
-\   'outputter/quickfix/into': 1,
+\   'outputter/quickfix/into': 0,
 \   'hook/quickfix_replate_tempname_to_bufnr/enable_exit': 0,
 \   'hook/time/enable': 0,
 \   'hook/neco/enable': 1,
 \   'hook/neco/wait': 20,
 \   'hook/neco/echo': 0,
 \   'hook/neco/redraw': 1
+\ },
+\ 'phpunit': {
 \ },
 \ 'coffee': {
 \   'command': 'coffee',
@@ -424,16 +426,7 @@ let g:quickrun_config["go"] = {
   \}
 
 " Lint
-  "
-  " {{{ php
-  let g:quickrun_config["lint/php"] = {
-  \ "command": "phplint",
-	\ "cmdopt": "",
-  \ "exec": "%c %o %s:p",
-  \ "errorformat": "%A%m\ in\ %f\ on\ line\ %l,%-GFile\\,%m,\"%f\"\\,%l\\,%c\\,%*\\w\\,\"%m\"\\,%*[a-z0-9A-Z\.]\\,%*\\d\\,%*\\d,%Z,%f:%l%%m,%f:%l%m"
-  \}
-  " }}}
-  
+
   " {{{ ruby
   let g:quickrun_config["lint/ruby"] = {
   \ "command": "ruby",
@@ -441,16 +434,6 @@ let g:quickrun_config["go"] = {
   \ "errorformat": "%f:%l:\ %m,%f:%l:\ warning:\ %m"
   \}
   " }}}
-
-  " {{{ phpunit
-  let g:quickrun_config['phpunit'] = {
-  \ 'command': 'phpunit',
-  \ 'cmdopt': '',
-  \ 'exec': "%c %o %s",
-  \ 'errorformat': "%f:%l%m"
-  \}
-  " }}}
-  "\ 'exec': "%c %o %s | sed -e '1d' -e '/^\\$/d' -e '/^Time:/d'",
 
   " {{{ bash
   let g:quickrun_config["lint/sh"] = {
@@ -501,6 +484,7 @@ endfunction
 
 function! MyQuickRun(args)
   :cclose
+  silent! bw! \[quickrun\ output\]
   call quickrun#run(a:args)
 endfunction
 command! -nargs=1 MyQuickRun :call MyQuickRun(<f-args>)
@@ -548,14 +532,14 @@ function! IPhpInsertUse()
   call PhpInsertUse()
   call feedkeys('a',  'n')
 endfunction
-autocmd FileType php inoremap <Leader>u <Esc>:call IPhpInsertUse()<CR>
+"autocmd FileType php inoremap <Leader>u <Esc>:call IPhpInsertUse()<CR>
 autocmd FileType php noremap <Leader>u :call PhpInsertUse()<CR>
 
 function! IPhpExpandClass()
   call PhpExpandClass()
   call feedkeys('a', 'n')
 endfunction
-autocmd FileType php inoremap <Leader>e <Esc>:call IPhpExpandClass()<CR>
+"autocmd FileType php inoremap <Leader>e <Esc>:call IPhpExpandClass()<CR>
 autocmd FileType php noremap <Leader>e :call PhpExpandClass()<CR>
 " }}}
 filetype plugin indent on
