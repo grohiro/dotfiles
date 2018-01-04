@@ -39,4 +39,4 @@ eval "$(ndenv init -)"
 
 export GOROOT=$(go env GOROOT)
 
-screen -ls
+tmux ls
