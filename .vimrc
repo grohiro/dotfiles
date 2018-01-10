@@ -52,6 +52,7 @@ NeoBundle 'mattn/emmet-vim'
 NeoBundle 'vim-scripts/yanktmp.vim'
 NeoBundle 'posva/vim-vue'
 NeoBundle 'arnaud-lb/vim-php-namespace'
+NeoBundle 'tpope/vim-fugitive'
 call neobundle#end()
 
 NeoBundleCheck
@@ -542,5 +543,10 @@ endfunction
 "autocmd FileType php inoremap <Leader>e <Esc>:call IPhpExpandClass()<CR>
 autocmd FileType php noremap <Leader>e :call PhpExpandClass()<CR>
 " }}}
+
+" {{{ Git
+nnoremap <leader>gs :Gstatus<CR>5j
+" }}}
+
 filetype plugin indent on
 syntax on
