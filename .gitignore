@@ -40,7 +40,7 @@ dump.rdb
 php_errors.log
 
 node_modules/
-vendor/
+vendor/bundle
 
 #
 .env
