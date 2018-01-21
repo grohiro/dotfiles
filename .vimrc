@@ -53,6 +53,7 @@ NeoBundle 'vim-scripts/yanktmp.vim'
 NeoBundle 'posva/vim-vue'
 NeoBundle 'arnaud-lb/vim-php-namespace'
 NeoBundle 'tpope/vim-fugitive'
+NeoBundle 'janko-m/vim-test'
 call neobundle#end()
 
 NeoBundleCheck
