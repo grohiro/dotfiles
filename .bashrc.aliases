@@ -10,7 +10,7 @@ alias ll='ls -l'
 alias la='ls -al'
 alias l='ll'
 
-alias less='less -R' # color less
+alias less='less -X -R' # color less
 
 alias grep='grep --exclude=*.svn-base --exclude=tags -I'
 
