@@ -29,9 +29,12 @@ set runtimepath+=~/.vim/bundle/neobundle.vim
 
 " Packages
 call neobundle#begin(expand('~/.vim/bundle/'))
-NeoBundle 'Shougo/neocomplete'
-NeoBundle 'Shougo/neosnippet'
-NeoBundle 'Shougo/neosnippet-snippets'
+"NeoBundle 'Shougo/neocomplete'
+"NeoBundle 'Shougo/neosnippet'
+"NeoBundle 'Shougo/neosnippet-snippets'
+NeoBundle 'garbas/vim-snipmate'
+NeoBundle 'MarcWeber/vim-addon-mw-utils'
+NeoBundle 'tomtom/tlib_vim'
 NeoBundle 'ctrlpvim/ctrlp.vim'
 NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'grohiro/vim-testing-pair'
@@ -88,12 +91,12 @@ let g:neocomplete#sources#dictionary#dictionaries = {
 "let g:neocomplete#keyword_patterns['default'] = '\h\w*'
 
 " Plugin key-mappings.
-inoremap <expr><C-g>     neocomplete#undo_completion()
-inoremap <expr><C-l>     neocomplete#complete_common_string()
+"inoremap <expr><C-g>     neocomplete#undo_completion()
+"inoremap <expr><C-l>     neocomplete#complete_common_string()
 
 " Recommended key-mappings.
 " <CR>: close popup and save indent.
-inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+"inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
 function! s:my_cr_function()
 	return (pumvisible() ? "\<C-y>" : "" ) . "\<CR>"
 	" For no inserting <CR> key.
@@ -153,28 +156,28 @@ let g:neosnippet#snippets_directory = [
 
 " Plugin key-mappings.
 " Note: It must be "imap" and "smap".  It uses <Plug> mappings.
-imap <C-e>     <Plug>(neosnippet_expand_or_jump)
-smap <C-e>     <Plug>(neosnippet_expand_or_jump)
-xmap <C-e>     <Plug>(neosnippet_expand_target)
+"imap <C-e>     <Plug>(neosnippet_expand_or_jump)
+"smap <C-e>     <Plug>(neosnippet_expand_or_jump)
+"xmap <C-e>     <Plug>(neosnippet_expand_target)
 
 " SuperTab like snippets behavior.
 " Note: It must be "imap" and "smap".  It uses <Plug> mappings.
 "imap <C-l>     <Plug>(neosnippet_expand_or_jump)
-imap <expr><TAB>
-			\ neosnippet#jumpable() ?
-			\    "\<Plug>(neosnippet_jump)" : "\<TAB>"
-smap <expr><TAB> neosnippet#jumpable() ?
-			\ "\<Plug>(neosnippet_jump)" : "\<TAB>"
+"imap <expr><TAB>
+			"\ neosnippet#jumpable() ?
+			"\    "\<Plug>(neosnippet_jump)" : "\<TAB>"
+"smap <expr><TAB> neosnippet#jumpable() ?
+			"\ "\<Plug>(neosnippet_jump)" : "\<TAB>"
 
 " For conceal markers. (Hide placeholders after expand a snippet)
 "if has('conceal')
 "set conceallevel=2 concealcursor=niv
 "endif
 
-augroup neosnippet
-	autocmd!
-	autocmd FileType neosnippet setlocal noexpandtab
-augroup end
+"augroup neosnippet
+	"autocmd!
+	"autocmd FileType neosnippet setlocal noexpandtab
+"augroup end
 
 "
 " }}}
