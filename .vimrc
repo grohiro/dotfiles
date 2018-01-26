@@ -5,6 +5,7 @@ let mapleader = "\<Space>"
 " Do not use matchparen
 " http://itchyny.hatenablog.com/entry/2016/03/30/210000
 let g:loaded_matchparen = 1
+let g:quickrun_no_default_key_mappings = 1
 
 " vimrc.local {{{
 " http://vim-users.jp/2009/12/hack112/
@@ -56,6 +57,7 @@ NeoBundle 'vim-scripts/yanktmp.vim'
 NeoBundle 'posva/vim-vue'
 NeoBundle 'arnaud-lb/vim-php-namespace'
 NeoBundle 'tpope/vim-fugitive'
+NeoBundle 'tpope/vim-dispatch'
 NeoBundle 'janko-m/vim-test'
 call neobundle#end()
 
@@ -357,20 +359,24 @@ map <silent> Sp :call YanktmpPaste_p()<CR>
 map <silent> SP :call YanktmpPaste_P()<CR> 
 " }}}
 
+" vim-test {{{
+let test#strategy = 'dispatch'
+noremap <leader>tf :TestFile<CR>
+inoremap <leader>tf :TestFile<CR>
+noremap <leader>tr :TestNearest<CR>
+inoremap <leader>tr :TestNearest<CR>
+noremap <leader>r :TestLast<CR>
+inoremap <leader>r :TestLatt<CR>
+" }}}
+
 " vim-testing-pair {{{
 noremap <C-t> :ToggleTestingPair<CR>
 inoremap <C-t> :ToggleTestingPair<CR>
 " }}}
 
 " {{{ vim-quickrun
-function! MyQuickRun(args)
-  :cclose
-  call quickrun#run(a:args)
-endfunction
-command! -nargs=1 MyQuickRun :call MyQuickRun(<f-args>)
-
 " https://github.com/thinca/vim-quickrun
-nmap <C-E> <Leader>r
+"nmap <C-E> <Leader>r
 nmap <expr> <Leader>l ":MyQuickRun \"lint/" . &filetype . "\"<CR>"
 nmap <expr> <Leader>c "exec MyQuickRun compile/" . &filetype . "<CR>"
 
@@ -493,7 +499,6 @@ function! MyQuickRun(args)
   call quickrun#run(a:args)
 endfunction
 command! -nargs=1 MyQuickRun :call MyQuickRun(<f-args>)
-"command! -nargs=1 MyQuickRun echo g:quickrun_config
 " }}}
 
 " {{{ NERDTree

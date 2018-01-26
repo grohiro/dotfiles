@@ -14,7 +14,6 @@ augroup phpcmd
   " PHPUnit
   "autocmd BufWinEnter,BufNewFile *Test.php set filetype=phpunit
   "autocmd BufWinEnter,BufNewFile *Test.php map <Leader>r :MyQuickRun phpunit<CR>
-  autocmd BufWinEnter,BufNewFile *Test.php map <Leader>r :MyQuickRun phpunit<CR>
   "autocmd FileType phpunit set syntax=php
   "autocmd FileType phpunit map <Leader>r ":QuickRun phpunit <CR>"
 augroup END
