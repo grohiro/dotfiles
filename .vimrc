@@ -59,6 +59,7 @@ NeoBundle 'arnaud-lb/vim-php-namespace'
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'tpope/vim-dispatch'
 NeoBundle 'janko-m/vim-test'
+NeoBundle 'afternoon/vim-phpunit'
 call neobundle#end()
 
 NeoBundleCheck
@@ -362,16 +363,16 @@ map <silent> SP :call YanktmpPaste_P()<CR>
 " vim-test {{{
 let test#strategy = 'dispatch'
 noremap <leader>tf :TestFile<CR>
-inoremap <leader>tf :TestFile<CR>
+"inoremap <leader>tf :TestFile<CR>
 noremap <leader>tr :TestNearest<CR>
-inoremap <leader>tr :TestNearest<CR>
+"inoremap <leader>tr :TestNearest<CR>
 noremap <leader>r :TestLast<CR>
-inoremap <leader>r :TestLatt<CR>
+"inoremap <leader>r :TestLatt<CR>
 " }}}
 
 " vim-testing-pair {{{
 noremap <C-t> :ToggleTestingPair<CR>
-inoremap <C-t> :ToggleTestingPair<CR>
+"inoremap <C-t> :ToggleTestingPair<CR>
 " }}}
 
 " {{{ vim-quickrun
