@@ -326,7 +326,9 @@ set nosmartindent
 " nnoremap T :tabnew<CR>:NERDTreeCWD<CR><ESC><C-w>h
 nnoremap T :tabnew<CR>
 nnoremap <C-h> gT
+"inoremap <C-h> <ESC>gT
 nnoremap <C-l> gt
+"inoremap <C-l> <ESC>gt
 " }}}
 
 " quickfix {{{
