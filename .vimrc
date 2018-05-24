@@ -12,8 +12,8 @@ let g:quickrun_no_default_key_mappings = 1
 " Load settings for each location.
 augroup vimrc-local
   autocmd!
-  "autocmd VimEnter,BufNew,BufNewFile,BufReadPost * call s:vimrc_local(expand('<afile>:p:h'))
-  autocmd BufWinEnter * call s:vimrc_local(expand('<afile>:p:h'))
+  autocmd BufNewFIle,BufReadPost * call s:vimrc_local(expand('<afile>:p:h'))
+  "autocmd BufWinEnter * call s:vimrc_local(expand('<afile>:p:h'))
   "autocmd VimEnter * call s:vimrc_local(expand('<afile>:p:h'))
 augroup END
 
@@ -41,6 +41,7 @@ NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'grohiro/vim-testing-pair'
 NeoBundle 'thinca/vim-quickrun'
 NeoBundle 'vim-scripts/gtags.vim'
+NeoBundle 'zebult/auto-gtags.vim'
 NeoBundle 'vim-scripts/taglist.vim'
 NeoBundle 'fatih/vim-go'
 NeoBundle 'Shougo/vimproc.vim', {
@@ -53,13 +54,21 @@ NeoBundle 'Shougo/vimproc.vim', {
 			\    },
 			\ }
 NeoBundle 'mattn/emmet-vim'
+NeoBundle 'kchmck/vim-coffee-script'
 NeoBundle 'vim-scripts/yanktmp.vim'
 NeoBundle 'posva/vim-vue'
 NeoBundle 'arnaud-lb/vim-php-namespace'
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'tpope/vim-dispatch'
+NeoBundle 'tpope/vim-rails'
 NeoBundle 'janko-m/vim-test'
 NeoBundle 'afternoon/vim-phpunit'
+NeoBundle 'craigemery/vim-autotag'
+NeoBundle 'jwalton512/vim-blade'
+NeoBundle 'vim-scripts/Align'
+NeoBundle 'tpope/vim-surround'
+NeoBundle 'junegunn/vim-easy-align'
+
 call neobundle#end()
 
 NeoBundleCheck
@@ -284,7 +293,8 @@ endfunction
 " {{{ search
 set incsearch
 set hlsearch
-set ignorecase
+set noignorecase
+nnoremap / /\c
 set smartcase
 " }}}
 
@@ -348,8 +358,8 @@ let g:ctrlp_prompt_mappings = {
 			\ 'PrtHistory(-1)':     [],
 			\ 'PrtHistory(1)':      []
 			\ }
-set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*/node_modules/*,*.md,GTAGS,GPATH,GRTAGS,tags
-let g:ctrlp_custom_ignore='\v[\/](node_modules|build|vendor)$'
+set wildignore+=tmp/*,*.so,*.swp,*.zip,*/node_modules/*,*.md,GTAGS,GPATH,GRTAGS,tags
+let g:ctrlp_custom_ignore='\v[\/](node_modules|build|vendor|tmp)$'
 " 0: Do not clear cache on exit, 1: Clear cache on exit
 let g:ctrlp_clear_cache_on_exit = 1
 " }}}
@@ -520,6 +530,8 @@ let Tlist_Show_One_File = 1
 " }}}
 
 " Gtags {{{
+"let g:auto_gtags = 1
+
 noremap <C-g>t :Gtags 
 " カーソル下の関数定義を探す
 noremap <C-g>j :GtagsCursor<CR>
@@ -539,7 +551,8 @@ let g:Gtags_Close_When_Single = 1
 
 " {{{ php-namespace
 " https://github.com/arnaud-lb/vim-php-namespace
-let g:php_namespace_sort_after_insert = 1
+" Disable sort to keep the cursor position
+let g:php_namespace_sort_after_insert = 0
 
 function! IPhpInsertUse()
   call PhpInsertUse()
@@ -559,6 +572,9 @@ autocmd FileType php noremap <Leader>e :call PhpExpandClass()<CR>
 " {{{ Git
 nnoremap <leader>gs :Gstatus<CR>5j
 " }}}
+
+" ディレクトリがあればこの中に tags ファイルを作成する
+"let g:auto_ctags_directory_list = ['.git', '.svn']
 
 filetype plugin indent on
 syntax on

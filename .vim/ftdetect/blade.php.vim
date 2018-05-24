@@ -1,1 +1,1 @@
-au BufRead,BufNewFile *.blade.php set filetype=html
+au BufRead,BufNewFile *.blade.php set filetype=blade.html
