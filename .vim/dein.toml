@@ -1,0 +1,77 @@
+[[plugins]]
+repo = 'garbas/vim-snipmate'
+
+[[plugins]]
+repo = 'MarcWeber/vim-addon-mw-utils'
+
+[[plugins]]
+repo = 'tomtom/tlib_vim'
+
+[[plugins]]
+repo = 'ctrlpvim/ctrlp.vim'
+
+[[plugins]]
+repo = 'scrooloose/nerdtree'
+
+[[plugins]]
+repo = 'grohiro/vim-testing-pair'
+
+[[plugins]]
+repo = 'thinca/vim-quickrun'
+
+[[plugins]]
+repo = 'vim-scripts/gtags.vim'
+
+[[plugins]]
+repo = 'zebult/auto-gtags.vim'
+
+[[plugins]]
+repo = 'vim-scripts/taglist.vim'
+
+[[plugins]]
+repo = 'fatih/vim-go'
+
+[[plugins]]
+repo = 'mattn/emmet-vim'
+
+[[plugins]]
+repo = 'kchmck/vim-coffee-script'
+
+[[plugins]]
+repo = 'vim-scripts/yanktmp.vim'
+
+[[plugins]]
+repo = 'posva/vim-vue'
+
+[[plugins]]
+repo = 'arnaud-lb/vim-php-namespace'
+
+[[plugins]]
+repo = 'tpope/vim-fugitive'
+
+[[plugins]]
+repo = 'tpope/vim-dispatch'
+
+[[plugins]]
+repo = 'tpope/vim-rails'
+
+[[plugins]]
+repo = 'janko-m/vim-test'
+
+[[plugins]]
+repo = 'afternoon/vim-phpunit'
+
+[[plugins]]
+repo = 'craigemery/vim-autotag'
+
+[[plugins]]
+repo = 'jwalton512/vim-blade'
+
+[[plugins]]
+repo = 'vim-scripts/Align'
+
+[[plugins]]
+repo = 'tpope/vim-surround'
+
+[[plugins]]
+repo = 'junegunn/vim-easy-align'
