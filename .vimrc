@@ -25,53 +25,20 @@ function! s:vimrc_local(loc)
 endfunction
 " }}}
 
-" {{{ NeoBundle
-set runtimepath+=~/.vim/bundle/neobundle.vim
+" dein {{{
+set runtimepath+=~/.vim/dein/repos/github.com/Shougo/dein.vim
 
-" Packages
-call neobundle#begin(expand('~/.vim/bundle/'))
-"NeoBundle 'Shougo/neocomplete'
-"NeoBundle 'Shougo/neosnippet'
-"NeoBundle 'Shougo/neosnippet-snippets'
-NeoBundle 'garbas/vim-snipmate'
-NeoBundle 'MarcWeber/vim-addon-mw-utils'
-NeoBundle 'tomtom/tlib_vim'
-NeoBundle 'ctrlpvim/ctrlp.vim'
-NeoBundle 'scrooloose/nerdtree'
-NeoBundle 'grohiro/vim-testing-pair'
-NeoBundle 'thinca/vim-quickrun'
-NeoBundle 'vim-scripts/gtags.vim'
-NeoBundle 'zebult/auto-gtags.vim'
-NeoBundle 'vim-scripts/taglist.vim'
-NeoBundle 'fatih/vim-go'
-NeoBundle 'Shougo/vimproc.vim', {
-			\ 'build' : {
-			\     'windows' : 'tools\\update-dll-mingw',
-			\     'cygwin' : 'make -f make_cygwin.mak',
-			\     'mac' : 'make',
-			\     'linux' : 'make',
-			\     'unix' : 'gmake',
-			\    },
-			\ }
-NeoBundle 'mattn/emmet-vim'
-NeoBundle 'kchmck/vim-coffee-script'
-NeoBundle 'vim-scripts/yanktmp.vim'
-NeoBundle 'posva/vim-vue'
-NeoBundle 'arnaud-lb/vim-php-namespace'
-NeoBundle 'tpope/vim-fugitive'
-NeoBundle 'tpope/vim-dispatch'
-NeoBundle 'tpope/vim-rails'
-NeoBundle 'janko-m/vim-test'
-NeoBundle 'afternoon/vim-phpunit'
-NeoBundle 'craigemery/vim-autotag'
-NeoBundle 'jwalton512/vim-blade'
-NeoBundle 'vim-scripts/Align'
-NeoBundle 'tpope/vim-surround'
-NeoBundle 'junegunn/vim-easy-align'
+if dein#load_state('~/.vim/dein/repos/github.com/Shougo/dein.vim')
+  call dein#begin('~/.vim/dein/repos/github.com/Shougo/dein.vim')
+  call dein#load_toml('~/.vim/dein.toml', {'lazy': 0})
+  call dein#end()
+  call dein#save_state()
+endif
 
-call neobundle#end()
-
-NeoBundleCheck
+" Install plugins if not installed plugin
+if dein#check_install()
+  call dein#install()
+endif
 " }}}
 
 " {{{ neocomplete
@@ -578,3 +545,4 @@ nnoremap <leader>gs :Gstatus<CR>5j
 
 filetype plugin indent on
 syntax on
+
