@@ -12,7 +12,7 @@ alias l='ll'
 
 alias less='less -X -R' # color less
 
-alias grep='grep --exclude=*.svn-base --exclude=tags -I'
+alias grep='grep --exclude=*.svn-base --exclude=tags --exclude=.git --exclude=GTAGS --exclude=GPATH --exclude=GRTAGS -I'
 
 alias ..='cd ..'
 alias ...='cd ../../'
@@ -53,3 +53,7 @@ alias dt='dirtree'
 
 # Laravel
 alias artisan='php "$(_get_artisan_dir)/artisan" --ansi'
+
+alias mvn2='mvn'
+alias ctags-laravel='ctags -R --languages=php app/ tests/ config/ vendor/'
+alias ctags-rails='ctags -R --languages=ruby app/ vendor/bundle'
