@@ -35,134 +35,13 @@ if dein#load_state('~/.vim/dein/repos/github.com/Shougo/dein.vim')
   call dein#save_state()
 endif
 
-" Install plugins if not installed plugin
+" Install plugins if there are new plugins
 if dein#check_install()
   call dein#install()
 endif
 " }}}
 
-" {{{ neocomplete
-"Note: This option must be set in .vimrc(_vimrc).  NOT IN .gvimrc(_gvimrc)!
-" Disable AutoComplPop.
-let g:acp_enableAtStartup = 0
-" Use neocomplete.
-let g:neocomplete#enable_at_startup = 0
-" Use smartcase.
-let g:neocomplete#enable_smart_case = 1
-" Set minimum syntax keyword length.
-let g:neocomplete#sources#syntax#min_keyword_length = 3
-
-"let g:neocomplete#disable_auto_complete = 1
-"inoremap <expr><nul> pumvisible() ? "\<down>" : neocomplete#start_manual_complete()
-"let g:neocomplete#enable_auto_select = 1
-
-" Define dictionary.
-let g:neocomplete#sources#dictionary#dictionaries = {
-			\ 'default' : '',
-			\ 'vimshell' : $HOME.'/.vimshell_hist',
-			\ 'scheme' : $HOME.'/.gosh_completions'
-			\ }
-
-" Define keyword.
-"if !exists('g:neocomplete#keyword_patterns')
-	"let g:neocomplete#keyword_patterns = {}
-"endif
-"let g:neocomplete#keyword_patterns['default'] = '\h\w*'
-
-" Plugin key-mappings.
-"inoremap <expr><C-g>     neocomplete#undo_completion()
-"inoremap <expr><C-l>     neocomplete#complete_common_string()
-
-" Recommended key-mappings.
-" <CR>: close popup and save indent.
-"inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-function! s:my_cr_function()
-	return (pumvisible() ? "\<C-y>" : "" ) . "\<CR>"
-	" For no inserting <CR> key.
-	"return pumvisible() ? "\<C-y>" : "\<CR>"
-endfunction
-" <TAB>: completion.
-"inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-" <C-h>, <BS>: close popup and delete backword char.
-"inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
-"inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
-" Close popup by <Space>.
-"inoremap <expr><Space> pumvisible() ? "\<C-y>" : "\<Space>"
-
-" AutoComplPop like behavior.
-"let g:neocomplete#enable_auto_select = 1
-
-" Shell like behavior(not recommended).
-"set completeopt+=longest
-"let g:neocomplete#enable_auto_select = 1
-"let g:neocomplete#disable_auto_complete = 1
-"inoremap <expr><TAB>  pumvisible() ? "\<Down>" : "\<C-x>\<C-u>"
-
-" Enable omni completion.
-"autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-"autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-"autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-"autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-"autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-
-" Enable heavy omni completion.
-"if !exists('g:neocomplete#sources#omni#input_patterns')
-	"let g:neocomplete#sources#omni#input_patterns = {}
-"endif
-"let g:neocomplete#sources#omni#input_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
-"let g:neocomplete#sources#omni#input_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
-"let g:neocomplete#sources#omni#input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
-
-"if !exists('g:neocomplete#force_omni_input_patterns')
-  "let g:neocomplete#force_omni_input_patterns = {}
-"endif
-"let g:neocomplete#force_omni_input_patterns.ruby = '[^. *\t]\.\w*\|\h\w*::'
-
-
-" For perlomni.vim setting.
-" https://github.com/c9s/perlomni.vim
-"let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
-" }}}
-
-" neosnippet {{{
-" 自分用 snippet ファイルの場所
-let g:neosnippet#enable_auto_clear_markers = 0
-let g:neosnippet#snippets_directory = [
-			\ '~/.vim/snippets/',
-			\ '~/.vim/bundle/vim-go/gosnippets/snippets/',
-			\ '~/.vim/bundle/neosnippet-snippets/neosnippets/',
-			\ ]
-
-" Plugin key-mappings.
-" Note: It must be "imap" and "smap".  It uses <Plug> mappings.
-"imap <C-e>     <Plug>(neosnippet_expand_or_jump)
-"smap <C-e>     <Plug>(neosnippet_expand_or_jump)
-"xmap <C-e>     <Plug>(neosnippet_expand_target)
-
-" SuperTab like snippets behavior.
-" Note: It must be "imap" and "smap".  It uses <Plug> mappings.
-"imap <C-l>     <Plug>(neosnippet_expand_or_jump)
-"imap <expr><TAB>
-			"\ neosnippet#jumpable() ?
-			"\    "\<Plug>(neosnippet_jump)" : "\<TAB>"
-"smap <expr><TAB> neosnippet#jumpable() ?
-			"\ "\<Plug>(neosnippet_jump)" : "\<TAB>"
-
-" For conceal markers. (Hide placeholders after expand a snippet)
-"if has('conceal')
-"set conceallevel=2 concealcursor=niv
-"endif
-
-"augroup neosnippet
-	"autocmd!
-	"autocmd FileType neosnippet setlocal noexpandtab
-"augroup end
-
-"
-" }}}
-
 " {{{ folding
-" 折り畳み (folding) の設定
 set foldmethod=marker
 set foldmarker={{{,}}}
 set foldlevelstart=0
@@ -242,7 +121,6 @@ set encoding=utf-8
 
 " Unicodeを扱うための設定
 set fileencoding=utf-8
-"set fileencodings=iso-2022-jp,utf-8,cp932,euc-jp,ucs-2le,usc-2jp
 set fileencodings=utf-8,euc-jp,iso-2022-jp,cp932,ucs-2le,usc-2jp
 
 " 文字エンコーディングを取得
@@ -266,7 +144,6 @@ set smartcase
 " }}}
 
 " {{{ key mappings
-
 noremap <C-x><C-v> :source ~/.vimrc<CR>
 noremap <C-x><C-b> :tabnew ~/.vimrc<CR>
 noremap <silent><F9> :ccl<CR>:silent! bw! \[quickrun\ buffer\]<CR>
@@ -303,9 +180,7 @@ set nosmartindent
 " nnoremap T :tabnew<CR>:NERDTreeCWD<CR><ESC><C-w>h
 nnoremap T :tabnew<CR>
 nnoremap <C-h> gT
-"inoremap <C-h> <ESC>gT
 nnoremap <C-l> gt
-"inoremap <C-l> <ESC>gt
 " }}}
 
 " quickfix {{{
@@ -342,21 +217,16 @@ map <silent> SP :call YanktmpPaste_P()<CR>
 " vim-test {{{
 let test#strategy = 'dispatch'
 noremap <leader>tf :TestFile<CR>
-"inoremap <leader>tf :TestFile<CR>
 noremap <leader>tr :TestNearest<CR>
-"inoremap <leader>tr :TestNearest<CR>
 noremap <leader>r :TestLast<CR>
-"inoremap <leader>r :TestLatt<CR>
 " }}}
 
 " vim-testing-pair {{{
 noremap <C-t> :ToggleTestingPair<CR>
-"inoremap <C-t> :ToggleTestingPair<CR>
 " }}}
 
 " {{{ vim-quickrun
 " https://github.com/thinca/vim-quickrun
-"nmap <C-E> <Leader>r
 nmap <expr> <Leader>l ":MyQuickRun \"lint/" . &filetype . "\"<CR>"
 nmap <expr> <Leader>c "exec MyQuickRun compile/" . &filetype . "<CR>"
 
@@ -509,8 +379,6 @@ noremap <C-g>f :Gtags -f %<CR>
 " grep
 noremap <C-g>g :Gtags -g <C-R><C-W><CR>
 " override ctags settings
-" map <C-\> :GtagsCursor<CR>
-" map <C-]> :GtagsCursor<CR>
 let g:Gtags_Auto_Update = 1
 let g:Gtags_Close_When_Single = 1
 
@@ -545,4 +413,3 @@ nnoremap <leader>gs :Gstatus<CR>5j
 
 filetype plugin indent on
 syntax on
-
