@@ -1,5 +1,7 @@
 [alias]
   graph = log --graph --date-order -C -M --pretty=format:\"<%h> %ad [%cn] %Cgreen%d%Creset %s\" --all --date=iso
+  p = !git push origin `git rev-parse --abbrev-ref HEAD`
+
 
 [user]
   name = grohiro
