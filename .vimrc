@@ -155,9 +155,6 @@ nnoremap CC :lcd<CR>
 
 nnoremap <F2> :buf #<CR>
 
-" ctrl-p buffer
-nnoremap L :CtrlPBuffer<CR>
-
 " Close all other windows
 nnoremap <silent><leader>m :only<CR>
 nnoremap <silent><leader>M :only<CR>:tabonly<CR>
@@ -193,17 +190,11 @@ augroup END
 
 " Plugins 
 
-" {{{ ctrlp
-let g:ctrlp_prompt_mappings = {
-			\ 'PrtSelectMove("j")': ['<c-n>', '<down>'],
-			\ 'PrtSelectMove("k")': ['<c-p>', '<up>'],
-			\ 'PrtHistory(-1)':     [],
-			\ 'PrtHistory(1)':      []
-			\ }
-set wildignore+=tmp/*,*.so,*.swp,*.zip,*/node_modules/*,*.md,GTAGS,GPATH,GRTAGS,tags
-let g:ctrlp_custom_ignore='\v[\/](node_modules|build|vendor|tmp)$'
-" 0: Do not clear cache on exit, 1: Clear cache on exit
-let g:ctrlp_clear_cache_on_exit = 1
+" {{{ fzf.vim
+set rtp+=/usr/local/opt/fzf
+nnoremap <C-p> :Files<CR>
+nnoremap L :Buffers<CR>
+let $FZF_DEFAULT_COMMAND = 'fd --type f'
 " }}}
 
 " {{{ yank tmp

@@ -8,9 +8,6 @@ repo = 'MarcWeber/vim-addon-mw-utils'
 repo = 'tomtom/tlib_vim'
 
 [[plugins]]
-repo = 'ctrlpvim/ctrlp.vim'
-
-[[plugins]]
 repo = 'scrooloose/nerdtree'
 
 [[plugins]]
@@ -75,3 +72,6 @@ repo = 'tpope/vim-surround'
 
 [[plugins]]
 repo = 'junegunn/vim-easy-align'
+
+[[plugins]]
+repo = 'junegunn/fzf.vim'
