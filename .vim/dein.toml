@@ -1,17 +1,5 @@
 [[plugins]]
-repo = 'garbas/vim-snipmate'
-
-[[plugins]]
-repo = 'MarcWeber/vim-addon-mw-utils'
-
-[[plugins]]
-repo = 'tomtom/tlib_vim'
-
-[[plugins]]
 repo = 'scrooloose/nerdtree'
-
-[[plugins]]
-repo = 'grohiro/vim-testing-pair'
 
 [[plugins]]
 repo = 'thinca/vim-quickrun'
@@ -30,9 +18,6 @@ repo = 'fatih/vim-go'
 
 [[plugins]]
 repo = 'mattn/emmet-vim'
-
-[[plugins]]
-repo = 'kchmck/vim-coffee-script'
 
 [[plugins]]
 repo = 'vim-scripts/yanktmp.vim'
@@ -56,16 +41,10 @@ repo = 'tpope/vim-rails'
 repo = 'janko-m/vim-test'
 
 [[plugins]]
-repo = 'afternoon/vim-phpunit'
-
-[[plugins]]
 repo = 'craigemery/vim-autotag'
 
 [[plugins]]
 repo = 'jwalton512/vim-blade'
-
-[[plugins]]
-repo = 'vim-scripts/Align'
 
 [[plugins]]
 repo = 'tpope/vim-surround'
@@ -75,3 +54,9 @@ repo = 'junegunn/vim-easy-align'
 
 [[plugins]]
 repo = 'junegunn/fzf.vim'
+
+[[plugins]]
+repo = 'SirVer/ultisnips'
+
+[[plugins]]
+repo = 'honza/vim-snippets'
