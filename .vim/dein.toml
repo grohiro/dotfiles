@@ -60,3 +60,7 @@ repo = 'SirVer/ultisnips'
 
 [[plugins]]
 repo = 'honza/vim-snippets'
+
+[[plugins]]
+repo = 'Shougo/vimproc'
+build = 'make'
