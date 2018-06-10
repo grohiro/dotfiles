@@ -153,17 +153,17 @@ nnoremap <expr> c* ':%s /\<' . expand('<cword>') . '\>/'
 vnoremap <expr> c* ':s /\<' . expand('<cword>') . '\>/'
 nnoremap CC :lcd<CR>
 
-nnoremap <C-m> :call ToggleWindowSize()<CR>
+nnoremap M :call ToggleWindowSize()<CR>
 
-let g:toggle_window_size = 0
+let t:toggle_window_size = 0
 function! ToggleWindowSize()
-  if g:toggle_window_size == 1
+  if t:toggle_window_size == 1
     exec "normal \<C-w>="
-    let g:toggle_window_size = 0
+    let t:toggle_window_size = 0
   else
     :resize
     :vertical resize
-    let g:toggle_window_size = 1
+    let t:toggle_window_size = 1
   endif
 endfunction
 
