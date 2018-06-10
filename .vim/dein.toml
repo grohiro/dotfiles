@@ -70,3 +70,6 @@ repo = 'tomlion/vim-solidity'
 
 [[plugins]]
 repo = 'grohiro/vim-test-truffle'
+
+[[plugins]]
+repo = 'shawncplus/phpcomplete.vim'
