@@ -57,3 +57,7 @@ alias artisan='php "$(_get_artisan_dir)/artisan" --ansi'
 alias mvn2='mvn'
 alias ctags-laravel='ctags -R --languages=php app/ tests/ config/ vendor/'
 alias ctags-rails='ctags -R --languages=ruby app/ vendor/bundle'
+
+alias dotenv='export $(cat .env|xargs)'
+
+alias tig='tig --all'
