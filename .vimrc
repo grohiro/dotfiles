@@ -224,6 +224,7 @@ let test#strategy = 'dispatch'
 noremap <leader>tf :TestFile<CR>
 noremap <leader>tr :TestNearest<CR>
 noremap <leader>r :TestLast<CR>
+let g:test#custom_runners = {'Solidity': ['Truffle']}
 " }}}
 
 " vim-testing-pair {{{
@@ -418,3 +419,4 @@ nnoremap <leader>gs :Gstatus<CR>5j
 
 filetype plugin indent on
 syntax on
+
