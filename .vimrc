@@ -1,6 +1,7 @@
 set nocompatible
 
 let mapleader = "\<Space>"
+set rtp+=~/src/vim/vim-test-truffle
 
 " Do not use matchparen
 " http://itchyny.hatenablog.com/entry/2016/03/30/210000
@@ -141,6 +142,7 @@ set hlsearch
 set noignorecase
 nnoremap / /\c
 set smartcase
+map <leader>n :nohl<CR>
 " }}}
 
 " {{{ key mappings
@@ -155,15 +157,15 @@ nnoremap CC :lcd<CR>
 
 nnoremap M :call ToggleWindowSize()<CR>
 
-let t:toggle_window_size = 0
+let g:toggle_window_size = 0
 function! ToggleWindowSize()
-  if t:toggle_window_size == 1
+  if g:toggle_window_size == 1
     exec "normal \<C-w>="
-    let t:toggle_window_size = 0
+    let g:toggle_window_size = 0
   else
     :resize
     :vertical resize
-    let t:toggle_window_size = 1
+    let g:toggle_window_size = 1
   endif
 endfunction
 
@@ -228,13 +230,14 @@ let g:test#custom_runners = {'Solidity': ['Truffle']}
 " }}}
 
 " vim-testing-pair {{{
-noremap <C-t> :ToggleTestingPair<CR>
+"noremap <C-t> :ToggleTestingPair<CR>
 " }}}
 
 " {{{ vim-quickrun
 " https://github.com/thinca/vim-quickrun
-nmap <expr> <Leader>l ":MyQuickRun \"lint/" . &filetype . "\"<CR>"
-nmap <expr> <Leader>c "exec MyQuickRun compile/" . &filetype . "<CR>"
+nnoremap <expr> <Leader>e ":MyQuickRun \"" . &filetype . "\"<CR>"
+nnoremap <expr> <Leader>l ":MyQuickRun \"lint/" . &filetype . "\"<CR>"
+nnoremap <expr> <Leader>c "exec MyQuickRun compile/" . &filetype . "<CR>"
 
 let g:quickrun_config = {}
 let g:quickrun_config['runner'] = 'vimproc'
@@ -295,6 +298,11 @@ let g:quickrun_config["go"] = {
 " Lint
 
   " {{{ ruby
+  let g:quickrun_config["ruby"] = {
+    \ "command": "bundle",
+    \ "exec": "%c exec ruby %s:p",
+  \}
+
   let g:quickrun_config["lint/ruby"] = {
   \ "command": "ruby",
   \ "exec": "%c -c %s:p > /dev/null",
@@ -368,6 +376,7 @@ let NERDTreeWinSize = 40
 noremap <F11> :Tlist<CR><C-w><C-w>
 " PHPの表示設定
 let tlist_php_settings='php;c:class;d:constant;f:function' 
+let tlist_solidity_settings='solidity;c:contract;f:function'
 " 現在編集中のソースのタグしか表示しない
 let Tlist_Show_One_File = 1
 " }}}
@@ -414,9 +423,26 @@ autocmd FileType php noremap <Leader>e :call PhpExpandClass()<CR>
 nnoremap <leader>gs :Gstatus<CR>5j
 " }}}
 
+" {{{ UltiSnips
+let g:UltiSnipsSnippetDirectories = [$HOME.'/.vim/UltiSnips']
+let g:UltiSnipsExpandTrigger = "<Tab>"
+let g:UltiSnipsJumpForwardTrigger = "<Tab>"
+let g:UltiSnipsJumpBackwardTrigger= "<S-Tab>"
+" }}}
+
+" {{{ completor
+let g:completor_auto_trigger = 0
+let g:completor_doc_position = 'top'
+let g:completor_set_options = 0
+let g:completor_min_chars = 1
+inoremap <expr> <C-o> pumvisible() ? "<C-N>" : "<C-R>=completor#do('complete')<CR>"
+" }}}
+
+" show popup, no preview window, select the first item
+set completeopt=menu
+
 " ディレクトリがあればこの中に tags ファイルを作成する
 "let g:auto_ctags_directory_list = ['.git', '.svn']
 
 filetype plugin indent on
 syntax on
-
