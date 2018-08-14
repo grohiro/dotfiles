@@ -89,3 +89,13 @@ repo = 'hashivim/vim-terraform'
 
 [[plugins]]
 repo = 'juliosueiras/vim-terraform-completion'
+
+[[plugins]]
+repo = 'lvht/phpcd.vim'
+build = 'composer install'
+
+[[plugins]]
+repo = 'slim-template/vim-slim'
+
+[[plugins]]
+repo = 'junegunn/vim-easy-align'

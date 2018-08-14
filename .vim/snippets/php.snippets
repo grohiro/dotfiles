@@ -1,0 +1,203 @@
+# vim:set noexpandtab:
+snippet php
+	<?php
+	namespace ${1:App};
+	
+	/**
+	 *${3:Comment}
+	 */
+	class ${2:ClassName}
+	{
+		public function __construct()
+		{
+		}
+	}
+snippet if
+	if (${1}) {
+	}
+snippet ife
+	if (${1}) {
+	} else {
+	}
+snippet ifels
+	if (${1}) {
+	} elseif (${2}) {
+	} else {
+	}
+snippet funcl "Closure function" s
+	function (${1})${2: use } {
+		${3}
+	}${4:);}
+
+snippet construct
+	public function __construct()
+	{
+		${0:parent::__construct()}
+	}
+
+snippet func
+	/**
+	 *${4}
+	 */
+	${1:public} function ${2:name}(${3})
+	{
+		${0}
+	}
+
+snippet t
+	$this->${1}
+
+snippet tt
+	$this->${1} = $${2};
+
+snippet tm
+	$${1} = $this->${2}(${3});
+
+snippet ifnull
+	if (is_null($${1:var})) {
+		${0}
+	}
+
+snippet unless
+	if (!${1}) {
+		${0}
+	}
+
+snippet ifnonnull
+	if (!is_null($${1:var})) {
+		${0}
+	}
+
+snippet retnull
+	return null;
+
+snippet assT
+	$this->assertTrue(${0});
+
+snippet assF
+	$this->assertFalse(${0});
+
+snippet assE
+	$this->assertEquals(${1}, ${0});
+
+snippet assN
+	$this->assertNull(${0})
+
+snippet assNN
+	$this->assertNotNull(${0})
+
+snippet phpcs-comment
+	// @codingStandardsIgnoreStart
+	// @codingStandardsIgnoreEnd
+
+snippet testFunc
+	public function test${1}()
+	{
+		${0}
+	}
+
+snippet throw_exception
+	throw new \Exception("${0}", ${1:0}, $ex);
+
+snippet jsond
+	$json = json_decode($${1}, 1);
+
+snippet jsonde
+	if (($err = json_last_error()) !== JSON_ERROR_NONE) {
+		throw new \Exception("${1} (json_last_error() => {$err})");
+	}
+	${0}
+
+snippet setup
+	public function setUp()
+	{
+		parent::setUp();
+	}
+
+snippet laravel-test-http
+	$this->setUpHttpTesting();
+
+snippet laravel-test-factory-user
+	$this->user = factory(User::class)->create();
+	$this->actingAs($this->user);
+
+snippet laravel-attribute-getter
+	public function get${1}Attribute
+	{
+		return $this->attributes['${2}'];
+	}
+
+snippet laravel-attribute-setter
+	public function set${1}Attribute
+	{
+		return $this->attributes['${2}'] = ${3};
+	}
+snippet laravel-factory
+	$factory->define(${1}::class, function (Faker $faker) {
+		return [
+			${2}
+		];
+	});
+snippet laravel-mutator-enum
+	public function set${1:CamelCase}Attribute($${2:camelCase})
+	{
+		if (!is_null($$2)) {
+			$this->attributes['${3:snake_case}'] = $$2->id;
+		} else {
+			$this->attributes['$3'] = null;
+		}
+	}
+
+	public function get$1Attribute()
+	{
+		if (isset($this->attributes['$3'])) {
+			return $1::valueOf($this->attributes['$3']);
+		} else {
+			return null;
+		}
+	}
+
+snippet laravel-log
+	use Illuminate\Support\Facades\Log;
+
+snippet laravel-transaction
+	\DB::beginTransaction();
+
+	\DB::commit();
+	\DB::rollback();
+
+snippet laravel-validator
+	$rules = [];
+	$validator = \Validator::make($request->all(), $rules);
+	if ($validator->fails()) {
+		return redirect()->route('TODO')
+			->withErrors($validator)
+			->withInput();
+	}
+
+snippet ///
+	/**
+	 *${0}
+	 */
+snippet ak
+	'${1}' => ${2},
+snippet cf
+	->format('${1:Y-m-d}')
+snippet fact
+	$${1} = factory(${2}::class)->${3:create}([$0]);
+
+snippet trye
+	try {
+		${0}
+	} catch (\Exception $ex) {
+		throw $ex;
+	}
+
+snippet tryf
+	try {
+		${0}
+	} catch (\Exception $ex) {
+		throw $ex;
+	} finally {
+	}
+

@@ -1,0 +1,12 @@
+snippet     print
+abbr        <%= %>
+	<%= ${0} %>
+
+snippet     form_open
+	<%= form_for :${0} do |f| %>
+	<% end %>
+
+snippet     form_text
+abbr        Form input text
+options     head
+	<%= f.text_field :${0:text}%>

@@ -1,0 +1,17 @@
+# vim:set noexpandtab:
+snippet constructor
+abbr constructor
+	constructor: ()->
+		${0}
+
+snippet class
+abbr class
+	class ${1}
+	  constructor: ()->
+	    ${2}
+
+snippet gtask
+abbr Glup task
+	gulp.task '${1}', ()->
+		gulp.${2}
+
