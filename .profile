@@ -1,6 +1,9 @@
 # Environment variables
+
 if [ -z "$PROMPT_COMMAND" ]; then
   export PROMPT_COMMAND="source ~/dotfiles/bin/lsdir-push"
+else
+  export PROMPT_COMMAND="$PROMPT_COMMAND; source ~/dotfiles/bin/lsdir-push"
 fi
 
 export GOPATH=$HOME/go
