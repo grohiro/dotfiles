@@ -99,3 +99,7 @@ repo = 'slim-template/vim-slim'
 
 [[plugins]]
 repo = 'junegunn/vim-easy-align'
+
+[[plugins]]
+repo = 'ryanoasis/vim-devicons'
+

@@ -27,10 +27,10 @@ endfunction
 " }}}
 
 " dein {{{
-set runtimepath+=~/.vim/dein/repos/github.com/Shougo/dein.vim
+set runtimepath+=~/.vim/dein.vim
 
-if dein#load_state('~/.vim/dein/repos/github.com/Shougo/dein.vim')
-  call dein#begin('~/.vim/dein/repos/github.com/Shougo/dein.vim')
+if dein#load_state('~/.vim/dein.vim')
+  call dein#begin('~/.vim/dein.vim')
   call dein#load_toml('~/.vim/dein.toml', {'lazy': 0})
   call dein#end()
   call dein#save_state()
@@ -207,7 +207,7 @@ augroup END
 " Plugins 
 
 " {{{ fzf.vim
-set rtp+=/usr/local/opt/fzf
+set rtp+=/usr/local/Cellar/fzf/0.17.4
 nnoremap <C-p> :Files<CR>
 nnoremap L :Buffers<CR>
 let $FZF_DEFAULT_COMMAND = 'fd --type f'
@@ -443,6 +443,8 @@ set completeopt=menu
 
 " ディレクトリがあればこの中に tags ファイルを作成する
 "let g:auto_ctags_directory_list = ['.git', '.svn']
+
+let g:WebDevIconsUnicodeDecorateFolderNodes = 1
 
 filetype plugin indent on
 syntax on
