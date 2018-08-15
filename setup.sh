@@ -2,7 +2,7 @@
 
 install -d -m 755 ~/.bash/
 
-DOT_FILES=(.bashrc .bashrc.aliases .bashrc.color .bashrc.env .bashrc.functions .gitconfig .profile .screenrc .vimrc .gitignore .ansible.cfg .gvimrc .globalrc .bash_completion .ctags)
+DOT_FILES=(.bashrc .bashrc.aliases .bashrc.color .bashrc.env .bashrc.functions .gitconfig .profile .screenrc .vimrc .gitignore .ansible.cfg .gvimrc .globalrc .bash_completion .ctags .tmux.conf)
 DOT_DIRS=(.lftp .vim .bash_completion.d)
 HOME_BREW_PKGS="bash-completion gawk bash"
 
@@ -39,7 +39,7 @@ done
 
 if [ ! -e ~/bin/diff-highlight ]
 then
-  curl https://raw.githubusercontent.com/git/git/master/contrib/diff-highlight/diff-highlight > ~/bin/diff-highlight
+  curl https://raw.githubusercontent.com/git/git/v2.13.0/contrib/diff-highlight/diff-highlight > ~/bin/diff-highlight
   chmod 755 ~/bin/diff-highlight
 fi
 
