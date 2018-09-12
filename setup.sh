@@ -2,8 +2,8 @@
 
 install -d -m 755 ~/.bash/
 
-DOT_FILES=(.bashrc .bashrc.aliases .bashrc.color .bashrc.env .bashrc.functions .gitconfig .profile .screenrc .vimrc .gitignore .ansible.cfg .gvimrc .globalrc .bash_completion .ctags .tmux.conf)
-DOT_DIRS=(.lftp .vim .bash_completion.d)
+DOT_FILES=(.bashrc .bashrc.aliases .bashrc.color .bashrc.env .bashrc.functions .gitconfig .profile .screenrc .vimrc .gitignore .ansible.cfg .gvimrc .globalrc .bash_completion .tmux.conf)
+DOT_DIRS=(.lftp .vim .bash_completion.d .ctags.d)
 HOME_BREW_PKGS="bash-completion gawk bash"
 
 # dot files
