@@ -424,7 +424,7 @@ nnoremap <leader>gs :Gstatus<CR>5j
 " }}}
 
 " {{{ UltiSnips
-let g:UltiSnipsSnippetDirectories = [$HOME.'/.vim/UltiSnips']
+let g:UltiSnipsSnippetDirectories = [$HOME.'/.vim/UltiSnips', $HOME.'/.vim/snippets']
 let g:UltiSnipsExpandTrigger = "<Tab>"
 let g:UltiSnipsJumpForwardTrigger = "<Tab>"
 let g:UltiSnipsJumpBackwardTrigger= "<S-Tab>"
@@ -436,10 +436,15 @@ let g:completor_doc_position = 'top'
 let g:completor_set_options = 0
 let g:completor_min_chars = 1
 inoremap <expr> <C-o> pumvisible() ? "<C-N>" : "<C-R>=completor#do('complete')<CR>"
-" }}}
-
 " show popup, no preview window, select the first item
 set completeopt=menu
+" }}}
+
+" {{{ vim-terraform
+let g:terraform_fmt_on_save = 1
+let g:terraform_align = 1
+" }}}
+
 
 " ディレクトリがあればこの中に tags ファイルを作成する
 "let g:auto_ctags_directory_list = ['.git', '.svn']

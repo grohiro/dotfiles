@@ -63,3 +63,6 @@ alias dotenv='export $(cat .env|xargs)'
 alias tig='tig --all'
 
 alias t='truffle'
+
+alias vimclean="find . -type f -name '*.swp' -exec rm -f {} \;"
+
