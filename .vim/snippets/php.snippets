@@ -53,7 +53,7 @@ snippet tt
 snippet tm
 	$${1} = $this->${2}(${3});
 
-snippet ifnull
+snippet ifn
 	if (is_null($${1:var})) {
 		${0}
 	}
@@ -63,7 +63,7 @@ snippet unless
 		${0}
 	}
 
-snippet ifnonnull
+snippet ifnn
 	if (!is_null($${1:var})) {
 		${0}
 	}
@@ -96,7 +96,7 @@ snippet testFunc
 		${0}
 	}
 
-snippet throw_exception
+snippet ex
 	throw new \Exception("${0}", ${1:0}, $ex);
 
 snippet jsond
