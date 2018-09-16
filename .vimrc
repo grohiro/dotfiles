@@ -424,7 +424,7 @@ nnoremap <leader>gs :Gstatus<CR>5j
 " }}}
 
 " {{{ UltiSnips
-let g:UltiSnipsSnippetDirectories = [$HOME.'/.vim/UltiSnips', $HOME.'/.vim/snippets']
+let g:UltiSnipsSnippetsDir = $HOME.'/.vim/UltiSnips'
 let g:UltiSnipsExpandTrigger = "<Tab>"
 let g:UltiSnipsJumpForwardTrigger = "<Tab>"
 let g:UltiSnipsJumpBackwardTrigger= "<S-Tab>"

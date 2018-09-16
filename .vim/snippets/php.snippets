@@ -179,10 +179,13 @@ snippet ///
 	/**
 	 *${0}
 	 */
+
 snippet ak
 	'${1}' => ${2},
+
 snippet cf
 	->format('${1:Y-m-d}')
+
 snippet fact
 	$${1} = factory(${2}::class)->${3:create}([$0]);
 
@@ -200,4 +203,3 @@ snippet tryf
 		throw $ex;
 	} finally {
 	}
-

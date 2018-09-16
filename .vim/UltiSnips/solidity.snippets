@@ -1,4 +1,7 @@
-snippet test "Truffle test function" b
-function hoge() {
+snippet testFunc "Truffle test function" b
+function test${1:MyContract}() {
+	$1 ${2:c} = $1(DeployedAddresses.$1());
+
+	$0Assert.equal(c.balanceOf(tx.origin), true, "expected True");
 }
 endsnippet
