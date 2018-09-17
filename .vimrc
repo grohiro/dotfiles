@@ -42,6 +42,8 @@ if dein#check_install()
 endif
 " }}}
 
+filetype plugin indent on
+
 " {{{ folding
 set foldmethod=marker
 set foldmarker={{{,}}}
@@ -72,9 +74,6 @@ set wrap
 set history=100
 
 set splitbelow
-
-" 勝手に改行しない
-set formatoptions=q
 
 " インデントをshiftwidthの倍数に丸める
 set shiftround
@@ -111,6 +110,7 @@ set breakindent
 " }}}
 
 " Color {{{
+syntax enable
 hi SpecialKey ctermfg=DarkGray
 hi NonText ctermfg=DarkGray
 " }}}
@@ -451,5 +451,3 @@ let g:terraform_align = 1
 
 let g:WebDevIconsUnicodeDecorateFolderNodes = 1
 
-filetype plugin indent on
-syntax on

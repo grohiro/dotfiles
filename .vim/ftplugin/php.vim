@@ -49,5 +49,3 @@ let g:quickrun_config['phpunit'] = {
 "\ "errorformat": 'PHP\ Fatal\ error:\ %m\ in\ %f\ on\ line\ %l,%A%[0-9])\ %.%#,%+CFailed\ %m,%Z%f:%l,%C%m,%-C,%-GPHPUnit%.%#,%-GFAILURES!%.%#,%-GTime:\ %.%#,%-G,%f:%l',
 "\ "errorformat": '%A%[0-9])\ %.%#,%+CFailed\ %m,%Z%f:%l,%C%m,%-C,%-GPHPUnit%.%#,%-GFAILURES!%.%#,%-GTime:\ %.%#,%-G',
 "'exec': "%c %o %s | sed -e '1d' -e '/^\\$/d' -e '/^Time:/d'",
-
-set formatoptions-=q
