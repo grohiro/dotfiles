@@ -54,7 +54,7 @@ snippet tm
 	$${1} = $this->${2}(${3});
 
 snippet ifn
-	if (is_null($${1:var})) {
+	if ($${1:var} === null) {
 		${0}
 	}
 
@@ -64,7 +64,7 @@ snippet unless
 	}
 
 snippet ifnn
-	if (!is_null($${1:var})) {
+	if ($${1:var} !== null) {
 		${0}
 	}
 
