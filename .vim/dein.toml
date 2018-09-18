@@ -68,8 +68,8 @@ build = 'make'
 [[plugins]]
 repo = 'tomlion/vim-solidity'
 
-#[[plugins]]
-#repo = 'grohiro/vim-test-truffle'
+[[plugins]]
+repo = 'grohiro/vim-test-truffle'
 
 [[plugins]]
 repo = 'maralla/completor.vim'
