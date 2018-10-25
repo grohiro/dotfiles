@@ -1,4 +1,5 @@
 set nocompatible
+filetype on
 
 let mapleader = "\<Space>"
 set rtp+=~/src/vim/vim-test-truffle
@@ -13,7 +14,7 @@ let g:quickrun_no_default_key_mappings = 1
 " Load settings for each location.
 augroup vimrc-local
   autocmd!
-  autocmd BufNewFIle,BufReadPost * call s:vimrc_local(expand('<afile>:p:h'))
+  autocmd BufNewFile,BufReadPost * call s:vimrc_local(expand('<afile>:p:h'))
   "autocmd BufWinEnter * call s:vimrc_local(expand('<afile>:p:h'))
   "autocmd VimEnter * call s:vimrc_local(expand('<afile>:p:h'))
 augroup END
@@ -25,6 +26,8 @@ function! s:vimrc_local(loc)
   endfor
 endfunction
 " }}}
+"
+let g:auto_gtags = 1
 
 " dein {{{
 set runtimepath+=~/.vim/dein.vim
@@ -41,8 +44,6 @@ if dein#check_install()
   call dein#install()
 endif
 " }}}
-
-filetype plugin indent on
 
 " {{{ folding
 set foldmethod=marker
@@ -87,6 +88,7 @@ set ambiwidth=double
 set nobackup
 set noundofile
 
+set wildignore=*.pyc
 " }}}
 
 " {{{ view
@@ -206,9 +208,11 @@ augroup END
 
 " Plugins 
 
+let g:autotagmaxTagsFileSize = 33400320
+
 " {{{ fzf.vim
 set rtp+=/usr/local/Cellar/fzf/0.17.4
-nnoremap <C-p> :Files<CR>
+nnoremap <C-p> :GFiles<CR>
 nnoremap L :Buffers<CR>
 let $FZF_DEFAULT_COMMAND = 'fd --type f'
 " }}}
@@ -369,6 +373,7 @@ command! -nargs=1 MyQuickRun :call MyQuickRun(<f-args>)
 nnoremap <F12> :NERDTreeToggle %:p:h<CR>
 let NERDTreeWinPos = "right"
 let NERDTreeWinSize = 40
+let NERDTreeIgnore=['\~$', '.pyc$']
 " }}}
 
 " {{{ taglist
@@ -382,8 +387,6 @@ let Tlist_Show_One_File = 1
 " }}}
 
 " Gtags {{{
-"let g:auto_gtags = 1
-
 noremap <C-g>t :Gtags 
 " カーソル下の関数定義を探す
 noremap <C-g>j :GtagsCursor<CR>
@@ -393,10 +396,6 @@ noremap <C-g>r :Gtags -r <C-R><C-W><CR>
 noremap <C-g>f :Gtags -f %<CR>
 " grep
 noremap <C-g>g :Gtags -g <C-R><C-W><CR>
-" override ctags settings
-let g:Gtags_Auto_Update = 1
-let g:Gtags_Close_When_Single = 1
-
 " }}}
 
 " {{{ php-namespace
@@ -450,4 +449,13 @@ let g:terraform_align = 1
 "let g:auto_ctags_directory_list = ['.git', '.svn']
 
 let g:WebDevIconsUnicodeDecorateFolderNodes = 1
+
+set complete=.,b
+
+augroup phpcmd
+  autocmd!
+  autocmd FileType php set errorformat=%A%m\ in\ %f\ on\ line\ %l,%Z
+  autocmd FileType php set makeprg=php\ -l\ %
+  autocmd FileType php set suffixesadd=.php
+augroup END
 
