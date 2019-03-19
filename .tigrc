@@ -1,0 +1,6 @@
+bind generic <Ctrl-u> move-page-up
+bind generic b move-page-up
+bind generic <Ctrl-b> move-page-up
+bind generic <Ctrl-f> move-page-down
+bind generic 1G move-first-line
+bind generic G move-last-line

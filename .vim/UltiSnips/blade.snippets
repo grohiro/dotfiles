@@ -1,0 +1,13 @@
+snippet b-formg
+<div class="form-group">
+	$0
+</div>
+endsnippet
+
+snippet ftext "Form::text" w
+{{Form::text('$1', '', null, ['id' => '${1}'])}}$0
+endsnippet
+
+snippet fradio "Form::radio" w
+{{Form::radio('$1', '$2', null, ['id' => '${1}-${2}'])}}$0
+endsnippet

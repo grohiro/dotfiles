@@ -26,7 +26,7 @@ repo = 'vim-scripts/yanktmp.vim'
 repo = 'posva/vim-vue'
 
 [[plugins]]
-repo = 'arnaud-lb/vim-php-namespace'
+repo = 'grohiro/vim-php-namespace'
 
 [[plugins]]
 repo = 'tpope/vim-fugitive'

@@ -1,0 +1,10 @@
+snippet docker-compose
+version: '3'
+services:
+	${1:db}:
+		image: ${2:image}
+		ports:
+			- ${3:"80:80"}
+		environment:
+			FOO: foo
+endsnippet

@@ -21,6 +21,7 @@ PATH=/usr/local/opt/coreutils/bin:$PATH
 PATH=$HOME/Library/Android/sdk/platform-tools:$PATH
 PATH=$HOME/lib/web3j-3.5.0/bin:$PATH
 PATH=$HOME/lib/apache-maven-2.2.1/bin:$PATH
+PATH=$HOME/lib/LibreOffice.app/Contents/MacOS:$PATH
 
 # Application path
 PATH=/usr/local/postgresql83/bin:$PATH

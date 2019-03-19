@@ -1,0 +1,366 @@
+# b Beginning of line
+# i In-word expansion
+# w Word boundary 
+# r Regular expression 
+# t Do not expand tabs
+
+snippet php
+<?php
+namespace ${1:App};
+
+/**
+ * ${3:Comment}
+ */
+class ${2:ClassName}
+{
+	public function __construct()
+	{
+		$0
+	}
+}
+endsnippet
+
+snippet if "if" b
+if (${1}) {
+}
+endsnippet
+
+snippet ife "if/else" b
+if (${1}) {
+	${2}
+} else {
+	${3}
+}
+endsnippet
+
+snippet ifels "if/elseif" b
+if (${1}) {
+	${0}
+} elseif (${2}) {
+} else {
+}
+endsnippet
+
+snippet /// "multiline comment" b
+/**
+ *${0}
+ */
+endsnippet
+
+snippet prv "private member" b
+private $${1};${0}
+endsnippet
+
+snippet t- "$this->" i
+$this->
+endsnippet
+
+snippet a "array" i
+[${0}]
+endsnippet
+
+snippet ak "Array key" i
+'${1}' => ${2},
+endsnippet
+
+snippet cf "date format" i
+->format('${1:Y-m-d}')
+endsnippet
+
+snippet func "function" b
+/**
+ * ${4}
+ */
+${1:public} function ${2:name}(${3})
+{
+	${0}
+}
+endsnippet
+
+snippet funcl "closure" i
+function ($1) {
+	$0
+});
+endsnippet
+
+snippet funclu "closure with params" i
+function ($1) use ($2) {
+	$0
+});
+endsnippet
+
+snippet ifn "if null" b
+if ($${1:var} === null) {
+	${0}
+}
+endsnippet
+
+snippet ifnn "if not null" b
+if ($${1:var} !== null) {
+	${0}
+}
+endsnippet
+
+snippet unless "if not" b
+if (!${1}) {
+	${0}
+}
+endsnippet
+
+
+snippet t "" b
+$this->${1}
+endsnippet
+
+snippet tt
+$this->${1} = $$1;
+endsnippet
+
+snippet ttt
+$this->${1} = $${2};
+endsnippet
+
+snippet tm
+$${1} = $this->${2}(${3});
+endsnippet
+
+# PHP Exception
+snippet tryc "try/catch" b
+try {
+	${0}
+} catch (\Exception $ex) {
+	throw $ex;
+}
+endsnippet
+
+snippet tryf "try/catch/finally" b
+try {
+	${0}
+} catch (\Exception $ex) {
+	throw $ex;
+} finally {
+}
+endsnippet
+
+snippet te "throw new Exception"
+throw new \Exception("${1}");${0}
+endsnippet
+
+snippet ex "throw Exception" b
+throw new \Exception("${0}", ${1:0}, $ex);
+endsnippet
+
+# JSON
+snippet jsond "JSON decode" b
+$json = json_decode($${1}, 1);
+endsnippet
+
+snippet jsonde "JSON decode with error handler" b
+$json = json_decode($${1}, 1);
+if (($err = json_last_error()) !== JSON_ERROR_NONE) {
+	throw new \Exception("${1} (json_last_error() => {$err})");
+}
+endsnippet
+
+# PHPUnit snippets
+snippet setup
+public function setUp()
+{
+	parent::setUp();${0}
+}
+endsnippet
+
+snippet testFunc "test function" b
+public function test${1}()
+{
+	${0}
+}
+endsnippet
+
+snippet assT "assertTrue" b
+$this->assertTrue(${0});
+endsnippet
+
+snippet assF "assertFalse" b
+$this->assertFalse(${0});
+endsnippet
+
+snippet assE "assertEquals" b
+$this->assertEquals(${1}, ${0});
+endsnippet
+
+snippet assN "assertNull" b
+$this->assertNull(${0})
+endsnippet
+
+snippet assNN "assertNotNull" b
+$this->assertNotNull(${0})
+endsnippet
+
+# Laravel
+snippet laravel-test-http
+$this->setUpHttpTesting();
+endsnippet
+
+snippet laravel-test-factory-user
+$this->user = factory(User::class)->create();
+$this->actingAs($this->user);
+endsnippet
+
+snippet laravel-attribute-getter
+public function get${1}Attribute()
+{
+	return $this->attributes['${2}'];
+}
+endsnippet
+
+snippet laravel-attribute-setter
+public function set${1}Attribute(${2})
+{
+	return $this->attributes['${3}'] = $2;
+}
+endsnippet
+
+snippet laravel-factory
+$factory->define(${1}::class, function (Faker $faker) {
+	return [
+		${2}
+	];
+});
+endsnippet
+
+snippet laravel-mutator-enum
+public function set${1:CamelCase}Attribute($${2:camelCase})
+{
+	if (!is_null($$2)) {
+		$this->attributes['${3:snake_case}'] = $$2->id;
+	} else {
+		$this->attributes['$3'] = null;
+	}
+}
+
+public function get$1Attribute()
+{
+	if (isset($this->attributes['$3'])) {
+		return $1::valueOf($this->attributes['$3']);
+	} else {
+		return null;
+	}
+}
+endsnippet
+
+snippet laravel-log
+use Illuminate\Support\Facades\Log;
+endsnippet
+
+snippet laravel-transaction
+try {
+	\DB::beginTransaction();
+	${0}
+	\DB::commit();
+} catch (\Exception $es) {
+	\DB::rollback();
+	throw $ex;
+}
+endsnippet
+
+snippet laravel-validator
+$rules = [];
+$validator = \Validator::make($request->all(), $rules);
+if ($validator->fails()) {
+	return redirect()->route('TODO')
+		->withErrors($validator)
+		->withInput();
+}
+endsnippet
+
+snippet fact "Laravel factory" b
+$${1} = factory(`!p snip.rv = t[1].capitalize()`::class)->${3:create}([$0]);
+endsnippet
+
+snippet debug "Laravel Log::debug()"
+Log::debug(sprintf("[%s:%d]${1}", __FILE__, __LINE__, ${2}));${0}
+endsnippet
+
+snippet doccon "PHPDoc constructor"
+/**
+ * コンストラクタ$0
+ */
+endsnippet
+
+snippet docm "PHPDoc method"
+/**
+ *
+ * @return ${1}
+ */
+endsnippet
+
+snippet docvar
+/**
+ * @var ${1:type} ${2}
+ */
+endsnippet
+
+snippet docp "PHPDoc @param" w
+@param ${1:type} $${2:var} ${3}
+endsnippet
+
+snippet docr "PHPDoc @return" w
+@return ${1:type} ${2}
+endsnippet
+
+snippet funcps "public static function"
+public static function ${1}(${2})
+{
+	$0
+}
+endsnippet
+
+snippet funcpv "private function"
+private function ${1}(${2})
+{
+	$0
+}
+endsnippet
+
+snippet funcpr "protected function"
+protected function ${1}(${2})
+{
+	$0
+}
+endsnippet
+
+snippet getter
+public function get${1}()
+{
+	return $this->`!p snip.rv = t[1].lower()`;
+}
+endsnippet
+
+snippet setter
+public function set${1}($`!p snip.rv = t[1].lower()`)
+{
+	$this->`!p snip.rv = t[1].lower()` = $`!p snip.rv = t[1].lower()`;
+}
+endsnippet
+
+snippet getPresenter
+public function getPresenter()
+{
+	implements Robbo\Presenter\PresentableInterface
+	return new Presenters\\${1}Presenter($this);
+}
+endsnippet
+
+snippet aset "Array set"
+\$${1}['${2}'] = ${3};
+endsnippet
+
+snippet swi "switch"
+switch (${1}) {
+	case ${2}:
+		$0
+		break;
+	default:
+}
+endsnippet

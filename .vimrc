@@ -1,5 +1,4 @@
 set nocompatible
-filetype on
 
 let mapleader = "\<Space>"
 set rtp+=~/src/vim/vim-test-truffle
@@ -14,7 +13,7 @@ let g:quickrun_no_default_key_mappings = 1
 " Load settings for each location.
 augroup vimrc-local
   autocmd!
-  autocmd BufNewFile,BufReadPost * call s:vimrc_local(expand('<afile>:p:h'))
+  autocmd BufNewFile,BufReadPre,VimEnter * call s:vimrc_local(expand('<afile>:p:h'))
   "autocmd BufWinEnter * call s:vimrc_local(expand('<afile>:p:h'))
   "autocmd VimEnter * call s:vimrc_local(expand('<afile>:p:h'))
 augroup END
@@ -44,6 +43,8 @@ if dein#check_install()
   call dein#install()
 endif
 " }}}
+
+filetype indent plugin on
 
 " {{{ folding
 set foldmethod=marker
@@ -113,8 +114,10 @@ set breakindent
 
 " Color {{{
 syntax enable
-hi SpecialKey ctermfg=DarkGray
-hi NonText ctermfg=DarkGray
+colorscheme default
+set bg=dark
+hi SpecialKey ctermfg=DarkGrey
+"hi NonText ctermfg=DarkGray
 " }}}
 
 " {{{ encoding
@@ -209,6 +212,10 @@ augroup END
 " Plugins 
 
 let g:autotagmaxTagsFileSize = 33400320
+
+" {{{ vim-dispatch
+let g:dispatch_quickfix_height = 15
+" }}}
 
 " {{{ fzf.vim
 set rtp+=/usr/local/Cellar/fzf/0.17.4
@@ -402,6 +409,7 @@ noremap <C-g>g :Gtags -g <C-R><C-W><CR>
 " https://github.com/arnaud-lb/vim-php-namespace
 " Disable sort to keep the cursor position
 let g:php_namespace_sort_after_insert = 0
+let g:php_namespace_expand_to_absolute = 1
 
 function! IPhpInsertUse()
   call PhpInsertUse()
@@ -424,7 +432,8 @@ nnoremap <leader>gs :Gstatus<CR>5j
 
 " {{{ UltiSnips
 let g:UltiSnipsSnippetsDir = $HOME.'/.vim/UltiSnips'
-let g:UltiSnipsExpandTrigger = "<Tab>"
+let g:UltiSnipsExpandTrigger = "<C-l>"
+let g:UltiSnipsListSnippets = "<C-t>"
 let g:UltiSnipsJumpForwardTrigger = "<Tab>"
 let g:UltiSnipsJumpBackwardTrigger= "<S-Tab>"
 " }}}
@@ -434,7 +443,7 @@ let g:completor_auto_trigger = 0
 let g:completor_doc_position = 'top'
 let g:completor_set_options = 0
 let g:completor_min_chars = 1
-inoremap <expr> <C-o> pumvisible() ? "<C-N>" : "<C-R>=completor#do('complete')<CR>"
+inoremap <expr> <C-o> pumvisible() ? "<C-N>" : "<C-r>=completor#do('complete')<CR>"
 " show popup, no preview window, select the first item
 set completeopt=menu
 " }}}
@@ -452,6 +461,8 @@ let g:WebDevIconsUnicodeDecorateFolderNodes = 1
 
 set complete=.,b
 
+"autocmd BufWritePost * :cclose
+
 augroup phpcmd
   autocmd!
   autocmd FileType php set errorformat=%A%m\ in\ %f\ on\ line\ %l,%Z
@@ -459,3 +470,4 @@ augroup phpcmd
   autocmd FileType php set suffixesadd=.php
 augroup END
 
+autocmd FileType yaml set ts=2 sw=2 sts=2 expandtab
