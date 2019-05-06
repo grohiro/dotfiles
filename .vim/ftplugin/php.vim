@@ -30,3 +30,17 @@ let g:quickrun_config['phpunit'] = {
 "\ "errorformat": '%A%[0-9])\ %.%#,%+CFailed\ %m,%Z%f:%l,%C%m,%-C,%-GPHPUnit%.%#,%-GFAILURES!%.%#,%-GTime:\ %.%#,%-G',
 "'exec': "%c %o %s | sed -e '1d' -e '/^\\$/d' -e '/^Time:/d'",
 
+" https://github.com/arnaud-lb/vim-php-namespace
+" Disable sort to keep the cursor position
+let g:php_namespace_sort_after_insert = 0
+let g:php_namespace_expand_to_absolute = 1
+
+function! IPhpInsertUse()
+  call PhpInsertUse()
+  call feedkeys('a', 'n')
+endfunction
+
+function! IPhpExpandClass()
+  call PhpExpandClass()
+  call feedkeys('a', 'n')
+endfunction

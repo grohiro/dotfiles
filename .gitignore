@@ -43,3 +43,5 @@ vendor/bundle
 
 #
 .env
+
+.vim/

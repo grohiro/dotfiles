@@ -244,11 +244,11 @@ let g:test#custom_runners = {'Solidity': ['Truffle']}
 "noremap <C-t> :ToggleTestingPair<CR>
 " }}}
 
-" {{{ vim-quickrun
+" {{{ quickrun
 " https://github.com/thinca/vim-quickrun
-nnoremap <expr> <Leader>e ":MyQuickRun \"" . &filetype . "\"<CR>"
-nnoremap <expr> <Leader>l ":MyQuickRun \"lint/" . &filetype . "\"<CR>"
-nnoremap <expr> <Leader>c "exec MyQuickRun compile/" . &filetype . "<CR>"
+nnoremap <expr> <Leader>qr ":MyQuickRun \"" . &filetype . "\"<CR>"
+nnoremap <expr> <Leader>ql ":MyQuickRun \"lint/" . &filetype . "\"<CR>"
+nnoremap <expr> <Leader>qc "exec MyQuickRun compile/" . &filetype . "<CR>"
 
 let g:quickrun_config = {}
 let g:quickrun_config['runner'] = 'vimproc'
@@ -272,8 +272,6 @@ let g:quickrun_config = {
 \   'hook/neco/wait': 20,
 \   'hook/neco/echo': 0,
 \   'hook/neco/redraw': 1
-\ },
-\ 'phpunit': {
 \ },
 \ 'coffee': {
 \   'command': 'coffee',
@@ -306,13 +304,20 @@ let g:quickrun_config["go"] = {
   \ 'command': ':GoRun',
   \}
 
-" Lint
-
-  " {{{ ruby
+" {{{ ruby
+let g:quickrun_config["ruby"] = {
+  \ "command": "ruby",
+  \ "exec": "%c %s:p",
+\}
+" bundleで実行したいときはこの関数を読んで定義を上書きする
+function! QuickrunRubyBundle()
   let g:quickrun_config["ruby"] = {
-    \ "command": "bundle",
-    \ "exec": "%c exec ruby %s:p",
-  \}
+        \ "command": "bundle",
+        \ "exec": "%c exec ruby %s:p"
+        \}
+endfunction
+
+" Lint
 
   let g:quickrun_config["lint/ruby"] = {
   \ "command": "ruby",
@@ -405,27 +410,6 @@ noremap <C-g>f :Gtags -f %<CR>
 noremap <C-g>g :Gtags -g <C-R><C-W><CR>
 " }}}
 
-" {{{ php-namespace
-" https://github.com/arnaud-lb/vim-php-namespace
-" Disable sort to keep the cursor position
-let g:php_namespace_sort_after_insert = 0
-let g:php_namespace_expand_to_absolute = 1
-
-function! IPhpInsertUse()
-  call PhpInsertUse()
-  call feedkeys('a',  'n')
-endfunction
-"autocmd FileType php inoremap <Leader>u <Esc>:call IPhpInsertUse()<CR>
-autocmd FileType php noremap <Leader>u :call PhpInsertUse()<CR>
-
-function! IPhpExpandClass()
-  call PhpExpandClass()
-  call feedkeys('a', 'n')
-endfunction
-"autocmd FileType php inoremap <Leader>e <Esc>:call IPhpExpandClass()<CR>
-autocmd FileType php noremap <Leader>e :call PhpExpandClass()<CR>
-" }}}
-
 " {{{ Git
 nnoremap <leader>gs :Gstatus<CR>5j
 " }}}
@@ -445,7 +429,7 @@ let g:completor_set_options = 0
 let g:completor_min_chars = 1
 inoremap <expr> <C-o> pumvisible() ? "<C-N>" : "<C-r>=completor#do('complete')<CR>"
 " show popup, no preview window, select the first item
-set completeopt=menu
+set completeopt=menu,preview,longest
 " }}}
 
 " {{{ vim-terraform
@@ -453,7 +437,11 @@ let g:terraform_fmt_on_save = 1
 let g:terraform_align = 1
 " }}}
 
-
+" {{{ auto-pairs
+noremap <leader>p :call AutoPairsToggle()<CR>
+let g:AutoPairsFlyMode = 1
+" }}}
+"
 " ディレクトリがあればこの中に tags ファイルを作成する
 "let g:auto_ctags_directory_list = ['.git', '.svn']
 
@@ -468,6 +456,10 @@ augroup phpcmd
   autocmd FileType php set errorformat=%A%m\ in\ %f\ on\ line\ %l,%Z
   autocmd FileType php set makeprg=php\ -l\ %
   autocmd FileType php set suffixesadd=.php
+  autocmd FileType php inoremap <C-s><C-u> <Esc>:call IPhpInsertUse()<CR>
+  autocmd FileType php noremap <Leader>u :call PhpInsertUse()<CR>
+  autocmd FileType php inoremap <C-s><C-e> <Esc>:call IPhpExpandClass()<CR>
+  autocmd FileType php noremap <Leader>e :call PhpExpandClass()<CR>
 augroup END
 
 autocmd FileType yaml set ts=2 sw=2 sts=2 expandtab

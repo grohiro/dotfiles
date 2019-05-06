@@ -21,9 +21,17 @@ function mkdirc() {
 
 function find_dir() {
   local target=${1:-.}
-  local dir=$(find $target -type d -maxdepth 8 | sed -e '/.svn/d' -e '/.git/d' | peco)
+  local dir=$(find $target -type d | sed -e '/.svn/d' -e '/.git/d' | peco)
   if [ ! -z "$dir" ]; then
     cd $dir
+  fi
+}
+
+function find_file() {
+  local target=${1:-.}
+  local file=$(find $target -type f | sed -e '/.svn/d' -e '/.git/d' | peco)
+  if [ ! -z "$file" ]; then
+    echo "$file"
   fi
 }
 

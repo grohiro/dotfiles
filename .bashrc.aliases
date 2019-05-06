@@ -23,6 +23,11 @@ alias v='vim'
 
 alias s='screen'
 
+# Ruby & bundler
+alias b='bundle'
+alias be='bundle exec'
+alias br='bundle exec ruby -Isrc'
+
 # Git
 alias gs='git status'
 alias gb='git branch'
@@ -49,6 +54,7 @@ alias ucfirst="php -r 'echo ucfirst(fgets(STDIN));'"
 alias j='source ~/dotfiles/bin/jump.sh'
 alias lsdir='cd $(source ~/dotfiles/bin/lsdir.sh | peco)'
 alias D='find_dir'
+alias F='find_file'
 alias dt='dirtree'
 
 # Laravel
