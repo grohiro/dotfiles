@@ -8,3 +8,15 @@ services:
 		environment:
 			FOO: foo
 endsnippet
+
+snippet service
+${1:service_name}:
+	image: ${2:image_name}
+	build:
+		context: .
+		dockerfile: Dockerfile
+	ports:
+		- ${3:"80:80"}
+	environment:
+		FOO: foo
+endsnippet
