@@ -258,7 +258,7 @@ try {
 	\DB::beginTransaction();
 	${0}
 	\DB::commit();
-} catch (\Exception $es) {
+} catch (\Exception $ex) {
 	\DB::rollback();
 	throw $ex;
 }
