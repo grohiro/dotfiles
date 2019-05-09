@@ -416,8 +416,8 @@ nnoremap <leader>gs :Gstatus<CR>5j
 
 " {{{ UltiSnips
 let g:UltiSnipsSnippetsDir = $HOME.'/.vim/UltiSnips'
-let g:UltiSnipsExpandTrigger = "<C-l>"
-let g:UltiSnipsListSnippets = "<C-t>"
+let g:UltiSnipsExpandTrigger = "<C-e>"
+"let g:UltiSnipsListSnippets = "<C-t>"
 let g:UltiSnipsJumpForwardTrigger = "<Tab>"
 let g:UltiSnipsJumpBackwardTrigger= "<S-Tab>"
 " }}}
@@ -427,7 +427,7 @@ let g:completor_auto_trigger = 0
 let g:completor_doc_position = 'top'
 let g:completor_set_options = 0
 let g:completor_min_chars = 1
-inoremap <expr> <C-o> pumvisible() ? "<C-N>" : "<C-r>=completor#do('complete')<CR>"
+inoremap <expr> <C-l> pumvisible() ? "<C-N>" : "<C-r>=completor#do('complete')<CR>"
 " show popup, no preview window, select the first item
 set completeopt=menu,preview,longest
 " }}}
