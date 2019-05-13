@@ -282,7 +282,8 @@ let g:quickrun_config = {
 \ 'haml': {
 \   'command': 'haml',
 \   'exec': '%c %s'
-\ }
+\ },
+\ 'phpunit': {}
 \}
 
 let g:quickrun_config['python'] = {
@@ -438,10 +439,27 @@ let g:terraform_align = 1
 " }}}
 
 " {{{ auto-pairs
-noremap <leader>p :call AutoPairsToggle()<CR>
-let g:AutoPairsFlyMode = 1
+noremap <leader>ap :call AutoPairsToggle()<CR>
+let g:AutoPairsFlyMode = 0
+let g:AutoPairsMultilineClose = 0
+"imap ˜ <M-n>
+"imap ´ <M-e>
+imap ∫ <M-b>
+inoremap <buffer> <silent> « <C-r>=MoveToNextChar('}')<CR>
+inoremap <buffer> <silent> ª <C-r>=MoveToNextChar(')')<CR>
+"inoremap <buffer> <silent> «« <C-r>=MoveToNextChar(']')<CR>
+
+" `char` の次の出現位置に移動する
+function! MoveToNextChar(char)
+  set nohlsearch
+  call search(a:char)
+  set hlsearch
+  execute "normal l"
+  return ''
+endfunction
 " }}}
 "
+
 " ディレクトリがあればこの中に tags ファイルを作成する
 "let g:auto_ctags_directory_list = ['.git', '.svn']
 
