@@ -95,8 +95,8 @@ repo = 'ryanoasis/vim-devicons'
 [[plugins]]
 repo = 'airblade/vim-rooter'
 
-[[plugins]]
-repo = 'jiangmiao/auto-pairs'
+#[[plugins]]
+#repo = 'jiangmiao/auto-pairs'
 
 #[[plugins]]
 #repo = 'lvht/phpcd.vim'

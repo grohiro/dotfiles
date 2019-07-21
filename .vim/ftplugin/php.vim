@@ -44,3 +44,4 @@ function! IPhpExpandClass()
   call PhpExpandClass()
   call feedkeys('a', 'n')
 endfunction
+

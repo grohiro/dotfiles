@@ -8,7 +8,7 @@ fi
 
 export GOPATH=$HOME/go
 export SCREENDIR=~/.screen/session
-export JAVA_HOME=/usr
+export JAVA_HOME=`/usr/libexec/java_home`
 export EDITOR="vim"
 export LANG=ja_JP.UTF-8
 

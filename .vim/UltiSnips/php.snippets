@@ -48,15 +48,14 @@ snippet /// "multiline comment" b
 endsnippet
 
 snippet prv "private member" b
-private $${1};${0}
+/**
+ * @var $$1 ${2:type}
+ */
+private $${1:variable};${0}
 endsnippet
 
-snippet t- "$this->" i
-$this->
-endsnippet
-
-snippet a "array" i
-[${0}]
+snippet a[ "array" i
+[${1}]${0}
 endsnippet
 
 snippet ak "Array key" i
@@ -107,21 +106,32 @@ if (!${1}) {
 }
 endsnippet
 
+snippet t- "$this->" i
+$this->
+endsnippet
 
-snippet t "" b
+snippet tv "$this->variable" b
 $this->${1}
 endsnippet
 
-snippet tt
+snippet tva "$this->variable assign"
 $this->${1} = $$1;
 endsnippet
 
-snippet ttt
+snippet tvaa "$this->variable assign"
 $this->${1} = $${2};
 endsnippet
 
-snippet tm
+snippet tma "$this->method assign"
 $${1} = $this->${2}(${3});
+endsnippet
+
+snippet tm "$this->method()"
+$this->${1:method}(${2});${0}
+endsnippet
+
+snippet ma "method assign"
+$${1:val} = $${2:obj}->${3:method}(${4});${0}
 endsnippet
 
 # PHP Exception
@@ -164,7 +174,7 @@ endsnippet
 
 # PHPUnit snippets
 snippet setup
-public function setUp()
+public function setUp(): void
 {
 	parent::setUp();${0}
 }
@@ -275,7 +285,9 @@ if ($validator->fails()) {
 endsnippet
 
 snippet fact "Laravel factory" b
-$${1} = factory(`!p snip.rv = t[1].capitalize()`::class)->${3:create}([$0]);
+$${1} = factory(`!p
+snip.rv = t[1][0].upper() + t[1][1:] if len(t[1]) > 0 else t[1]
+`::class)->${3:create}([$0]);
 endsnippet
 
 snippet debug "Laravel Log::debug()"
@@ -363,4 +375,73 @@ switch (${1}) {
 		break;
 	default:
 }
+endsnippet
+
+snippet class_methods "Get class methods"
+dd(get_class_methods($${1:obj}));
+endsnippet
+
+snippet dd "dd()"
+dd(${1});
+endsnippet
+
+snippet migid "Migration ID"
+$table->increments('id');
+endsnippet
+
+snippet migbid "Migration bigInteger ID"
+$table->bigIncrements('id');
+endsnippet
+
+snippet migstr "Migration string"
+$table->string('${1}', ${2:255})->nullable(${3:false});${0}
+endsnippet
+
+snippet migint "Migration integer"
+$table->integer('${1}')->nullable(${2:false});${0}
+endsnippet
+
+snippet migtxt "Migration text"
+$table->text('${1}')->nullable(${2:false});${0}
+endsnippet
+
+snippet migbint "Migration bigInteger"
+$table->bigInteger('${1}')->nullable(${2:false});${0}
+endsnippet
+
+snippet migts "Migration timestamps"
+$table->timestamps();${0}
+endsnippet
+
+snippet migdel "Migration soft deletes"
+$table->softDeletes();${0}
+endsnippet
+
+snippet migfor "Migration foreign key"
+$table->foreign('${1:column}')
+	->references('${2:id}')
+	->on('${3:table}')
+	->onDelete('cascade');
+endsnippet
+
+snippet migpk "Migration primary key"
+$table->primary(${1:key});
+endsnippet
+
+snippet migidx "Migration index"
+$table->index('${1:column}');
+endsnippet
+
+snippet miguidx "Migration unique index"
+$table->unique('${1:column}');
+endsnippet
+
+snippet arrmap "array map"
+collect($${1:array})->map(function ($${2:item}) {
+	${0}
+});
+endsnippet
+
+snippet rt "return"
+return ${1};
 endsnippet

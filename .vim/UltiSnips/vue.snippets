@@ -23,3 +23,43 @@ export default {
 <style scoped>
 </style>
 endsnippet
+
+snippet ifn "if null"
+if (${1} == null) {
+	${0}
+}
+endsnippet
+
+snippet if "if statement"
+if (${1}) {
+	${0}
+}
+endsnippet
+
+snippet ife "if else statement"
+if (${1}) {
+	${2}
+} else {
+	${3}
+}${0}
+endsnippet
+
+snippet ifei "if elseif statement"
+if (${1}) {
+	${2}
+} else if {
+	${3}
+}${0}
+endsnippet
+
+snippet var "variable"
+let ${1} = ${2};${0}
+endsnippet
+
+snippet clog "console.log"
+console.log(${1});${0}
+endsnippet
+
+snippet ak "hash value"
+${1}: ${2}${3:,}${0}
+endsnippet

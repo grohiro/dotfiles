@@ -5,9 +5,21 @@ snippet b-formg
 endsnippet
 
 snippet ftext "Form::text" w
-{{Form::text('$1', '', null, ['id' => '${1}'])}}$0
+{{ Form::text('$1', null, ['id' => '${1}']) }}$0
 endsnippet
 
 snippet fradio "Form::radio" w
-{{Form::radio('$1', '$2', null, ['id' => '${1}-${2}'])}}$0
+{{ Form::radio('$1', '$2', null, ['id' => '${1}-${2}']) }}$0
+endsnippet
+
+snippet ak "Array key and value" w
+'${1}' => '${2}'${0}
+endsnippet
+
+snippet vv "Print value" w
+{{ $0 }}
+endsnippet
+
+snippet cl "class attribute" w
+class="${1}"${0}
 endsnippet

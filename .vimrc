@@ -308,15 +308,16 @@ let g:quickrun_config["go"] = {
 " {{{ ruby
 let g:quickrun_config["ruby"] = {
   \ "command": "ruby",
-  \ "exec": "%c %s:p",
+  \ "exec": "%c %o %s:p",
 \}
 " bundleで実行したいときはこの関数を読んで定義を上書きする
 function! QuickrunRubyBundle()
   let g:quickrun_config["ruby"] = {
         \ "command": "bundle",
-        \ "exec": "%c exec ruby %s:p"
+        \ "exec": "%c exec ruby %o %s:p"
         \}
 endfunction
+" }}}
 
 " Lint
 
@@ -337,6 +338,14 @@ endfunction
   let g:quickrun_config["lint/bash"] = g:quickrun_config["lint/sh"]
   " }}}
   
+" {{{ javascript
+let g:quickrun_config["lint/javascript"] = {
+\ "command": "node",
+\ "cmdopt": "-c",
+\ "exec": "%c %o %s:p",
+\}
+" }}}
+
   " {{{ haml
   let g:quickrun_config["lint/haml"] = {
   \ "command": "haml",
@@ -430,7 +439,8 @@ let g:completor_set_options = 0
 let g:completor_min_chars = 1
 inoremap <expr> <C-l> pumvisible() ? "<C-N>" : "<C-r>=completor#do('complete')<CR>"
 " show popup, no preview window, select the first item
-set completeopt=menu,preview,longest
+"set completeopt=menu,longest
+set completeopt=
 " }}}
 
 " {{{ vim-terraform
@@ -445,8 +455,9 @@ let g:AutoPairsMultilineClose = 0
 "imap ˜ <M-n>
 "imap ´ <M-e>
 imap ∫ <M-b>
-inoremap <buffer> <silent> « <C-r>=MoveToNextChar('}')<CR>
-inoremap <buffer> <silent> ª <C-r>=MoveToNextChar(')')<CR>
+inoremap <silent> « <C-r>=MoveToNextChar('}')<CR>
+inoremap <silent> ª <C-r>=MoveToNextChar(')')<CR>
+noremap <silent> ª :call MoveToNextChar(')')<CR>
 "inoremap <buffer> <silent> «« <C-r>=MoveToNextChar(']')<CR>
 
 " `char` の次の出現位置に移動する
@@ -465,7 +476,7 @@ endfunction
 
 let g:WebDevIconsUnicodeDecorateFolderNodes = 1
 
-set complete=.,b
+"set complete=.,b
 
 "autocmd BufWritePost * :cclose
 
@@ -481,3 +492,5 @@ augroup phpcmd
 augroup END
 
 autocmd FileType yaml set ts=2 sw=2 sts=2 expandtab
+autocmd FileType Makefile set ts=2 sw=2 sts=2 expandtab
+autocmd BufRead *Test.php set makeprg=phpunit

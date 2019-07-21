@@ -21,6 +21,8 @@ alias c='cd'
 alias vi='vim'
 alias v='vim'
 
+alias p3='python3'
+
 alias s='screen'
 
 # Ruby & bundler
@@ -72,3 +74,4 @@ alias t='truffle'
 
 alias vimclean="find . -type f -name '*.swp' -exec rm -f {} \;"
 
+alias ecr-login='eval $(aws ecr get-login --no-include-email)'

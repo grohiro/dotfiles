@@ -5,3 +5,13 @@ let g:quickrun_config['rails/test'] = {
 \ 'cmdopt': 'test',
 \ 'exec': "%c %o %s",
 \}
+
+" QuickRun lint のコマンドとして rubucop を使用する
+function! UseRubocopLint()
+  let b:quickrun_config = {
+    \ "command": "bundle",
+    \ "cmdopt": "exec rubocop",
+    \ "exec": "%c %o %s:p"
+  \}
+endfunction
+
