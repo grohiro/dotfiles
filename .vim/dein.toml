@@ -100,3 +100,9 @@ repo = 'airblade/vim-rooter'
 
 #[[plugins]]
 #repo = 'lvht/phpcd.vim'
+
+[[plugins]]
+repo = 'prabirshrestha/async.vim'
+
+[[plugins]]
+repo = 'prabirshrestha/vim-lsp'

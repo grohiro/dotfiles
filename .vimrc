@@ -28,6 +28,8 @@ endfunction
 "
 let g:auto_gtags = 1
 
+source ~/.vim/autocmd.vim
+
 " dein {{{
 set runtimepath+=~/.vim/dein.vim
 

@@ -44,6 +44,5 @@ php_errors.log
 #
 .env
 
-.vim/
 .ctags.d/
 gtags.conf
