@@ -51,7 +51,8 @@ filetype indent plugin on
 " {{{ folding
 set foldmethod=marker
 set foldmarker={{{,}}}
-set foldlevelstart=0
+set foldlevelstart=1
+"set nofoldenable
 " }}}
 
 " {{{ behavior
