@@ -1,3 +1,5 @@
+extends html
+
 snippet b-formg
 <div class="form-group">
 	$0
@@ -17,9 +19,29 @@ snippet ak "Array key and value" w
 endsnippet
 
 snippet vv "Print value" w
-{{ $0 }}
+{{ $1 }}$0
 endsnippet
 
 snippet cl "class attribute" w
 class="${1}"${0}
+endsnippet
+
+snippet veach
+@foreach ($${1:values} as $${2:var})
+	${3:statement}
+@endforeach
+endsnippet
+
+snippet vif
+@if (${1:true})
+	${3:statement}
+@endif$0
+endsnippet
+
+snippet vife
+@if (${1:true})
+	${2:statement}
+@else
+	${3:statement}
+@endif$0
 endsnippet

@@ -1,11 +1,13 @@
-snippet meth "method"
-def ${1:name}${2:()}
-	${0}
-end
+snippet exp "expect.to.eq"
+expect($1).to eq($2)$3
 endsnippet
 
-snippet do "do-end" w
-do ${1:|a|}
-	${0}
+snippet expn "expect.not_to.eq"
+expect($1).not_to eq($2)$3
+endsnippet
+
+snippet strongparam "Rails Strong Parameter"
+def ${1}_params
+	params.require(:$1).permit(${2})${0}
 end
 endsnippet

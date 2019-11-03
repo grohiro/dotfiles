@@ -15,11 +15,19 @@ exports.handler = (event, context, callback) => {
 };
 endsnippet
 
-snippet log
-console.log($1);$0
+snippet ff "arrow function" i
+(${1}) => {
+	${2}
+}
 endsnippet
 
-snippet func "i"
+snippet ffa "async arrow function" i
+async (${1}) => {
+	${2}
+}
+endsnippet
+
+snippet func "function" i
 function $1($2) {
 	$0
 }
@@ -154,4 +162,32 @@ endsnippet
 
 snippet clog "console.log"
 console.log(${1});${0}
+endsnippet
+
+snippet va "variable"
+let ${1:var} = ${2:value}${0}
+endsnippet
+
+snippet co "const"
+const ${1:var} = ${2:value}${0}
+endsnippet
+
+snippet oj "object" i
+{
+	${1:key}: ${2:value},
+}
+endsnippet
+
+snippet ass "Object.assign()"
+Object.assign(${1:\{\}}, ${2})${0}
+endsnippet
+
+snippet keyfor "Object.keys()"
+Object.keys(${1}).forEach((key) => {
+	let value = $1[key]
+})
+endsnippet
+
+snippet req "require"
+const $1 = require('${1}')${0}
 endsnippet

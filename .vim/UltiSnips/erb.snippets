@@ -1,4 +1,4 @@
-snippet vv
+snippet vv "variable" i
 <%= ${1} %>${0}
 endsnippet
 
@@ -20,3 +20,6 @@ snippet vtd "table td"
 <td><%= ${1:var} %></td>
 endsnippet
 
+snippet rjs "Rails javascript"
+<%= javascript_include_tag '${1:file}', 'data-turbolinks-track': 'reload' %>
+endsnippet
