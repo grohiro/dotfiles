@@ -90,4 +90,16 @@ function up() {
   cd $cmd
 }
 
-export -f sjis utf8 ddir mkdirc find_dir vimbg pecho dirtree up
+function ke() {
+  if [[ ! -z $1 ]]; then
+    namespace="--namespace $1"
+  fi
+
+  pod=$(kubectl get pods $namespace | sed 1d | fzf | awk '{print $1}')
+  if [[ ! -z $pod ]]; then
+    kubectl exec -it $namespace "$pod" sh
+  fi
+}
+
+export -f sjis utf8 ddir mkdirc find_dir vimbg pecho dirtree up ke
+

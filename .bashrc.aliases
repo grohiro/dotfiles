@@ -25,6 +25,12 @@ alias p3='python3'
 
 alias s='screen'
 
+# Kubernates
+alias k='kubectl'
+alias kp='kubectl get pods'
+alias ks='kubectl get service'
+alias ka='kp;ks'
+
 # Ruby & bundler
 alias b='bundle'
 alias be='bundle exec'
@@ -75,3 +81,9 @@ alias t='truffle'
 alias vimclean="find . -type f -name '*.swp' -exec rm -f {} \;"
 
 alias ecr-login='eval $(aws ecr get-login --no-include-email)'
+
+alias uuid="uuidgen | tr \"[:upper:]\" \"[:lower:]\" | tr -d "\n""
+alias uuidp="uuidgen | tr \"[:upper:]\" \"[:lower:]\" | tr -d "\n" | pbcopy"
+alias uuidh="uuid | tr -d -"
+alias uuidhp="uuid | tr -d - | pbcopy"
+
