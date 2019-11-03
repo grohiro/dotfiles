@@ -39,10 +39,16 @@ PATH=./vendor/bin:$PATH
 export PATH
 
 test -r ~/.bashrc && . ~/.bashrc
-test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
+#test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
 
 #eval "$(ndenv init -)"
 
 export GOROOT=$(go env GOROOT)
 
 tmux ls
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/koudai/lib/google-cloud-sdk/path.bash.inc' ]; then . '/Users/koudai/lib/google-cloud-sdk/path.bash.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/koudai/lib/google-cloud-sdk/completion.bash.inc' ]; then . '/Users/koudai/lib/google-cloud-sdk/completion.bash.inc'; fi
