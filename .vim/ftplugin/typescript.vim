@@ -1,6 +1,6 @@
 
 " company/services/building.service.ts[42, 21]: == should be ===
-autocmd! BufWritePost <buffer> :MyQuickRun "lint/typescript"
+" autocmd! BufWritePost <buffer> :MyQuickRun "lint/typescript"
 "set errorformat=%f[%l\\,\ %c]:\ %m
 
 let g:quickrun_config["typescript"] = {
