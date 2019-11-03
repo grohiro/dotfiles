@@ -30,20 +30,32 @@ let g:auto_gtags = 1
 
 source ~/.vim/autocmd.vim
 
-" dein {{{
-set runtimepath+=~/.vim/dein.vim
-
-if dein#load_state('~/.vim/dein.vim')
-  call dein#begin('~/.vim/dein.vim')
-  call dein#load_toml('~/.vim/dein.toml', {'lazy': 0})
-  call dein#end()
-  call dein#save_state()
-endif
-
-" Install plugins if there are new plugins
-if dein#check_install()
-  call dein#install()
-endif
+" {{{ Plug
+call plug#begin('~/.vim/plugged')
+Plug 'MaxMEllon/vim-jsx-pretty'
+Plug 'Shougo/vimproc'
+Plug 'SirVer/ultisnips'
+Plug 'airblade/vim-rooter'
+Plug 'craigemery/vim-autotag'
+Plug 'fatih/vim-go'
+Plug 'hashivim/vim-terraform'
+Plug 'janko-m/vim-test'
+Plug 'junegunn/fzf.vim'
+Plug 'junegunn/vim-easy-align'
+Plug 'kchmck/vim-coffee-script'
+Plug 'leafgarland/typescript-vim'
+Plug 'mattn/emmet-vim'
+Plug 'ryanoasis/vim-devicons'
+Plug 'scrooloose/nerdtree'
+Plug 'thinca/vim-quickrun'
+Plug 'tpope/vim-dispatch'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-surround'
+Plug 'vim-scripts/gtags.vim'
+Plug 'vim-scripts/taglist.vim'
+Plug 'vim-scripts/yanktmp.vim'
+Plug 'zebult/auto-gtags.vim'
+call plug#end()
 " }}}
 
 filetype indent plugin on
