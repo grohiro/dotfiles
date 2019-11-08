@@ -7,3 +7,9 @@ augroup yaml
   autocmd!
   autocmd FileType yaml setl sw=2 ts=2 sts=2 expandtab
 augroup END
+
+augroup php
+  autocmd!
+  autocmd FileType php setlocal omnifunc=lsp#complete
+augroup END
+

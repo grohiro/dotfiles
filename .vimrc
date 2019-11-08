@@ -30,20 +30,43 @@ let g:auto_gtags = 1
 
 source ~/.vim/autocmd.vim
 
-" dein {{{
-set runtimepath+=~/.vim/dein.vim
-
-if dein#load_state('~/.vim/dein.vim')
-  call dein#begin('~/.vim/dein.vim')
-  call dein#load_toml('~/.vim/dein.toml', {'lazy': 0})
-  call dein#end()
-  call dein#save_state()
-endif
-
-" Install plugins if there are new plugins
-if dein#check_install()
-  call dein#install()
-endif
+" {{{ Plug
+call plug#begin('~/.vim/plugged')
+Plug 'MaxMEllon/vim-jsx-pretty'
+Plug 'Shougo/vimproc'
+Plug 'Shougo/vimproc.vim'
+Plug 'SirVer/ultisnips'
+Plug 'airblade/vim-rooter'
+Plug 'craigemery/vim-autotag'
+Plug 'fatih/vim-go'
+Plug 'felixfbecker/php-language-server', {'do': 'composer install && composer run-script parse-stubs'}
+Plug 'grohiro/vim-php-namespace'
+Plug 'hashivim/vim-terraform'
+Plug 'honza/vim-snippets'
+Plug 'janko-m/vim-test'
+Plug 'junegunn/fzf.vim'
+Plug 'junegunn/vim-easy-align'
+Plug 'kchmck/vim-coffee-script'
+Plug 'leafgarland/typescript-vim'
+Plug 'mattn/emmet-vim'
+Plug 'prabirshrestha/async.vim'
+Plug 'prabirshrestha/asyncomplete-lsp.vim'
+Plug 'prabirshrestha/asyncomplete-ultisnips.vim'
+Plug 'prabirshrestha/asyncomplete.vim'
+Plug 'prabirshrestha/vim-lsp'
+Plug 'ryanoasis/vim-devicons'
+Plug 'scrooloose/nerdtree'
+Plug 'thinca/vim-quickrun'
+Plug 'thomasfaingnaert/vim-lsp-snippets'
+Plug 'thomasfaingnaert/vim-lsp-ultisnips'
+Plug 'tpope/vim-dispatch'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-surround'
+Plug 'vim-scripts/gtags.vim'
+Plug 'vim-scripts/taglist.vim'
+Plug 'vim-scripts/yanktmp.vim'
+Plug 'zebult/auto-gtags.vim'
+call plug#end()
 " }}}
 
 filetype indent plugin on
@@ -215,6 +238,7 @@ augroup END
 " Plugins 
 
 let g:autotagmaxTagsFileSize = 33400320
+
 
 " {{{ vim-dispatch
 let g:dispatch_quickfix_height = 15
@@ -435,17 +459,6 @@ let g:UltiSnipsJumpForwardTrigger = "<Tab>"
 let g:UltiSnipsJumpBackwardTrigger= "<S-Tab>"
 " }}}
 
-" {{{ completor
-let g:completor_auto_trigger = 0
-let g:completor_doc_position = 'top'
-let g:completor_set_options = 0
-let g:completor_min_chars = 1
-inoremap <expr> <C-l> pumvisible() ? "<C-N>" : "<C-r>=completor#do('complete')<CR>"
-" show popup, no preview window, select the first item
-"set completeopt=menu,longest
-set completeopt=
-" }}}
-
 " {{{ vim-terraform
 let g:terraform_fmt_on_save = 1
 let g:terraform_align = 1
@@ -473,13 +486,54 @@ function! MoveToNextChar(char)
 endfunction
 " }}}
 "
+" {{{ asynccomplete
+let g:UltiSnipsExpandTrigger="<c-e>"
+call asyncomplete#register_source(asyncomplete#sources#ultisnips#get_source_options({
+  \ 'name': 'ultisnips',
+  \ 'whitelist': ['*'],
+  \ 'completor': function('asyncomplete#sources#ultisnips#completor'),
+  \ }))
+
+" }}}
+
+" {{{ lsp
+let g:lsp_auto_enable = 1
+let g:lsp_diagnostics_enabled = 1
+let g:lsp_signs_enabled = 1         " enable signs
+let g:lsp_diagnostics_echo_cursor = 1 " enable echo under cursor when in normal mode
+let g:lsp_async_completion = 1
+" debug
+let g:lsp_log_verbose = 1
+let g:lsp_log_file = expand('~/vim-lsp.log')
+let g:asyncomplete_log_file = expand('~/asyncomplete.log')
+
+  " {{{ completion
+  "inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+  "inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+  "inoremap <expr> <cr>    pumvisible() ? "\<C-y>" : "\<cr>"
+  " }}}
+
+  " {{{ PHP
+  au User lsp_setup call lsp#register_server({
+    \ 'name': 'intelephense',
+    \ 'cmd': {server_info->['node', expand('/Users/koudai/.anyenv/envs/nodenv/versions/10.9.0/lib/node_modules/intelephense/lib/intelephense.js'), '--stdio']},
+    \ 'initialization_options': {},
+    \ 'whitelist': ['php'],
+    \ 'config': { 'snippets': 1 },
+    \ })
+  "au User lsp_setup call lsp#register_server({
+      "\ 'name': 'php-language-server',
+      "\ 'cmd': {server_info->['php', expand('~/.vim/plugged/php-language-server/bin/php-language-server.php')]},
+      "\ 'whitelist': ['php'],
+      "\ 'config': { 'snippets': 1 },
+      "\ })
+  " }}}
+" }}}
 
 " ディレクトリがあればこの中に tags ファイルを作成する
 "let g:auto_ctags_directory_list = ['.git', '.svn']
 
 let g:WebDevIconsUnicodeDecorateFolderNodes = 1
-
-"set complete=.,b
 
 "autocmd BufWritePost * :cclose
 
@@ -497,3 +551,5 @@ augroup END
 autocmd FileType yaml set ts=2 sw=2 sts=2 expandtab
 autocmd FileType Makefile set ts=2 sw=2 sts=2 expandtab
 autocmd BufRead *Test.php set makeprg=phpunit
+
+set completeopt+=menuone
