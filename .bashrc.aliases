@@ -87,3 +87,4 @@ alias uuidp="uuidgen | tr \"[:upper:]\" \"[:lower:]\" | tr -d "\n" | pbcopy"
 alias uuidh="uuid | tr -d -"
 alias uuidhp="uuid | tr -d - | pbcopy"
 
+alias vim='nvim'
