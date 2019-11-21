@@ -44,3 +44,9 @@ function! IPhpExpandClass()
   call PhpExpandClass()
   call feedkeys('a', 'n')
 endfunction
+
+nnoremap [phpactor] <Nop>
+nmap <Space>p [phpactor]
+
+" Rename
+nnoremap [phpactor]r :call phpactor#ContextMenu()<CR>

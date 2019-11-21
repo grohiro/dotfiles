@@ -10,6 +10,9 @@ augroup END
 
 augroup php
   autocmd!
-  autocmd FileType php setlocal omnifunc=lsp#complete
+  autocmd FileType php setlocal omnifunc=phpactor#Complete
 augroup END
 
+augroup python
+  autocmd!
+augroup END
