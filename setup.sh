@@ -70,8 +70,3 @@ fi
 
 # Install bash completion files
 bash ~/.bash_completion.d/install
-
-# Install NeoBundle
-mkdir -p ~/.vim/bundle
-git clone git://github.com/Shougo/neobundle.vim ~/.vim/bundle/neobundle.vim
-vim
