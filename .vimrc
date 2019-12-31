@@ -32,14 +32,14 @@ let g:auto_gtags = 1
 call plug#begin('~/.vim/plugged')
 Plug 'MaxMEllon/vim-jsx-pretty'
 Plug 'Shougo/deoplete.nvim'
-Plug 'Shougo/echodoc.vim'
+"Plug 'Shougo/echodoc.vim'
 Plug 'Shougo/vimproc'
 Plug 'Shougo/vimproc.vim'
 Plug 'SirVer/ultisnips'
 Plug 'airblade/vim-rooter'
 Plug 'craigemery/vim-autotag'
 Plug 'fatih/vim-go'
-Plug 'felixfbecker/php-language-server', {'do': 'composer install && composer run-script parse-stubs'}
+"Plug 'felixfbecker/php-language-server', {'do': 'composer install && composer run-script parse-stubs'}
 Plug 'grohiro/vim-php-namespace'
 Plug 'grohiro/vim-test-truffle'
 Plug 'hashivim/vim-terraform'
@@ -55,17 +55,17 @@ Plug 'microsoft/python-language-server'
 Plug 'phpactor/phpactor'
 Plug 'posva/vim-vue'
 Plug 'prabirshrestha/async.vim'
+Plug 'prabirshrestha/asyncomplete.vim'
 Plug 'prabirshrestha/asyncomplete-lsp.vim'
 Plug 'prabirshrestha/asyncomplete-ultisnips.vim'
-Plug 'prabirshrestha/asyncomplete.vim'
 Plug 'prabirshrestha/vim-lsp'
 Plug 'roxma/nvim-yarp'
 Plug 'roxma/vim-hug-neovim-rpc'
 Plug 'ryanoasis/vim-devicons'
 Plug 'scrooloose/nerdtree'
 Plug 'thinca/vim-quickrun'
-Plug 'thomasfaingnaert/vim-lsp-snippets'
-Plug 'thomasfaingnaert/vim-lsp-ultisnips'
+"Plug 'thomasfaingnaert/vim-lsp-snippets'
+"Plug 'thomasfaingnaert/vim-lsp-ultisnips'
 Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
@@ -73,6 +73,7 @@ Plug 'vim-scripts/gtags.vim'
 Plug 'vim-scripts/taglist.vim'
 Plug 'vim-scripts/yanktmp.vim'
 Plug 'zebult/auto-gtags.vim'
+Plug 'mattn/vim-lsp-settings'
 call plug#end()
 " }}}
 
@@ -504,7 +505,7 @@ call asyncomplete#register_source(asyncomplete#sources#ultisnips#get_source_opti
 " }}}
 
 
-let g:echodoc#enable_at_startup = 1
+let g:echodoc#enable_at_startup = 0
 set cmdheight=2
 if has('nvim')
   let g:echodoc#type = 'floating'
@@ -519,17 +520,6 @@ nmap K :call phpactor#Hover()<CR>
 let g:WebDevIconsUnicodeDecorateFolderNodes = 1
 
 "autocmd BufWritePost * :cclose
-
-augroup phpcmd
-  autocmd!
-  autocmd FileType php set errorformat=%A%m\ in\ %f\ on\ line\ %l,%Z
-  autocmd FileType php set makeprg=php\ -l\ %
-  autocmd FileType php set suffixesadd=.php
-  autocmd FileType php inoremap <C-s><C-u> <Esc>:call IPhpInsertUse()<CR>
-  autocmd FileType php noremap <Leader>u :call PhpInsertUse()<CR>
-  autocmd FileType php inoremap <C-s><C-e> <Esc>:call IPhpExpandClass()<CR>
-  autocmd FileType php noremap <Leader>e :call PhpExpandClass()<CR>
-augroup END
 
 autocmd FileType yaml set ts=2 sw=2 sts=2 expandtab
 autocmd FileType Makefile set ts=2 sw=2 sts=2 expandtab
