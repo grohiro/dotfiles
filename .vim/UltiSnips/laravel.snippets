@@ -1,0 +1,182 @@
+# b Beginning of line
+# i In-word expansion
+# w Word boundary 
+# r Regular expression 
+# t Do not expand tabs
+
+snippet laravel-test-http
+$this->setUpHttpTesting();
+endsnippet
+
+snippet laravel-test-factory-user
+$this->user = factory(User::class)->create();
+$this->actingAs($this->user);
+endsnippet
+
+snippet laravel-attribute-getter
+public function get${1}Attribute()
+{
+	return $this->attributes['${2}'];
+}
+endsnippet
+
+snippet laravel-attribute-setter
+public function set${1}Attribute(${2})
+{
+	return $this->attributes['${3}'] = $2;
+}
+endsnippet
+
+snippet laravel-factory
+$factory->define(${1}::class, function (Faker $faker) {
+	return [
+		${2}
+	];
+});
+endsnippet
+
+snippet laravel-mutator-enum
+public function set${1:CamelCase}Attribute($${2:camelCase})
+{
+	if (!is_null($$2)) {
+		$this->attributes['${3:snake_case}'] = $$2->id;
+	} else {
+		$this->attributes['$3'] = null;
+	}
+}
+
+public function get$1Attribute()
+{
+	if (isset($this->attributes['$3'])) {
+		return $1::valueOf($this->attributes['$3']);
+	} else {
+		return null;
+	}
+}
+endsnippet
+
+snippet laravel-log
+use Illuminate\Support\Facades\Log;
+endsnippet
+
+snippet laravel-transaction
+try {
+	\DB::beginTransaction();
+	${0}
+	\DB::commit();
+} catch (\Exception $ex) {
+	\DB::rollback();
+	throw $ex;
+}
+endsnippet
+
+snippet laravel-validator
+$rules = [];
+$validator = \Validator::make($request->all(), $rules);
+if ($validator->fails()) {
+	return redirect()->route('TODO')
+		->withErrors($validator)
+		->withInput();
+}
+endsnippet
+
+snippet fact "Laravel factory" b
+$${1} = factory(`!p
+snip.rv = t[1][0].upper() + t[1][1:] if len(t[1]) > 0 else t[1]
+`::class)->${3:create}([$0]);
+endsnippet
+
+snippet debug "Laravel Log::debug()"
+Log::debug(sprintf("[%s:%d]${1}", __FILE__, __LINE__, ${2}));${0}
+endsnippet
+
+snippet getPresenter
+public function getPresenter()
+{
+	implements Robbo\Presenter\PresentableInterface
+	return new Presenters\\${1}Presenter($this);
+}
+endsnippet
+
+snippet dd "dd()"
+dd(${1});
+endsnippet
+
+snippet migid "Migration ID"
+$table->increments('id');
+endsnippet
+
+snippet migbid "Migration bigInteger ID"
+$table->bigIncrements('id');
+endsnippet
+
+snippet migstr "Migration string"
+$table->string('${1}', ${2:255})->nullable(${3:false});${0}
+endsnippet
+
+snippet migint "Migration integer"
+$table->integer('${1}')->nullable(${2:false});${0}
+endsnippet
+
+snippet migtxt "Migration text"
+$table->text('${1}')->nullable(${2:false});${0}
+endsnippet
+
+snippet migbint "Migration bigInteger"
+$table->bigInteger('${1}')->nullable(${2:false});${0}
+endsnippet
+
+snippet migts "Migration timestamps"
+$table->timestamps();${0}
+endsnippet
+
+snippet migdel "Migration soft deletes"
+$table->softDeletes();${0}
+endsnippet
+
+snippet migfor "Migration foreign key"
+$table->foreign('${1:column}')
+	->references('${2:id}')
+	->on('${3:table}')
+	->onDelete('cascade');
+endsnippet
+
+snippet migpk "Migration primary key"
+$table->primary(${1:key});
+endsnippet
+
+snippet migidx "Migration index"
+$table->index('${1:column}');
+endsnippet
+
+snippet miguidx "Migration unique index"
+$table->unique('${1:column}');
+endsnippet
+
+snippet col "Laravel collection"
+collect($${1:array})$0
+endsnippet
+
+snippet rel-one "has-one"
+public function $1() {
+	return $this->hasOne($2::class);
+}
+endsnippet
+
+snippet rel-many "has-many"
+public function $1() {
+	return $this->hasMany($2::class);
+}
+endsnippet
+
+snippet rel-bel "belongs to"
+public function $1() {
+	return $this->belongsTo($2::class);
+}
+endsnippet
+
+snippet sco "Query scope"
+public function scope$1($query) {
+	return $query->$0;
+}
+endsnippet

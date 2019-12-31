@@ -22,11 +22,12 @@ endsnippet
 
 snippet if "if" b
 if (${1}) {
+	${0}
 }
 endsnippet
 
 snippet ife "if/else" b
-if (${1}) {
+if (${1:cond}) {
 	${2}
 } else {
 	${3}
@@ -34,7 +35,7 @@ if (${1}) {
 endsnippet
 
 snippet ifels "if/elseif" b
-if (${1}) {
+if (${1:cond}) {
 	${0}
 } elseif (${2}) {
 } else {
@@ -79,13 +80,13 @@ endsnippet
 snippet funcl "closure" i
 function ($1) {
 	$0
-});
+}${2:);}
 endsnippet
 
-snippet funclu "closure with params" i
+snippet funclu "closure with use parameter" i
 function ($1) use ($2) {
 	$0
-});
+}${3:);}
 endsnippet
 
 snippet ifn "if null" b
@@ -106,7 +107,7 @@ if (!${1}) {
 }
 endsnippet
 
-snippet t- "$this->" i
+snippet tt "$this->" i
 $this->
 endsnippet
 
@@ -180,7 +181,7 @@ public function setUp(): void
 }
 endsnippet
 
-snippet testFunc "test function" b
+snippet test "test function" b
 public function test${1}()
 {
 	${0}
@@ -205,93 +206,6 @@ endsnippet
 
 snippet assNN "assertNotNull" b
 $this->assertNotNull(${0})
-endsnippet
-
-# Laravel
-snippet laravel-test-http
-$this->setUpHttpTesting();
-endsnippet
-
-snippet laravel-test-factory-user
-$this->user = factory(User::class)->create();
-$this->actingAs($this->user);
-endsnippet
-
-snippet laravel-attribute-getter
-public function get${1}Attribute()
-{
-	return $this->attributes['${2}'];
-}
-endsnippet
-
-snippet laravel-attribute-setter
-public function set${1}Attribute(${2})
-{
-	return $this->attributes['${3}'] = $2;
-}
-endsnippet
-
-snippet laravel-factory
-$factory->define(${1}::class, function (Faker $faker) {
-	return [
-		${2}
-	];
-});
-endsnippet
-
-snippet laravel-mutator-enum
-public function set${1:CamelCase}Attribute($${2:camelCase})
-{
-	if (!is_null($$2)) {
-		$this->attributes['${3:snake_case}'] = $$2->id;
-	} else {
-		$this->attributes['$3'] = null;
-	}
-}
-
-public function get$1Attribute()
-{
-	if (isset($this->attributes['$3'])) {
-		return $1::valueOf($this->attributes['$3']);
-	} else {
-		return null;
-	}
-}
-endsnippet
-
-snippet laravel-log
-use Illuminate\Support\Facades\Log;
-endsnippet
-
-snippet laravel-transaction
-try {
-	\DB::beginTransaction();
-	${0}
-	\DB::commit();
-} catch (\Exception $ex) {
-	\DB::rollback();
-	throw $ex;
-}
-endsnippet
-
-snippet laravel-validator
-$rules = [];
-$validator = \Validator::make($request->all(), $rules);
-if ($validator->fails()) {
-	return redirect()->route('TODO')
-		->withErrors($validator)
-		->withInput();
-}
-endsnippet
-
-snippet fact "Laravel factory" b
-$${1} = factory(`!p
-snip.rv = t[1][0].upper() + t[1][1:] if len(t[1]) > 0 else t[1]
-`::class)->${3:create}([$0]);
-endsnippet
-
-snippet debug "Laravel Log::debug()"
-Log::debug(sprintf("[%s:%d]${1}", __FILE__, __LINE__, ${2}));${0}
 endsnippet
 
 snippet doccon "PHPDoc constructor"
@@ -356,14 +270,6 @@ public function set${1}($`!p snip.rv = t[1].lower()`)
 }
 endsnippet
 
-snippet getPresenter
-public function getPresenter()
-{
-	implements Robbo\Presenter\PresentableInterface
-	return new Presenters\\${1}Presenter($this);
-}
-endsnippet
-
 snippet aset "Array set"
 \$${1}['${2}'] = ${3};
 endsnippet
@@ -381,61 +287,6 @@ snippet class_methods "Get class methods"
 dd(get_class_methods($${1:obj}));
 endsnippet
 
-snippet dd "dd()"
-dd(${1});
-endsnippet
-
-snippet migid "Migration ID"
-$table->increments('id');
-endsnippet
-
-snippet migbid "Migration bigInteger ID"
-$table->bigIncrements('id');
-endsnippet
-
-snippet migstr "Migration string"
-$table->string('${1}', ${2:255})->nullable(${3:false});${0}
-endsnippet
-
-snippet migint "Migration integer"
-$table->integer('${1}')->nullable(${2:false});${0}
-endsnippet
-
-snippet migtxt "Migration text"
-$table->text('${1}')->nullable(${2:false});${0}
-endsnippet
-
-snippet migbint "Migration bigInteger"
-$table->bigInteger('${1}')->nullable(${2:false});${0}
-endsnippet
-
-snippet migts "Migration timestamps"
-$table->timestamps();${0}
-endsnippet
-
-snippet migdel "Migration soft deletes"
-$table->softDeletes();${0}
-endsnippet
-
-snippet migfor "Migration foreign key"
-$table->foreign('${1:column}')
-	->references('${2:id}')
-	->on('${3:table}')
-	->onDelete('cascade');
-endsnippet
-
-snippet migpk "Migration primary key"
-$table->primary(${1:key});
-endsnippet
-
-snippet migidx "Migration index"
-$table->index('${1:column}');
-endsnippet
-
-snippet miguidx "Migration unique index"
-$table->unique('${1:column}');
-endsnippet
-
 snippet arrmap "array map"
 collect($${1:array})->map(function ($${2:item}) {
 	${0}
@@ -444,10 +295,6 @@ endsnippet
 
 snippet rt "return"
 return ${1};
-endsnippet
-
-snippet col "Laravel collection"
-collect($${1:array})$0
 endsnippet
 
 snippet var "@var comment"
