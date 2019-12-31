@@ -10,7 +10,8 @@ augroup END
 
 augroup php
   autocmd!
-  autocmd FileType php setlocal omnifunc=phpactor#Complete
+  autocmd FileType php setl omnifunc=phpactor#Complete
+  autocmd FileType php setl makeprg=phpunit
 augroup END
 
 augroup python

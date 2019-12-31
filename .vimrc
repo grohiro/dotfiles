@@ -317,8 +317,7 @@ let g:quickrun_config = {
 \ 'haml': {
 \   'command': 'haml',
 \   'exec': '%c %s'
-\ },
-\ 'phpunit': {}
+\ }
 \}
 
 let g:quickrun_config['python'] = {
@@ -600,7 +599,6 @@ augroup END
 
 autocmd FileType yaml set ts=2 sw=2 sts=2 expandtab
 autocmd FileType Makefile set ts=2 sw=2 sts=2 expandtab
-autocmd BufRead *Test.php set makeprg=phpunit
 
 set completeopt+=menuone
 "set completeopt-=preview
