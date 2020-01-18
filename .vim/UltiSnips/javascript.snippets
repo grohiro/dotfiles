@@ -191,3 +191,21 @@ endsnippet
 snippet req "require"
 const $1 = require('${1}')${0}
 endsnippet
+
+snippet th "then" i
+.then(($1) => {
+	$0
+})
+endsnippet
+
+snippet ca "catch" i
+.catch((err) => {
+	$0
+})
+endsnippet
+
+snippet fin "finally" i
+.finally(() => {
+	$0
+})
+endsnippet
