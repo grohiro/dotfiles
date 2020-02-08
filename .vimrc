@@ -77,6 +77,15 @@ Plug 'zebult/auto-gtags.vim'
 Plug 'mattn/vim-lsp-settings'
 Plug 'nanotech/jellybeans.vim'
 Plug 'leafgarland/typescript-vim'
+" text-obj
+Plug 'kana/vim-textobj-user'
+Plug 'kana/vim-textobj-line'
+Plug 'kana/vim-textobj-function'
+Plug 'akiyan/vim-textobj-xml-attribute'
+Plug 'h1mesuke/textobj-wiw'
+Plug 'rhysd/vim-textobj-ruby'
+Plug 'sgur/vim-textobj-parameter'
+Plug 'thinca/vim-textobj-between'
 call plug#end()
 " }}}
 
