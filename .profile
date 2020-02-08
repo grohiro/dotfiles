@@ -6,7 +6,6 @@ else
   export PROMPT_COMMAND="$PROMPT_COMMAND; source ~/dotfiles/bin/lsdir-push"
 fi
 
-export GOPATH=$HOME/go
 export SCREENDIR=~/.screen/session
 export JAVA_HOME=`/usr/libexec/java_home`
 export EDITOR="vim"
@@ -28,8 +27,6 @@ PATH=/usr/local/postgresql83/bin:$PATH
 
 # User path
 PATH="$HOME/.anyenv/bin:$PATH"
-eval "$(anyenv init -)"
-PATH=$GOPATH/bin:$PATH
 PATH=~/.composer/vendor/bin:$PATH
 PATH=~/.nodebrew/current/bin:$PATH
 PATH=~/git/phplint:$PATH
@@ -43,7 +40,7 @@ test -r ~/.bashrc && . ~/.bashrc
 
 #eval "$(ndenv init -)"
 
-export GOROOT=$(go env GOROOT)
+eval "`anyenv init -`"
 
 tmux ls
 

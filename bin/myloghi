@@ -2,7 +2,7 @@
 # MySQL query log highlight
 # Usage: tail -f /var/log/mysql/query.log | myloghi
 
-cat -u - | sed -r \
+cat -u - | gsed -r \
   -e "/Prepare/d" \
   -e "/Close stmt/d" \
   -e "/Quit/d" \

@@ -23,6 +23,7 @@ augroup golang
   let g:go_highlight_build_constraints = 1
   set rtp+=$GOPATH/src/github.com/golang/lint/misc/vim
   exe "set rtp+=".globpath($GOPATH, "src/github.com/nsf/gocode/vim")
+  setl nolist
 augroup END
 
 " Use vim-go instead of QuickRun

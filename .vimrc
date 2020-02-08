@@ -30,6 +30,7 @@ let g:auto_gtags = 1
 
 " {{{ Plug
 call plug#begin('~/.vim/plugged')
+Plug 'jiangmiao/auto-pairs'
 Plug 'MaxMEllon/vim-jsx-pretty'
 Plug 'Shougo/deoplete.nvim'
 "Plug 'Shougo/echodoc.vim'
@@ -38,7 +39,7 @@ Plug 'Shougo/vimproc.vim'
 Plug 'SirVer/ultisnips'
 Plug 'airblade/vim-rooter'
 Plug 'craigemery/vim-autotag'
-Plug 'fatih/vim-go'
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 "Plug 'felixfbecker/php-language-server', {'do': 'composer install && composer run-script parse-stubs'}
 Plug 'grohiro/vim-php-namespace'
 Plug 'grohiro/vim-test-truffle'
@@ -64,8 +65,8 @@ Plug 'roxma/vim-hug-neovim-rpc'
 Plug 'ryanoasis/vim-devicons'
 Plug 'scrooloose/nerdtree'
 Plug 'thinca/vim-quickrun'
-"Plug 'thomasfaingnaert/vim-lsp-snippets'
-"Plug 'thomasfaingnaert/vim-lsp-ultisnips'
+Plug 'thomasfaingnaert/vim-lsp-snippets'
+Plug 'thomasfaingnaert/vim-lsp-ultisnips'
 Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
@@ -74,6 +75,8 @@ Plug 'vim-scripts/taglist.vim'
 Plug 'vim-scripts/yanktmp.vim'
 Plug 'zebult/auto-gtags.vim'
 Plug 'mattn/vim-lsp-settings'
+Plug 'nanotech/jellybeans.vim'
+Plug 'leafgarland/typescript-vim'
 call plug#end()
 " }}}
 
@@ -148,10 +151,12 @@ set breakindent
 " }}}
 
 " Color {{{
-syntax enable
-colorscheme default
+set t_Co=256
+colo jellybeans
+colorscheme desert
 set bg=dark
-hi SpecialKey ctermfg=DarkGrey
+hi SpecialKey ctermfg=231
+syntax enable
 "hi NonText ctermfg=DarkGray
 " }}}
 
@@ -524,8 +529,17 @@ let g:WebDevIconsUnicodeDecorateFolderNodes = 1
 autocmd FileType yaml set ts=2 sw=2 sts=2 expandtab
 autocmd FileType Makefile set ts=2 sw=2 sts=2 expandtab
 
-set completeopt+=menuone
+set completeopt+=menuone,noselect
 "set completeopt-=preview
 
 " プラグイン設定の読み込み
  call map(sort(split(globpath(&runtimepath, 'plugins/*.vim'))), {->[execute('exec "so" v:val')]})
+
+" surround で<CR>で改行を入れる
+let g:surround_13 = "\n\t\r\n"
+
+let g:user_emmet_settings = {
+      \ 'vue': {
+      \   'extends': 'html',
+      \ }
+      \ }

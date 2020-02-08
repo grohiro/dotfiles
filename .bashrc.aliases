@@ -86,3 +86,11 @@ alias uuid="uuidgen | tr \"[:upper:]\" \"[:lower:]\" | tr -d "\n""
 alias uuidp="uuidgen | tr \"[:upper:]\" \"[:lower:]\" | tr -d "\n" | pbcopy"
 alias uuidh="uuid | tr -d -"
 alias uuidhp="uuid | tr -d - | pbcopy"
+
+# github/hub
+eval "$(hub alias -s)"
+alias github='hub browse -- issues'
+
+alias d='docker-compose'
+alias dk='docker'
+alias dke='docker exec -it'
