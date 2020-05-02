@@ -1,4 +1,5 @@
 set nocompatible
+set autowrite
 
 let mapleader = "\<Space>"
 set rtp+=~/src/vim/vim-test-truffle
@@ -26,11 +27,11 @@ function! s:vimrc_local(loc)
 endfunction
 " }}}
 "
-let g:auto_gtags = 1
+"let g:auto_gtags = 1
 
 " {{{ Plug
 call plug#begin('~/.vim/plugged')
-Plug 'jiangmiao/auto-pairs'
+"Plug 'jiangmiao/auto-pairs'
 Plug 'MaxMEllon/vim-jsx-pretty'
 Plug 'Shougo/deoplete.nvim'
 "Plug 'Shougo/echodoc.vim'
@@ -54,7 +55,8 @@ Plug 'leafgarland/typescript-vim'
 Plug 'mattn/emmet-vim'
 Plug 'microsoft/python-language-server'
 Plug 'phpactor/phpactor'
-Plug 'posva/vim-vue'
+"Plug 'posva/vim-vue'
+Plug 'leafOfTree/vim-vue-plugin'
 Plug 'prabirshrestha/async.vim'
 Plug 'prabirshrestha/asyncomplete.vim'
 Plug 'prabirshrestha/asyncomplete-lsp.vim'
@@ -63,6 +65,8 @@ Plug 'prabirshrestha/vim-lsp'
 Plug 'roxma/nvim-yarp'
 Plug 'roxma/vim-hug-neovim-rpc'
 Plug 'ryanoasis/vim-devicons'
+"Plug 'tmhedberg/matchit'
+Plug 'andymass/vim-matchup'
 Plug 'scrooloose/nerdtree'
 Plug 'thinca/vim-quickrun'
 Plug 'thomasfaingnaert/vim-lsp-snippets'
@@ -77,15 +81,19 @@ Plug 'zebult/auto-gtags.vim'
 Plug 'mattn/vim-lsp-settings'
 Plug 'nanotech/jellybeans.vim'
 Plug 'leafgarland/typescript-vim'
+Plug 'tpope/vim-rails'
 " text-obj
 Plug 'kana/vim-textobj-user'
 Plug 'kana/vim-textobj-line'
 Plug 'kana/vim-textobj-function'
-Plug 'akiyan/vim-textobj-xml-attribute'
+"Plug 'akiyan/vim-textobj-xml-attribute'
 Plug 'h1mesuke/textobj-wiw'
 Plug 'rhysd/vim-textobj-ruby'
-Plug 'sgur/vim-textobj-parameter'
+Plug 'whatyouhide/vim-textobj-xmlattr'
+"Plug 'sgur/vim-textobj-parameter'
+Plug 'wellle/targets.vim'
 Plug 'thinca/vim-textobj-between'
+Plug 'xavierchow/vim-swagger-preview'
 call plug#end()
 " }}}
 
@@ -418,13 +426,6 @@ let g:quickrun_config["lint/javascript"] = {
   \}
   " }}}
 
-  " {{{ go
-  let g:quickrun_config["lint/go"] = {
-  \ "runner": "vimscript",
-  \ "command": ":GoBuild",
-  \}
-  " }}}
-
 " quickfixウインドを開いてカーソルを元に戻す
 function! ShowQuickfix()
   execute 'cclose'
@@ -470,7 +471,7 @@ noremap <C-g>g :Gtags -g <C-R><C-W><CR>
 " }}}
 
 " {{{ Git
-nnoremap <leader>gs :Gstatus<CR>5j
+nnoremap <leader>gs :10Gstatus<CR>5j
 " }}}
 
 " {{{ UltiSnips
@@ -518,6 +519,11 @@ call asyncomplete#register_source(asyncomplete#sources#ultisnips#get_source_opti
 
 " }}}
 
+" {{{ match-up
+" https://github.com/andymass/vim-matchup
+let g:matchup_surround_enabled = 1
+let g:matchup_matchparen_enabled = 0
+" }}}
 
 let g:echodoc#enable_at_startup = 0
 set cmdheight=2
@@ -535,10 +541,10 @@ let g:WebDevIconsUnicodeDecorateFolderNodes = 1
 
 "autocmd BufWritePost * :cclose
 
-autocmd FileType yaml set ts=2 sw=2 sts=2 expandtab
-autocmd FileType Makefile set ts=2 sw=2 sts=2 expandtab
+autocmd FileType yaml setl ts=2 sw=2 sts=2 expandtab
+autocmd FileType Makefile setl ts=2 sw=2 sts=2 noexpandtab
 
-set completeopt+=menuone,noselect
+set completeopt=menu,menuone,longest
 "set completeopt-=preview
 
 " プラグイン設定の読み込み
@@ -552,3 +558,4 @@ let g:user_emmet_settings = {
       \   'extends': 'html',
       \ }
       \ }
+let g:go_fmt_command = "gofmt"

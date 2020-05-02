@@ -20,6 +20,13 @@ class ${2:ClassName}
 }
 endsnippet
 
+snippet cons "constructor"
+public function __construct()
+{
+	${1:parent::__construct()};
+}
+endsnippet
+
 snippet if "if" b
 if (${1}) {
 	${0}
@@ -61,6 +68,14 @@ endsnippet
 
 snippet ak "Array key" i
 '${1}' => ${2},
+endsnippet
+
+snippet al "Array list" i
+'${1}',
+endsnippet
+
+snippet am "[]" i
+[${1}]
 endsnippet
 
 snippet cf "date format" i
@@ -107,11 +122,11 @@ if (!${1}) {
 }
 endsnippet
 
-snippet tt "$this->" i
+snippet tt "$this->" w
 $this->
 endsnippet
 
-snippet tv "$this->variable" b
+snippet tv "$this->variable" w
 $this->${1}
 endsnippet
 
@@ -127,12 +142,35 @@ snippet tma "$this->method assign"
 $${1} = $this->${2}(${3});
 endsnippet
 
-snippet tm "$this->method()"
+snippet tm "$this->method()" i
 $this->${1:method}(${2});${0}
+endsnippet
+
+snippet tvm "$this->variable->method()" i
+$this->${1:var}->${2:method}(${3})
+endsnippet
+
+snippet tvma "$this->variable->method() assign"
+$${4:var} = $this->${1:var}->${2:method}(${3})
 endsnippet
 
 snippet ma "method assign"
 $${1:val} = $${2:obj}->${3:method}(${4});${0}
+endsnippet
+
+snippet pr "property" i
+$${1:var}->${2:property}
+endsnippet
+
+snippet va "var assign"
+\$${1:var} = $2
+endsnippet
+snippet vm "var->method()" i
+$${1:var}->${2:method}(${3})
+endsnippet
+
+snippet -- "method chain" i
+->${1:method}($2);
 endsnippet
 
 # PHP Exception
@@ -305,3 +343,14 @@ snippet nw "Create new instance" i
 \$`!p snip.rv = t[1].lower()` = new ${1:Class}(${2});
 endsnippet
 
+snippet fe "foreach"
+foreach (${1:arr} as ${2:val}) {
+	$0
+}
+endsnippet
+
+snippet fek "foreach with key"
+foreach (${1:arr} as ${2:key} => ${3:val}) {
+	$0
+}
+endsnippet

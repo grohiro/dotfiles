@@ -12,7 +12,7 @@ alias l='ll'
 
 alias less='less -X -R' # color less
 
-alias grep='grep --exclude=*.svn-base --exclude=tags --exclude=.git --exclude=GTAGS --exclude=GPATH --exclude=GRTAGS -I'
+alias grep='grep --exclude=*.svn-base --exclude=tags --exclude=.git --exclude=GTAGS --exclude=GPATH --exclude=GRTAGS --exclude=node_module --exclude=vendor -I'
 
 alias ..='cd ..'
 alias ...='cd ../../'
@@ -94,3 +94,5 @@ alias github='hub browse -- issues'
 alias d='docker-compose'
 alias dk='docker'
 alias dke='docker exec -it'
+
+alias swagger-editor='docker run -d -p 8017:8080 swaggerapi/swagger-editor'

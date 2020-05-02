@@ -1,3 +1,21 @@
 snippet strd "strfmt.DateTime" i
 strfmt.DateTime(${1:VISUAL})
 endsnippet
+
+snippet ie "check err"
+if err != nil {
+	return nil, err
+}
+endsnippet
+
+snippet sp "fmt.Sprint"
+s$1 := fmt.Sprint(${1})
+endsnippet
+
+snippet atoi "str.Atoi"
+i$1, err := strconv.Atoi(${1:string})
+endsnippet
+
+snippet pint "parseInto"
+i$1, err := strconv.ParseInt(${1:string}, ${2:10}, ${3:64})
+endsnippet

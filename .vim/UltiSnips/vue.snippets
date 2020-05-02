@@ -1,14 +1,15 @@
 snippet vue
 <template>
-<div>
-</div>
+	<div>
+		<Alert :content="error" />
+	</div>
 </template>
 
 <script>
 export default {
-	name: '${1}',
 	data () {
 		return {
+			error: null,
 		}
 	},
 	props: [
@@ -22,5 +23,61 @@ export default {
 
 <style scoped>
 </style>
+endsnippet
+
+snippet impa "import API"
+import {${1:name}} from '@/api'
+endsnippet
+
+snippet impc "import component"
+import ${1:name} from '@/components/$1'
+endsnippet
+
+snippet axi "API call"
+try {
+	this.message = this.error = null
+
+	const res = await ${1:api}({
+		body: {
+			name: {
+				key: "value"
+			}
+		}
+	})
+	this.message = res.data.message
+
+	return true
+} catch (err) {
+	this.error = err.response.data.message
+}
+endsnippet
+
+snippet ak "object key"
+${1:name}: ${2:value},
+endsnippet
+
+snippet ob "object"
+{
+	${1:name}: ${2:value},
+}
+endsnippet
+
+snippet trc "try/catch"
+try {
+	$0
+} catch (err) {
+}
+endsnippet
+
+snippet clog
+console.log($1)
+endsnippet
+
+snippet vf "v-for" i
+v-for="(${1:name},index) in ${2:var} b-bind:key="${2:index}"
+endsnippet
+
+snippet vv
+{{ $0 }}
 endsnippet
 

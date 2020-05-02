@@ -23,10 +23,12 @@ let g:lsp_signs_enabled = 1
 let g:lsp_text_edit_enabled = 0
 
 " Key mappings
+noremap <leader>la :LspCodeAction<CR>
 noremap <leader>lc :LspDeclaration<CR>
 noremap <leader>ld :LspDefinition<CR>
-noremap <leader>la :LspCodeAction<CR>
-"inoremap <silent> <leader>la <C-R>=:LspCodeAction<CR>
+noremap <leader>lf :LspDocumentFormat<CR>
+noremap <leader>ln :LspNextDiagnostic<CR>
+noremap <leader>lp :LspPreviousDiagnostic<CR>
 noremap K :LspHover<CR>
 
 " Completion

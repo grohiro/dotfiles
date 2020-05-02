@@ -1,0 +1,99 @@
+snippet post
+post:
+	summary: "${1}"
+	description: $1
+	tags:
+		- ${2:name}
+	operationId: $3
+	parameters:
+		- name: body
+			in: body
+			required: true
+			schema:
+				properties:
+	responses:
+		200:
+			description: OK
+			schema:
+		400:
+			$ref: "#/responses/BadRequest"
+		422:
+			$ref: "#/responses/ValidationError"
+endsnippet
+
+snippet get
+get:
+	summary: "${1}"
+	description: $1
+	tags:
+		- ${2:name}
+	operationId: $3
+	parameters:
+	responses:
+		200:
+			description: OK
+			schema:
+endsnippet
+
+snippet param "parameters"
+- name: ${1:name}
+	in: ${2:path}
+	description: ${3:desc}
+	required: ${4:true}
+	type: ${5:string}
+endsnippet
+
+snippet sc "schema object"
+schema:
+	type: object
+	properties:
+		obj${1}
+endsnippet
+
+snippet res "response" i
+description:
+schema:
+	obj${1}
+endsnippet
+
+snippet obj "schema object" i
+type: object
+properties:
+	prop${1}
+endsnippet
+
+snippet prop "object property" i
+${1:name}:
+	type: ${2:string}
+endsnippet
+
+snippet ref "" i
+$ref: "#/definitions/${1:Model}"
+endsnippet
+
+snippet array "array object" i
+schema:
+	type: array
+	items:
+		type: object
+		properties:
+			${1:name}:
+endsnippet
+
+snippet def "definition"
+${1:Name}:
+	properties:
+endsnippet
+
+snippet ps "properties" i
+properties:
+	$1
+endsnippet
+
+snippet rt "required" i
+required: true
+endsnippet
+
+snippet desc "description"
+description: "${1}"
+endsnippet

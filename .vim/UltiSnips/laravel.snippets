@@ -130,6 +130,10 @@ snippet migts "Migration timestamps"
 $table->timestamps();${0}
 endsnippet
 
+snippet migdt "Migration Datetime"
+$table->datetime('${1}')->nullable(${2:true});
+endsnippet
+
 snippet migdel "Migration soft deletes"
 $table->softDeletes();${0}
 endsnippet
@@ -179,4 +183,22 @@ snippet sco "Query scope"
 public function scope$1($query) {
 	return $query->$0;
 }
+endsnippet
+
+snippet mod "Model template"
+use Traits\Timestamps, Traits\OwnedByUser;
+
+protected $table = '${1:table}';
+
+protected $guarded = [
+];
+
+protected $attributes = [
+	'del_flg' => 0,
+	'note' => '',
+];
+
+protected $dates = [
+];
+
 endsnippet
