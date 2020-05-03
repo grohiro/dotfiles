@@ -27,11 +27,13 @@ function! s:vimrc_local(loc)
 endfunction
 " }}}
 "
-"let g:auto_gtags = 1
-
 " {{{ Plug
 call plug#begin('~/.vim/plugged')
+
+" autopairs
 "Plug 'jiangmiao/auto-pairs'
+Plug 'cohama/lexima.vim'
+
 Plug 'MaxMEllon/vim-jsx-pretty'
 Plug 'Shougo/deoplete.nvim'
 "Plug 'Shougo/echodoc.vim'
@@ -50,11 +52,9 @@ Plug 'janko-m/vim-test'
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/vim-easy-align'
 Plug 'kchmck/vim-coffee-script'
-Plug 'kristijanhusak/deoplete-phpactor'
 Plug 'leafgarland/typescript-vim'
 Plug 'mattn/emmet-vim'
 Plug 'microsoft/python-language-server'
-Plug 'phpactor/phpactor'
 "Plug 'posva/vim-vue'
 Plug 'leafOfTree/vim-vue-plugin'
 Plug 'prabirshrestha/async.vim'
@@ -74,10 +74,13 @@ Plug 'thomasfaingnaert/vim-lsp-ultisnips'
 Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
-Plug 'vim-scripts/gtags.vim'
 Plug 'vim-scripts/taglist.vim'
 Plug 'vim-scripts/yanktmp.vim'
+
+" GNU global (gtags)
+Plug 'vim-scripts/gtags.vim'
 Plug 'zebult/auto-gtags.vim'
+
 Plug 'mattn/vim-lsp-settings'
 Plug 'nanotech/jellybeans.vim'
 Plug 'leafgarland/typescript-vim'
@@ -94,6 +97,9 @@ Plug 'whatyouhide/vim-textobj-xmlattr'
 Plug 'wellle/targets.vim'
 Plug 'thinca/vim-textobj-between'
 Plug 'xavierchow/vim-swagger-preview'
+" PHP IDE
+"Plug 'phpactor/phpactor'
+"Plug 'kristijanhusak/deoplete-phpactor'
 call plug#end()
 " }}}
 
@@ -108,6 +114,7 @@ set foldlevelstart=1
 " }}}
 
 " {{{ behavior
+set ttyfast
 " 編集中でも他のファイルを表示
 set hidden 
 " コマンドモード補完機能の設定
@@ -145,6 +152,12 @@ set nobackup
 set noundofile
 
 set wildignore=*.pyc
+
+" マウスを有効にする
+set mouse=a
+
+" 保管オプション
+set completeopt=menu,menuone,longest
 " }}}
 
 " {{{ view
@@ -170,9 +183,9 @@ set breakindent
 " Color {{{
 set t_Co=256
 colo jellybeans
-colorscheme desert
+"colorscheme desert
 set bg=dark
-hi SpecialKey ctermfg=231
+"hi SpecialKey ctermfg=231
 syntax enable
 "hi NonText ctermfg=DarkGray
 " }}}
@@ -217,20 +230,6 @@ nnoremap <expr> c* ':%s /\<' . expand('<cword>') . '\>/'
 vnoremap <expr> c* ':s /\<' . expand('<cword>') . '\>/'
 nnoremap CC :lcd<CR>
 
-nnoremap M :call ToggleWindowSize()<CR>
-
-let g:toggle_window_size = 0
-function! ToggleWindowSize()
-  if g:toggle_window_size == 1
-    exec "normal \<C-w>="
-    let g:toggle_window_size = 0
-  else
-    :resize
-    :vertical resize
-    let g:toggle_window_size = 1
-  endif
-endfunction
-
 nnoremap <F2> :buf #<CR>
 
 " Close all other windows
@@ -259,173 +258,6 @@ nnoremap <C-l> gt
 " }}}
 
 " quickfix {{{
-augroup QfAutoCommands
-  autocmd!
-  " Auto-close quickfix window
-  autocmd WinEnter * if (winnr('$') == 1) && ((getbufvar(winbufnr(0), '&buftype')) == 'quickfix' || (getbufvar(winbufnr(0), '&ft')) == 'quickrun') | quit | endif
-augroup END
-" }}}
-
-" Plugins 
-
-let g:autotagmaxTagsFileSize = 33400320
-
-
-" {{{ vim-dispatch
-let g:dispatch_quickfix_height = 15
-" }}}
-
-" {{{ fzf.vim
-set rtp+=/usr/local/Cellar/fzf/0.17.4
-nnoremap <C-p> :GFiles<CR>
-nnoremap L :Buffers<CR>
-let $FZF_DEFAULT_COMMAND = 'fd --type f'
-" }}}
-
-" {{{ yank tmp
-" http://www.vim.org/scripts/script.php?script_id=1598
-" ----------------------------------------
-map <silent> Sy :call YanktmpYank()<CR> 
-map <silent> Sp :call YanktmpPaste_p()<CR> 
-map <silent> SP :call YanktmpPaste_P()<CR> 
-" }}}
-
-" vim-test {{{
-let test#strategy = 'dispatch'
-noremap <leader>tf :TestFile<CR>
-noremap <leader>tr :TestNearest<CR>
-noremap <leader>r :TestLast<CR>
-let g:test#custom_runners = {'Solidity': ['Truffle']}
-" }}}
-
-" vim-testing-pair {{{
-"noremap <C-t> :ToggleTestingPair<CR>
-" }}}
-
-" {{{ quickrun
-" https://github.com/thinca/vim-quickrun
-nnoremap <expr> <Leader>qr ":MyQuickRun \"" . &filetype . "\"<CR>"
-nnoremap <expr> <Leader>ql ":MyQuickRun \"lint/" . &filetype . "\"<CR>"
-nnoremap <expr> <Leader>qc "exec MyQuickRun compile/" . &filetype . "<CR>"
-
-let g:quickrun_config = {}
-let g:quickrun_config['runner'] = 'vimproc'
-let g:quickrun_config = {
-\'_': {
-\   'split': '15',
-\   'runner': 'vimproc',
-\   'runner/vimproc/updatetime': 40,
-\   'outputter': 'error',
-\   'outputter/error/success': 'buffer',
-\   'outputter/error/error': 'quickfix',
-\   'outputter/buffer/split': ':botright 8sp',
-\   'outputter/buffer/into': 0,
-\   'outputter/buffer/running_mark': ':-)',
-\   'outputter/buffer/close_on_empty': 1,
-\   'outputter/quickfix/close_on_empty': 1,
-\   'outputter/quickfix/into': 0,
-\   'hook/quickfix_replate_tempname_to_bufnr/enable_exit': 0,
-\   'hook/time/enable': 0,
-\   'hook/neco/enable': 1,
-\   'hook/neco/wait': 20,
-\   'hook/neco/echo': 0,
-\   'hook/neco/redraw': 1
-\ },
-\ 'coffee': {
-\   'command': 'coffee',
-\   'cmdopt': '',
-\   'exec': '%c %o %s',
-\   'outputter/error/error': 'buffer',
-\ },
-\ 'haml': {
-\   'command': 'haml',
-\   'exec': '%c %s'
-\ }
-\}
-
-let g:quickrun_config['python'] = {
-  \ 'command': 'python3',
-  \ 'exec': '%c %s',
-  \ 'errorformat': '%A\ \ File\ \"%f"\,\ line\ %l%.%#,%Z%[%^\ ]%m'
-  \ }
-
-" 
-let g:quickrun_config["rspec"] = {
-  \ 'command': 'zeus',
-  \ 'exec': '%c rspec %s:p',
-  \ "errorformat": "rspec\ %f:%l\ #\ %m"
-  \}
-"
-
-let g:quickrun_config["go"] = {
-  \ 'runner': 'vimscript',
-  \ 'command': ':GoRun',
-  \}
-
-" {{{ ruby
-let g:quickrun_config["ruby"] = {
-  \ "command": "ruby",
-  \ "exec": "%c %o %s:p",
-\}
-" bundleで実行したいときはこの関数を読んで定義を上書きする
-function! QuickrunRubyBundle()
-  let g:quickrun_config["ruby"] = {
-        \ "command": "bundle",
-        \ "exec": "%c exec ruby %o %s:p"
-        \}
-endfunction
-" }}}
-
-" Lint
-
-  let g:quickrun_config["lint/ruby"] = {
-  \ "command": "ruby",
-  \ "exec": "%c -c %s:p > /dev/null",
-  \ "errorformat": "%f:%l:\ %m,%f:%l:\ warning:\ %m"
-  \}
-  " }}}
-
-  " {{{ bash
-  let g:quickrun_config["lint/sh"] = {
-  \ "command": "/bin/bash",
-  \ "exec": "%c %o %s:p",
-  \ "cmdopt": "-n",
-  \ "errorformat": "%f:\ line\ %l:\ %m"
-  \}
-  let g:quickrun_config["lint/bash"] = g:quickrun_config["lint/sh"]
-  " }}}
-  
-" {{{ javascript
-let g:quickrun_config["lint/javascript"] = {
-\ "command": "node",
-\ "cmdopt": "-c",
-\ "exec": "%c %o %s:p",
-\}
-" }}}
-
-  " {{{ haml
-  let g:quickrun_config["lint/haml"] = {
-  \ "command": "haml",
-  \ "cmdopt": "-c",
-  \ "exec": "%c %o %s:p",
-  \ "errorformat": "%f:\ line\ %l:\ %m"
-  \}
-  " }}}
-
-  " {{{ coffeescript
-  let g:quickrun_config["lint/coffee"] = {
-  \ "command": "coffee",
-  \ "cmdopt": "-c",
-  \ "exec": "%c %o %s:p",
-  \}
-
-  let g:quickrun_config["compile/coffee"] = {
-  \ "command": "coffee",
-  \ "cmdopt": "-c -b",
-  \ "exec": "%c %o %s",
-  \}
-  " }}}
-
 " quickfixウインドを開いてカーソルを元に戻す
 function! ShowQuickfix()
   execute 'cclose'
@@ -433,129 +265,26 @@ function! ShowQuickfix()
   execute 'wincmd p'
 endfunction
 
-function! MyQuickRun(args)
-  :cclose
-  silent! bw! \[quickrun\ output\]
-  call quickrun#run(a:args)
-endfunction
-command! -nargs=1 MyQuickRun :call MyQuickRun(<f-args>)
+augroup QfAutoCommands
+  autocmd!
+  " Auto-close quickfix window
+  autocmd WinEnter * if (winnr('$') == 1) && ((getbufvar(winbufnr(0), '&buftype')) == 'quickfix' || (getbufvar(winbufnr(0), '&ft')) == 'quickrun') | quit | endif
+augroup END
 " }}}
 
-" {{{ NERDTree
-nnoremap <F12> :NERDTreeToggle %:p:h<CR>
-let NERDTreeWinPos = "right"
-let NERDTreeWinSize = 40
-let NERDTreeIgnore=['\~$', '.pyc$']
+" vim-testing-pair {{{
+"noremap <C-t> :ToggleTestingPair<CR>
 " }}}
-
-" {{{ taglist
-" http://www.vim.org/scripts/script.php?script_id=273
-noremap <F11> :Tlist<CR><C-w><C-w>
-" PHPの表示設定
-let tlist_php_settings='php;c:class;d:constant;f:function' 
-let tlist_solidity_settings='solidity;c:contract;f:function'
-" 現在編集中のソースのタグしか表示しない
-let Tlist_Show_One_File = 1
-" }}}
-
-" Gtags {{{
-noremap <C-g>t :Gtags 
-" カーソル下の関数定義を探す
-noremap <C-g>j :GtagsCursor<CR>
-" 関数名から逆引き
-noremap <C-g>r :Gtags -r <C-R><C-W><CR>
-" ソースの関数一覧
-noremap <C-g>f :Gtags -f %<CR>
-" grep
-noremap <C-g>g :Gtags -g <C-R><C-W><CR>
-" }}}
-
-" {{{ Git
-nnoremap <leader>gs :10Gstatus<CR>5j
-" }}}
-
-" {{{ UltiSnips
-let g:UltiSnipsSnippetDirectories = [expand('~/.vim/UltiSnips/')]
-let g:UltiSnipsExpandTrigger = "<C-e>"
-"let g:UltiSnipsListSnippets = "<C-t>"
-let g:UltiSnipsJumpForwardTrigger = "<Tab>"
-let g:UltiSnipsJumpBackwardTrigger= "<S-Tab>"
-" }}}
-
-" {{{ vim-terraform
-let g:terraform_fmt_on_save = 1
-let g:terraform_align = 1
-" }}}
-
-" {{{ auto-pairs
-noremap <leader>ap :call AutoPairsToggle()<CR>
-let g:AutoPairsFlyMode = 0
-let g:AutoPairsMultilineClose = 0
-"imap ˜ <M-n>
-"imap ´ <M-e>
-imap ∫ <M-b>
-inoremap <silent> « <C-r>=MoveToNextChar('}')<CR>
-inoremap <silent> ª <C-r>=MoveToNextChar(')')<CR>
-noremap <silent> ª :call MoveToNextChar(')')<CR>
-"inoremap <buffer> <silent> «« <C-r>=MoveToNextChar(']')<CR>
 
 " `char` の次の出現位置に移動する
-function! MoveToNextChar(char)
-  set nohlsearch
-  call search(a:char)
-  set hlsearch
-  execute "normal l"
-  return ''
-endfunction
-" }}}
-"
-" {{{ asynccomplete
-let g:UltiSnipsExpandTrigger="<c-e>"
-call asyncomplete#register_source(asyncomplete#sources#ultisnips#get_source_options({
-  \ 'name': 'ultisnips',
-  \ 'whitelist': ['*'],
-  \ 'completor': function('asyncomplete#sources#ultisnips#completor'),
-  \ }))
-
-" }}}
-
-" {{{ match-up
-" https://github.com/andymass/vim-matchup
-let g:matchup_surround_enabled = 1
-let g:matchup_matchparen_enabled = 0
-" }}}
-
-let g:echodoc#enable_at_startup = 0
-set cmdheight=2
-if has('nvim')
-  let g:echodoc#type = 'floating'
-endif
-
-nmap K :call phpactor#Hover()<CR>
-"
-
-" ディレクトリがあればこの中に tags ファイルを作成する
-"let g:auto_ctags_directory_list = ['.git', '.svn']
-
-let g:WebDevIconsUnicodeDecorateFolderNodes = 1
-
-"autocmd BufWritePost * :cclose
-
-autocmd FileType yaml setl ts=2 sw=2 sts=2 expandtab
-autocmd FileType Makefile setl ts=2 sw=2 sts=2 noexpandtab
-
-set completeopt=menu,menuone,longest
-"set completeopt-=preview
+"function! MoveToNextChar(char)
+  "set nohlsearch
+  "call search(a:char)
+  "set hlsearch
+  "execute "normal l"
+  "return ''
+"endfunction
 
 " プラグイン設定の読み込み
- call map(sort(split(globpath(&runtimepath, 'plugins/*.vim'))), {->[execute('exec "so" v:val')]})
+call map(sort(split(globpath(&runtimepath, 'plugins/*.vim'))), {->[execute('exec "so" v:val')]})
 
-" surround で<CR>で改行を入れる
-let g:surround_13 = "\n\t\r\n"
-
-let g:user_emmet_settings = {
-      \ 'vue': {
-      \   'extends': 'html',
-      \ }
-      \ }
-let g:go_fmt_command = "gofmt"

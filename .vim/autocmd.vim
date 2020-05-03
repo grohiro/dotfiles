@@ -47,3 +47,4 @@ augroup golang
   au FileType go nmap <leader>l <Plug>(go-lint)
 augroup END
 
+autocmd FileType Makefile setl ts=2 sw=2 sts=2 noexpandtab
