@@ -221,8 +221,8 @@ map <leader>n :nohl<CR>
 " }}}
 
 " {{{ key mappings
-"noremap <C-x><C-v> :source ~/.vimrc<CR>
-"noremap <C-x><C-b> :tabnew ~/.vimrc<CR>
+noremap <C-x><C-v> :source ~/.vimrc<CR>
+noremap <C-x><C-b> :tabnew ~/.vimrc<CR>
 noremap <silent><F9> :ccl<CR>:silent! bw! \[quickrun\ buffer\]<CR>
 
 " c*でカーソル下のキーワードを置換
