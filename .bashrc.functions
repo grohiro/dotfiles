@@ -111,5 +111,19 @@ function quote ()
   fi
 }
 
-export -f sjis utf8 ddir mkdirc find_dir vimbg pecho dirtree up ke quote
+function mkp5()
+{
+  local sketch=$1
+  if [[ -d $sketch ]]
+  then
+    echo $sketch already exists
+    return 1
+  fi
+
+  mkdir $sketch
+  cd $sketch
+  touch $sketch.pde
+}
+
+export -f sjis utf8 ddir mkdirc find_dir vimbg pecho dirtree up ke quote mkp5
 
