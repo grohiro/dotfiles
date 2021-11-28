@@ -1,8 +1,10 @@
 set nocompatible
 set autowrite
 
+let g:autotagStartMethod='fork'
 let mapleader = "\<Space>"
 set rtp+=~/src/vim/vim-test-truffle
+set rtp+=~/src/vim-nulab-backlog
 
 " Do not use matchparen
 " http://itchyny.hatenablog.com/entry/2016/03/30/210000
@@ -29,48 +31,46 @@ endfunction
 "
 " {{{ Plug
 call plug#begin('~/.vim/plugged')
-
-" autopairs
-"Plug 'jiangmiao/auto-pairs'
-Plug 'cohama/lexima.vim'
-
-Plug 'MaxMEllon/vim-jsx-pretty'
-Plug 'Shougo/deoplete.nvim'
-"Plug 'Shougo/echodoc.vim'
+Plug 'tpope/vim-abolish'
+Plug 'editorconfig/editorconfig-vim'
+Plug 'prettier/vim-prettier'
+"Plug 'cohama/lexima.vim'
+"Plug 'MaxMEllon/vim-jsx-pretty'
+"Plug 'Shougo/deoplete.nvim'
 Plug 'Shougo/vimproc'
 Plug 'Shougo/vimproc.vim'
 Plug 'SirVer/ultisnips'
+"Plug 'honza/vim-snippets'
 Plug 'airblade/vim-rooter'
 Plug 'craigemery/vim-autotag'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
-"Plug 'felixfbecker/php-language-server', {'do': 'composer install && composer run-script parse-stubs'}
 Plug 'grohiro/vim-php-namespace'
-Plug 'grohiro/vim-test-truffle'
-Plug 'hashivim/vim-terraform'
-"Plug 'honza/vim-snippets'
+"Plug 'grohiro/vim-test-truffle'
+"Plug 'hashivim/vim-terraform'
 Plug 'janko-m/vim-test'
 Plug 'junegunn/fzf.vim'
+Plug 'junegunn/fzf'
 Plug 'junegunn/vim-easy-align'
-Plug 'kchmck/vim-coffee-script'
-Plug 'leafgarland/typescript-vim'
-Plug 'mattn/emmet-vim'
-Plug 'microsoft/python-language-server'
+"Plug 'kchmck/vim-coffee-script'
+"Plug 'leafgarland/typescript-vim'
+"Plug 'mattn/emmet-vim'
+Plug  '~/src/emmet-vim'
+"Plug 'microsoft/python-language-server'
 "Plug 'posva/vim-vue'
-Plug 'leafOfTree/vim-vue-plugin'
-Plug 'prabirshrestha/async.vim'
-Plug 'prabirshrestha/asyncomplete.vim'
-Plug 'prabirshrestha/asyncomplete-lsp.vim'
-Plug 'prabirshrestha/asyncomplete-ultisnips.vim'
+"Plug 'leafOfTree/vim-vue-plugin'
+"Plug 'prabirshrestha/async.vim'
+"Plug 'prabirshrestha/asyncomplete.vim'
+"Plug 'prabirshrestha/asyncomplete-lsp.vim'
+"Plug 'prabirshrestha/asyncomplete-ultisnips.vim'
 Plug 'prabirshrestha/vim-lsp'
-Plug 'roxma/nvim-yarp'
-Plug 'roxma/vim-hug-neovim-rpc'
-Plug 'ryanoasis/vim-devicons'
-"Plug 'tmhedberg/matchit'
-Plug 'andymass/vim-matchup'
+"Plug 'roxma/nvim-yarp'
+"Plug 'roxma/vim-hug-neovim-rpc'
+"Plug 'ryanoasis/vim-devicons'
+"Plug 'andymass/vim-matchup'
 Plug 'scrooloose/nerdtree'
 Plug 'thinca/vim-quickrun'
-Plug 'thomasfaingnaert/vim-lsp-snippets'
-Plug 'thomasfaingnaert/vim-lsp-ultisnips'
+"Plug 'thomasfaingnaert/vim-lsp-snippets'
+"Plug 'thomasfaingnaert/vim-lsp-ultisnips'
 Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
@@ -79,12 +79,11 @@ Plug 'vim-scripts/yanktmp.vim'
 
 " GNU global (gtags)
 Plug 'vim-scripts/gtags.vim'
-Plug 'zebult/auto-gtags.vim'
+"Plug 'zebult/auto-gtags.vim'
 
 Plug 'mattn/vim-lsp-settings'
-Plug 'nanotech/jellybeans.vim'
-Plug 'leafgarland/typescript-vim'
-Plug 'tpope/vim-rails'
+"Plug 'tpope/vim-rails'
+
 " text-obj
 Plug 'kana/vim-textobj-user'
 Plug 'kana/vim-textobj-line'
@@ -93,18 +92,24 @@ Plug 'kana/vim-textobj-function'
 Plug 'h1mesuke/textobj-wiw'
 Plug 'rhysd/vim-textobj-ruby'
 Plug 'whatyouhide/vim-textobj-xmlattr'
-"Plug 'sgur/vim-textobj-parameter'
+Plug 'sgur/vim-textobj-parameter'
 Plug 'wellle/targets.vim'
 Plug 'thinca/vim-textobj-between'
-Plug 'xavierchow/vim-swagger-preview'
-" PHP IDE
+"Plug 'xavierchow/vim-swagger-preview'
+
+"PHP IDE
 "Plug 'phpactor/phpactor'
 "Plug 'kristijanhusak/deoplete-phpactor'
+
+"Plug 'vim-airline/vim-airline'
+Plug 'cocopon/iceberg.vim'
+"Plug 'lifepillar/vim-solarized8'
+"Plug 'nanotech/jellybeans.vim'
+
+Plug 'mattn/vim-maketable'
+"Plug 'jparise/vim-graphql'
 call plug#end()
 " }}}
-
-filetype indent plugin on
-source ~/.vim/autocmd.vim
 
 " {{{ folding
 set foldmethod=marker
@@ -112,6 +117,9 @@ set foldmarker={{{,}}}
 set foldlevelstart=1
 "set nofoldenable
 " }}}
+
+filetype indent plugin on
+source ~/.vim/autocmd.vim
 
 " {{{ behavior
 set ttyfast
@@ -139,12 +147,6 @@ set history=100
 
 set splitbelow
 
-" インデントをshiftwidthの倍数に丸める
-set shiftround
-
-" 行頭の余白内で Tab を打ち込むとshiftwidthの数だけインデントする
-set smarttab
-
 " マルチバイトで崩れる問題を修正
 set ambiwidth=double
 
@@ -157,7 +159,7 @@ set wildignore=*.pyc
 set mouse=a
 
 " 保管オプション
-set completeopt=menu,menuone,longest
+set completeopt=menu,menuone,longest,noselect
 " }}}
 
 " {{{ view
@@ -180,16 +182,6 @@ set statusline=%f%m\ %r\ line\ %l\ of\ %L
 set breakindent
 " }}}
 
-" Color {{{
-set t_Co=256
-colo jellybeans
-"colorscheme desert
-set bg=dark
-"hi SpecialKey ctermfg=231
-syntax enable
-"hi NonText ctermfg=DarkGray
-" }}}
-
 " {{{ encoding
 " 端末で使用するの文字コード
 set termencoding=utf-8
@@ -198,17 +190,6 @@ set encoding=utf-8
 " Unicodeを扱うための設定
 set fileencoding=utf-8
 set fileencodings=utf-8,euc-jp,iso-2022-jp,cp932,ucs-2le,usc-2jp
-
-" 文字エンコーディングを取得
-function! GetStatusEx()
-	let str = ''
-	let str = str . '[' . &fileformat . ']'
-	if has('multi_byte') && &fileencoding != ''
-		let str = str . '[' . &fileencoding . ']'
-	endif
-
-	return str
-endfunction
 " }}}
 
 " {{{ search
@@ -239,15 +220,21 @@ nnoremap <leader>wl <C-W>l
 nnoremap <leader>wh <C-W>h
 nnoremap <leader>ww <C-W>w
 
+" 配列みたいな文字列を,の後で改行する
+nnoremap ,, :s/,/,\r/g<CR>
+
 " }}}
 
 " {{{ indentation
-set expandtab
-set shiftwidth=2
-set tabstop=2
-set softtabstop=2
 set autoindent
+set expandtab
 set nosmartindent
+set shiftround
+set shiftwidth=2
+set smarttab
+set softtabstop=2
+set tabstop=2
+
 " }}}
 
 " {{{ tab
@@ -288,3 +275,18 @@ augroup END
 " プラグイン設定の読み込み
 call map(sort(split(globpath(&runtimepath, 'plugins/*.vim'))), {->[execute('exec "so" v:val')]})
 
+" Color {{{
+" Use true color on terminal
+set termguicolors
+
+colorscheme iceberg
+hi TabLineSel guibg=#1e2132
+"colorscheme desert
+set bg=dark
+"hi SpecialKey ctermfg=231
+"syntax enable
+"hi NonText ctermfg=DarkGray
+"
+" }}}
+
+let g:backlog_folding = 1

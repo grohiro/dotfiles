@@ -26,22 +26,28 @@ snippet cl "class attribute" w
 class="${1}"${0}
 endsnippet
 
-snippet veach
-@foreach ($${1:values} as $${2:var})
-	${3:statement}
+snippet @fe "foreach"
+@foreach($${1:var} as $${2:value})
 @endforeach
 endsnippet
 
-snippet vif
-@if (${1:true})
-	${3:statement}
-@endif$0
+snippet @if "if/else"
+@if(${1:true})
+	$0
+@endif
 endsnippet
 
-snippet vife
-@if (${1:true})
-	${2:statement}
+snippet @ife "if/else"
+@if(${1:true})
+	$0
 @else
-	${3:statement}
-@endif$0
+@endif
+endsnippet
+
+snippet @ifel "if/elseif"
+@if(${1:true})
+	$0
+@elseif(${2:true})
+@else
+@endif
 endsnippet

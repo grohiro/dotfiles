@@ -46,3 +46,5 @@ php_errors.log
 
 .ctags.d/
 gtags.conf
+
+.phpstorm.meta.php

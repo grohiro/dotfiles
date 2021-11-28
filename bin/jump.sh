@@ -8,7 +8,7 @@
 LIST=~/.jump.list
 
 
-has_peco=$(which peco)
+has_peco=$(which fzf)
 # -p       Print list
 while getopts "p" flag; do
   case $flag in
@@ -24,7 +24,7 @@ if [ "$opt_p" = true ]; then
 fi
 
 if [ $# = 0 -a ! -z "$has_peco" ]; then
-  cd $(cat $LIST | $has_peco)
+  cd $(cat $LIST | $has_peco --reverse)
   return
 fi
 

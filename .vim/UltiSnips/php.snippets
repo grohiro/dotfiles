@@ -57,7 +57,7 @@ endsnippet
 
 snippet prv "private member" b
 /**
- * @var $$1 ${2:type}
+ * @var ${2:type} $$1
  */
 private $${1:variable};${0}
 endsnippet
@@ -68,6 +68,14 @@ endsnippet
 
 snippet ak "Array key" i
 '${1}' => ${2},
+endsnippet
+
+snippet akf "Array key with own field" i
+'${1:name}' => $this->$1,
+endsnippet
+
+snippet akv "Array key with same name variable" i
+'${1:name}' => $$1,
 endsnippet
 
 snippet al "Array list" i
@@ -82,7 +90,7 @@ snippet cf "date format" i
 ->format('${1:Y-m-d}')
 endsnippet
 
-snippet func "function" b
+snippet fn "function" b
 /**
  * ${4}
  */
@@ -92,13 +100,13 @@ ${1:public} function ${2:name}(${3})
 }
 endsnippet
 
-snippet funcl "closure" i
+snippet fnl "closure" i
 function ($1) {
 	$0
 }${2:);}
 endsnippet
 
-snippet funclu "closure with use parameter" i
+snippet fnlu "closure with use parameter" i
 function ($1) use ($2) {
 	$0
 }${3:);}
@@ -154,10 +162,6 @@ snippet tvma "$this->variable->method() assign"
 $${4:var} = $this->${1:var}->${2:method}(${3})
 endsnippet
 
-snippet ma "method assign"
-$${1:val} = $${2:obj}->${3:method}(${4});${0}
-endsnippet
-
 snippet pr "property" i
 $${1:var}->${2:property}
 endsnippet
@@ -169,8 +173,13 @@ snippet vm "var->method()" i
 $${1:var}->${2:method}(${3})
 endsnippet
 
+snippet vma "var->method() assign" i
+$${1:val} = $${2:obj}->${3:method}(${4});${0}
+endsnippet
+
+
 snippet -- "method chain" i
-->${1:method}($2);
+->${1:method}($2)
 endsnippet
 
 # PHP Exception
@@ -273,6 +282,10 @@ snippet docr "PHPDoc @return" w
 @return ${1:type} ${2}
 endsnippet
 
+snippet docps "PHP @property" w
+@property ${1:string} $${2:name} ${0}
+endsnippet
+
 snippet funcps "public static function"
 public static function ${1}(${2})
 {
@@ -297,14 +310,26 @@ endsnippet
 snippet getter
 public function get${1}()
 {
-	return $this->`!p snip.rv = t[1].lower()`;
+	return $this->`!p snip.rv = t[1][0].lower() + t[1][1:] if len(t[1]) else ''`;
 }
 endsnippet
 
 snippet setter
-public function set${1}($`!p snip.rv = t[1].lower()`)
+public function set${1}($`!p snip.rv = t[1][0].lower() + t[1][1:] if len(t[1]) else ''`)
 {
-	$this->`!p snip.rv = t[1].lower()` = $`!p snip.rv = t[1].lower()`;
+	$this->`!p snip.rv = t[1][0].lower() + t[1][1:] if len(t[1]) else '' ` = $`!p snip.rv = t[1][0].lower() + t[1][1:] if len(t[1]) else ''`;
+}
+endsnippet
+
+snippet accessor
+public function get${1}()
+{
+	return $this->`!p snip.rv = t[1][0].lower() + t[1][1:] if len(t[1]) else ''`;
+}
+
+public function set$1($`!p snip.rv = t[1][0].lower() + t[1][1:] if len(t[1]) else ''`)
+{
+	$this->`!p snip.rv = t[1][0].lower() + t[1][1:] if len(t[1]) else '' ` = $`!p snip.rv = t[1][0].lower() + t[1][1:] if len(t[1]) else ''`;
 }
 endsnippet
 
@@ -354,3 +379,15 @@ foreach (${1:arr} as ${2:key} => ${3:val}) {
 	$0
 }
 endsnippet
+
+snippet ct "const"
+/**
+ * ${3:comment}
+ */
+const ${1:NAME} = ${2:value};${0}
+endsnippet
+
+snippet sp "sprintf"
+$${1:name} = sprintf('${2:fmt}'${3:, });
+endsnippet
+

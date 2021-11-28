@@ -16,14 +16,14 @@ endsnippet
 snippet laravel-attribute-getter
 public function get${1}Attribute()
 {
-	return $this->attributes['${2}'];
+	return $this->attributes['`!p snip.rv = t[1].lower()`'];
 }
 endsnippet
 
 snippet laravel-attribute-setter
 public function set${1}Attribute(${2})
 {
-	return $this->attributes['${3}'] = $2;
+	return $this->attributes['`!p snip.rv = t[1].lower()`'] = $2;
 }
 endsnippet
 
@@ -39,7 +39,11 @@ snippet laravel-mutator-enum
 public function set${1:CamelCase}Attribute($${2:camelCase})
 {
 	if (!is_null($$2)) {
-		$this->attributes['${3:snake_case}'] = $$2->id;
+		if ($$2 instanceOf $1) {
+			$this->attributes['${3:snake_case}'] = $$2->id;
+		} else {
+			$this->attributes['$3'] = $$2;
+		}
 	} else {
 		$this->attributes['$3'] = null;
 	}
@@ -102,36 +106,52 @@ snippet dd "dd()"
 dd(${1});
 endsnippet
 
+snippet migbl "Migration Boolean"
+$table->boolean('${1:column}')->nullable(${2:false})->default(${3:true});
+$table->dropColumn('$1');
+endsnippet
+
 snippet migid "Migration ID"
 $table->increments('id');
 endsnippet
 
 snippet migbid "Migration bigInteger ID"
 $table->bigIncrements('id');
+$table->dropColumn('$1');
 endsnippet
 
 snippet migstr "Migration string"
 $table->string('${1}', ${2:255})->nullable(${3:false});${0}
+$table->dropColumn('$1');
 endsnippet
 
 snippet migint "Migration integer"
 $table->integer('${1}')->nullable(${2:false});${0}
+$table->dropColumn('$1');
 endsnippet
 
 snippet migtxt "Migration text"
 $table->text('${1}')->nullable(${2:false});${0}
+$table->dropColumn('$1');
 endsnippet
 
 snippet migbint "Migration bigInteger"
 $table->bigInteger('${1}')->nullable(${2:false});${0}
+$table->dropColumn('$1');
 endsnippet
 
 snippet migts "Migration timestamps"
 $table->timestamps();${0}
+$table->dropColumn('$1');
 endsnippet
 
 snippet migdt "Migration Datetime"
 $table->datetime('${1}')->nullable(${2:true});
+$table->dropColumn('$1');
+endsnippet
+
+snippet migdrop "Drop column"
+$table->dropColumn('${1}');
 endsnippet
 
 snippet migdel "Migration soft deletes"
@@ -202,3 +222,34 @@ protected $dates = [
 ];
 
 endsnippet
+
+snippet laravel-form-text
+<div class="form-group">
+	{{ \Form::label('$2_$3', '${1:label}') }}
+	{{ \Form::text('${2:model}[${3:field}]', $$2->$3, ['class' => 'form-control', 'id' => '$2_$3']) }}
+</div>
+endsnippet
+
+snippet laravel-form-ta "Textarea"
+<div class="form-group">
+	{{ \Form::label('$2_$3', '${1:label}') }}
+	{{ \Form::textarea('${2:model}[${3:field}]', $$2->$3, ['class' => 'form-control', 'id' => '$2_$3']) }}
+</div>
+endsnippet
+
+snippet laravel-form-select
+<div class="form-group">
+	{{ \Form::label('$2_$3', '${1:label}') }}
+	{{ \Form::select('${2:model}[${3:field}]', [], $$2->$3, ['class' => 'form-control', 'id' => '$2_$3', 'placeholder' => '']) }}
+</div>
+endsnippet
+
+snippet laravel-form-checkbox
+<div class="form-group">
+	<div class="form-check ">
+		{{ \Form::checkbox('${2:model}[${3:field}]', 1, $$2->$3, ['class' => 'form-check-input', 'id' => '$2_$3', 'placeholder' => '']) }}
+		{{ \Form::label('$2_$3', '${1:label}', ['class' => 'form-check-label']) }}
+	</div>
+</div>
+endsnippet
+

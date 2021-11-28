@@ -4,9 +4,9 @@
 "set errorformat=%f[%l\\,\ %c]:\ %m
 
 let g:quickrun_config["typescript"] = {
-  \ "command": "`npm bin`/tsc",
+  \ "command": "ts-node",
   \ "cmdopt": "",
-  \ "exec": "%c",
+  \ "exec": "%c %o %s",
   \ "quickfix/errorformat": "%+A\ %#%f\ %#(%l\\,%c):\ %m,%C%m",
   \}
 

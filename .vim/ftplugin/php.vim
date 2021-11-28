@@ -11,6 +11,12 @@ endfunction
 command! PhpVar :call PhpVar()
 vnoremap <Leader>pv <ESC>:call PhpVar()<CR>
 
+
+" switch/case のインデント調整
+let g:PHP_vintage_case_default_indent = 1
+" メソッドチェーンのインデント調整
+let g:PHP_noArrowMatching = 1
+
 " QuickRun
 let g:quickrun_config["lint/php"] = {
   \ "command": "phplint",
@@ -35,6 +41,9 @@ let g:quickrun_config['phpunit'] = {
 let g:php_namespace_sort_after_insert = 0
 let g:php_namespace_expand_to_absolute = 1
 
+" vim-test: Use `phpunit` instead of `artisan test`
+let test#php#phpunit#executable = 'vendor/bin/phpunit'
+
 function! IPhpInsertUse()
   call PhpInsertUse()
   call feedkeys('a', 'n')
@@ -45,9 +54,9 @@ function! IPhpExpandClass()
   call feedkeys('a', 'n')
 endfunction
 
-nnoremap [phpactor] <Nop>
-nmap <Space>p [phpactor]
+"nnoremap [phpactor] <Nop>
+"nmap <Space>p [phpactor]
 
 " Rename
-nnoremap [phpactor]r :call phpactor#ContextMenu()<CR>
+"nnoremap [phpactor]r :call phpactor#ContextMenu()<CR>
 

@@ -36,20 +36,26 @@ function! SplitTagAttribute()
     endif
   endfor
 
+  " Indent
+  let first_line = getline(region[0][0])
+  let first_line_indent = matchstr(first_line, '^\s*')
+  let indent = first_line_indent . emmet#getIndentation()
+  let html = substitute(html, "[\r\n]", "\n".indent, 'g')
+
   if current.empty
-    let html .= "\n/>\n"
+    let html .= "\n" . first_line_indent . "/>"
   else
-    let html .= "\n>\n"
+    let html .= "\n" . first_line_indent . ">"
   endif
 
-  " Indent
-  let line = getline(region[0][0])
-  let indent = matchstr(line, '^\s*') . emmet#getIndentation()
-  let html = substitute(html, "[\r\n]", "\n".indent, 'g')
+  let lastline = getline(region[1][0])
+  if len(lastline) > region[1][1]
+    let html .= "\n" . first_line_indent
+  endif
 
   call emmet#util#setContent(region, html)
 endfunction
 
-nnoremap <silent> <C-y>m :call SplitTagAttribute()<CR>
+nnoremap <silent> <C-y>l :call SplitTagAttribute()<CR>
 
 " <div class="foo" style="color: white">Content</div><span>v-icon</span>
