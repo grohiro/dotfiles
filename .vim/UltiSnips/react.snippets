@@ -1,0 +1,41 @@
+snippet com "React Component"
+class ${1:ClassName} extends React.Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+		};
+	}
+	render() {
+		return (
+			<div></div>
+		);
+	}
+}
+endsnippet
+
+snippet co "React constructor"
+constructor(props) {
+	super(props);
+	this.state = {
+		$0
+	};
+}
+endsnippet
+
+snippet onc "React onClick" i
+onClick={() => ${1}}
+endsnippet
+
+snippet ss "setState"
+this.setState({
+	$0
+});
+endsnippet
+
+snippet rk "React list key" i
+key={$1}$0
+endsnippet
+
+snippet att "React attribute" i
+${1:attr}={$2}$0
+endsnippet

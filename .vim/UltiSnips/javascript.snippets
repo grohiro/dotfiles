@@ -165,7 +165,7 @@ import {${1}} from '${2}'
 endsnippet
 
 snippet clog "console.log"
-console.log(${1});${0}
+console.log(${1})
 endsnippet
 
 snippet va "variable"
@@ -208,8 +208,51 @@ snippet ca "catch" i
 })
 endsnippet
 
-snippet fin "finally" i
+snippet fn "finally" i
 .finally(() => {
 	$0
 })
+endsnippet
+
+snippet ndsrv "server"
+const srv = http.createServer()
+srv.on('request', (req, res) => {
+	let body = ''
+	req.on('data', (chunk) => {
+		body += chunk
+	})
+	req.end('end', () => {
+		res.writeHead(200, {})
+		res.write(body)
+		res.end()
+	})
+})
+
+srv.listen(${1:9999}, '127.0.0.1', () => {
+		const req = http.request({
+port: $1,
+host: '127.0.0.1',
+method: 'post',
+path: '/?say=hello',
+})
+		req.setHeader('content-type', 'text/plain')
+		req.write('hello, world!')
+		req.end()
+
+		req.on('response', (res) => {
+			readstr(res, (body) => {
+					console.log('ResponseBody: ' + body);
+					srv.close()
+					})
+			})
+		})
+console.log('listeninig on ' + $1)
+endsnippet
+
+snippet cl "Clone"
+const ${2:var} = {...${1:var}, $0};
+endsnippet
+
+snippet sli "Array.slice()"
+const ${2:var} = ${1:array}.slice();
 endsnippet

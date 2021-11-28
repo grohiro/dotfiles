@@ -15,9 +15,11 @@ augroup php
   autocmd FileType php setl makeprg=php\ -l\ %
   autocmd FileType php setl makeprg=phpunit
   autocmd FileType php setl suffixesadd=.php
+  autocmd FileType php setl ts=4 sts=4 sw=4
 
   autocmd FileType php inoremap <C-s><C-u> <Esc>:call IPhpInsertUse()<CR>
   autocmd FileType php noremap <Leader>u :call PhpInsertUse()<CR>
+  autocmd FileType php inoremap <silent> <C-p>u <Esc>:call PhpInsertUse()<CR>a
   autocmd FileType php inoremap <C-s><C-e> <Esc>:call IPhpExpandClass()<CR>
   autocmd FileType php noremap <Leader>e :call PhpExpandClass()<CR>
 augroup END
@@ -48,3 +50,10 @@ augroup golang
 augroup END
 
 autocmd FileType Makefile setl ts=2 sw=2 sts=2 noexpandtab
+
+augroup yaml.swagger
+  autocmd!
+  au FileType yaml.swagger set foldmethod=indent
+  au FileType yaml.swagger set foldlevel=1
+augroup END
+

@@ -32,17 +32,19 @@ noremap <leader>lp :LspPreviousDiagnostic<CR>
 noremap K :LspHover<CR>
 
 " Completion
-let g:lsp_async_completion = 1
+"let g:lsp_async_completion = 1
 let g:asyncomplete_auto_popup = 0
 
 " debug
-let g:lsp_log_verbose = 0
-let g:lsp_log_file = expand('~/.vim/lsp.log')
-let g:asyncomplete_log_file = expand('~/.vim/asyncomplete.log')
+"let g:lsp_log_verbose = 0
+"let g:lsp_log_file = expand('~/.vim/lsp.log')
+"let g:asyncomplete_log_file = expand('~/.vim/asyncomplete.log')
 
-inoremap <silent><expr> <C-l> asyncomplete#force_refresh()
+"inoremap <silent><expr> <C-l> asyncomplete#force_refresh()
 
 " Phpactor
 "let g:deoplete#enable_at_startup = 0
 "let g:deoplete#sources = {}
 "let g:deoplete#sources.php = ['omni', 'phpactor', 'ultisnips', 'buffer']
+"
+"let g:lsp_settings_filetype_php = ['psalm-language-server', 'intelephense']

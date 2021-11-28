@@ -4,3 +4,6 @@ bind generic <Ctrl-b> move-page-up
 bind generic <Ctrl-f> move-page-down
 bind generic 1G move-first-line
 bind generic G move-last-line
+
+bind refs D ?git branch -d %(branch)
+

@@ -1,4 +1,4 @@
-set rtp+=/usr/local/Cellar/fzf/0.17.4
+set rtp+=/usr/local/opt/fzf
 let $FZF_DEFAULT_COMMAND = 'fd --type f'
 
 nnoremap <C-p> :GFiles<CR>

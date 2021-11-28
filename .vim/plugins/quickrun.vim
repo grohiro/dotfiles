@@ -48,8 +48,9 @@ let g:quickrun_config = {
 " }}}
 
 let g:quickrun_config["go"] = {
-      \ 'runner': 'vimscript',
-      \ 'command': ':GoRun',
+      \ 'command': 'go',
+      \ 'cmdopt': 'run',
+      \ 'output': 'buffer',
       \}
 
 let g:quickrun_config["lint/go"] = {

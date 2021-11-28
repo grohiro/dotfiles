@@ -38,7 +38,7 @@ alias br='bundle exec ruby -Isrc'
 
 # Git
 alias gs='git status'
-alias gb='git branch'
+alias gb='git checkout $(git branch | fzf --reverse)'
 alias gc='git checkout'
 alias gg='git graph'
 alias ga='git add .'
@@ -72,7 +72,7 @@ alias mvn2='mvn'
 alias ctags-laravel='ctags -R --languages=php app/ tests/ config/ vendor/'
 alias ctags-rails='ctags -R --languages=ruby app/ vendor/bundle'
 
-alias dotenv='export $(cat .env|xargs)'
+alias dotenv='export $(cat .env|egrep -v "^#" | xargs)'
 
 alias tig='tig --all'
 
@@ -87,12 +87,18 @@ alias uuidp="uuidgen | tr \"[:upper:]\" \"[:lower:]\" | tr -d "\n" | pbcopy"
 alias uuidh="uuid | tr -d -"
 alias uuidhp="uuid | tr -d - | pbcopy"
 
-# github/hub
-eval "$(hub alias -s)"
-alias github='hub browse -- issues'
+alias hub='gh'
 
 alias d='docker-compose'
 alias dk='docker'
 alias dke='docker exec -it'
+alias dksh='docker exec -it $(docker ps | sed -e 1d | fzf --reverse | awk '\''{print $1}'\'' -) sh'
 
 alias swagger-editor='docker run -d -p 8017:8080 swaggerapi/swagger-editor'
+
+# Java & JDK
+alias java8='echo JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_192.jdk/Contents/Home/'
+
+alias my='mysql -h $DB_HOST --port $DB_PORT -u $DB_USERNAME -p$DB_PASSWORD $DB_DATABASE'
+
+alias a='export AWS_PROFILE=$(aws configure list-profiles | fzf)'
