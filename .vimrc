@@ -108,6 +108,8 @@ Plug 'cocopon/iceberg.vim'
 
 Plug 'mattn/vim-maketable'
 "Plug 'jparise/vim-graphql'
+
+Plug 'sophacles/vim-processing'
 call plug#end()
 " }}}
 

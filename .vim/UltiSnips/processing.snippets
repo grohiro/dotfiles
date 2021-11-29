@@ -1,12 +1,50 @@
 snippet p5
 void setup()
 {
-	size(400, 400);
+	size(640, 360);
 }
 
 void draw()
 {
 	background(255);
   $0
+}
+endsnippet
+
+snippet cl
+class ${1:Name}
+{
+	$1()
+	{
+	$0
+	}
+
+	void update()
+	{
+	}
+
+	void display()
+	{
+	}
+}
+endsnippet
+
+snippet fo
+for (int ${1:i} = 0; $1 < ${2:size}; $1++) {
+	$0
+}
+endsnippet
+
+snippet v "variable"
+${1:int} ${2:name} = ${3:null};
+endsnippet
+
+snippet ln "line"
+line(${1:x1}, ${2:y1}, ${3:x2}, ${4:y2});
+endsnippet
+
+snippet fn "function"
+void ${1:name}() {
+	$0
 }
 endsnippet

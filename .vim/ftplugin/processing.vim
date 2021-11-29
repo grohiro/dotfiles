@@ -5,3 +5,4 @@ let g:quickrun_config['processing'] = {
   \ 'outputter': 'null'
   \}
 
+nmap <silent> K <Plug>(processing-keyword)
