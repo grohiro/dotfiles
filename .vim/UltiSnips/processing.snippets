@@ -44,7 +44,63 @@ line(${1:x1}, ${2:y1}, ${3:x2}, ${4:y2});
 endsnippet
 
 snippet fn "function"
-void ${1:name}() {
+${1:void} ${2:name}(${3}) {
 	$0
 }
+endsnippet
+
+snippet hw "half width" i
+width / 2
+endsnippet
+
+snippet hh "half height" i
+height / 2
+endsnippet
+
+snippet shp "shape"
+beginShape(${1});
+$0
+endShape();
+endsnippet
+
+snippet mx "matrix"
+pushMatrix();
+$0
+popMatrix();
+endsnippet
+
+snippet sin "sin()" i
+sin(radians($1))
+endsnippet
+
+snippet cos "cos()" i
+cos(radians($1))
+endsnippet
+
+snippet bg "background"
+background(${1:255});
+endsnippet
+
+snippet vf "float"
+float ${1:name} = ${2};
+endsnippet
+
+snippet vi "int"
+int ${1:name} = ${2};
+endsnippet
+
+snippet pvv "PVector vector"
+PVector ${1:vector} = new PVector(${2:x}, ${3:y});
+endsnippet
+
+snippet pv "PVector vector" i
+PVector $0
+endsnippet
+
+snippet verv "vertex(PVector)"
+vertex(${1:vector}.x, $1.y);
+endsnippet
+
+snippet ln "println"
+println($1);
 endsnippet

@@ -123,7 +123,8 @@ function mkp5()
   mkdir $sketch
   cd $sketch
   touch $sketch.pde
+  vim $sketch.pde
 }
 
-export -f sjis utf8 ddir mkdirc find_dir vimbg pecho dirtree up ke quote mkp5
+#export -f sjis utf8 ddir mkdirc find_dir vimbg pecho dirtree up ke quote mkp5
 

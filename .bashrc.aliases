@@ -30,6 +30,7 @@ alias k='kubectl'
 alias kp='kubectl get pods'
 alias ks='kubectl get service'
 alias ka='kp;ks'
+alias kush='kubectl exec --stdin --tty $(kubectl get pods | sed -e 1d | awk '\''{print $1}'\'' | fzf) -- /bin/bash'
 
 # Ruby & bundler
 alias b='bundle'
@@ -102,3 +103,10 @@ alias java8='echo JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_192.jdk/C
 alias my='mysql -h $DB_HOST --port $DB_PORT -u $DB_USERNAME -p$DB_PASSWORD $DB_DATABASE'
 
 alias a='export AWS_PROFILE=$(aws configure list-profiles | fzf)'
+alias venv='source .venv/bin/activate'
+
+alias tf='terraform'
+
+alias kk='minikube'
+alias sls='tmux a -t $(tmux ls | awk '"'{print \$1}'"' | cut -d : -f 1 | fzf --reverse)'
+alias g='gcloud'

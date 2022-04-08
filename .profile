@@ -21,13 +21,15 @@ PATH=$HOME/Library/Android/sdk/platform-tools:$PATH
 PATH=$HOME/lib/web3j-3.5.0/bin:$PATH
 #PATH=$HOME/lib/apache-maven-2.2.1/bin:$PATH
 PATH=$HOME/lib/LibreOffice.app/Contents/MacOS:$PATH
+PATH=$HOME/.poetry/bin:$PATH
 
 # Application path
 PATH=/usr/local/postgresql83/bin:$PATH
 
 # User path
 PATH=$HOME/.anyenv/bin:$PATH
-eval "$(anyenv init -)"
+#eval "$(anyenv init -)"
+. ~/.anyenvrc
 
 PATH=$PATH:$GOPATH/bin
 PATH=~/.composer/vendor/bin:$PATH
@@ -45,3 +47,5 @@ test -r ~/.bashrc && . ~/.bashrc
 
 tmux ls
 
+
+export PATH="$HOME/.poetry/bin:$PATH"
