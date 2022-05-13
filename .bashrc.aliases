@@ -12,12 +12,12 @@ alias l='ll'
 
 alias less='less -X -R' # color less
 
-alias grep='grep --exclude=*.svn-base --exclude=tags --exclude=.git --exclude=GTAGS --exclude=GPATH --exclude=GRTAGS --exclude=node_module --exclude=vendor -I'
+#alias grep='grep --exclude=*.svn-base --exclude=tags --exclude=.git --exclude=GTAGS --exclude=GPATH --exclude=GRTAGS --exclude=node_module --exclude=vendor -I'
+alias grep='grep $(cat ~/.greprc) -I'
 
 alias ..='cd ..'
 alias ...='cd ../../'
 
-alias c='cd'
 alias vi='vim'
 alias v='vim'
 
@@ -110,3 +110,6 @@ alias tf='terraform'
 alias kk='minikube'
 alias sls='tmux a -t $(tmux ls | awk '"'{print \$1}'"' | cut -d : -f 1 | fzf --reverse)'
 alias g='gcloud'
+
+alias c='composer'
+alias ar='php artisan'

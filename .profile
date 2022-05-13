@@ -17,10 +17,10 @@ PATH=""
 PATH=/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin:$PATH
 PATH=/opt/local/bin:/opt/local/sbin:$PATH
 PATH=/usr/local/opt/coreutils/bin:$PATH
-PATH=$HOME/Library/Android/sdk/platform-tools:$PATH
-PATH=$HOME/lib/web3j-3.5.0/bin:$PATH
+#PATH=$HOME/Library/Android/sdk/platform-tools:$PATH
+#PATH=$HOME/lib/web3j-3.5.0/bin:$PATH
 #PATH=$HOME/lib/apache-maven-2.2.1/bin:$PATH
-PATH=$HOME/lib/LibreOffice.app/Contents/MacOS:$PATH
+#PATH=$HOME/lib/LibreOffice.app/Contents/MacOS:$PATH
 PATH=$HOME/.poetry/bin:$PATH
 
 # Application path
