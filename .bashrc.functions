@@ -36,7 +36,7 @@ function find_file() {
 }
 
 function vimbg() {
-  local count=$(jobs | grep "Stopped\s*vim" | wc -l)
+  local count=$(jobs | grep "Stopped\s*n?vim" | wc -l)
   if [ $count -gt 0 ]
   then
     echo "|vim"

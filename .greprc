@@ -3,6 +3,7 @@
 --exclude-dir=tmp
 --exclude-dir=node_module
 --exclude-dir=vendor
+--exclude-dir=dist
 
 --exclude='*.svn-base'
 
@@ -15,6 +16,6 @@
 
 --exclude=*.swp
 --exclude=*~
---exclude=*.log
 --exclude=*.idb
 --exclude=*.frm
+--exclude=*.json

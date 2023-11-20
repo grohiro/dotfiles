@@ -22,6 +22,9 @@ PATH=/usr/local/opt/coreutils/bin:$PATH
 #PATH=$HOME/lib/apache-maven-2.2.1/bin:$PATH
 #PATH=$HOME/lib/LibreOffice.app/Contents/MacOS:$PATH
 PATH=$HOME/.poetry/bin:$PATH
+PATH=/opt/homebrew/bin:$PATH
+PATH=/opt/homebrew/sbin:$PATH
+PATH=/opt/homebrew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/bin:$PATH
 
 # Application path
 PATH=/usr/local/postgresql83/bin:$PATH
@@ -31,13 +34,13 @@ PATH=$HOME/.anyenv/bin:$PATH
 #eval "$(anyenv init -)"
 . ~/.anyenvrc
 
-PATH=$PATH:$GOPATH/bin
-PATH=~/.composer/vendor/bin:$PATH
-PATH=~/.nodebrew/current/bin:$PATH
-PATH=~/git/phplint:$PATH
-PATH=~/bin:$PATH
-PATH=./node_modules/.bin:$PATH
-PATH=./vendor/bin:$PATH
+#PATH=$PATH:$GOPATH/bin
+#PATH=~/.composer/vendor/bin:$PATH
+#PATH=~/.nodebrew/current/bin:$PATH
+#PATH=~/git/phplint:$PATH
+#PATH=~/bin:$PATH
+#PATH=./node_modules/.bin:$PATH
+#PATH=./vendor/bin:$PATH
 export PATH
 
 export BASH_SILENCE_DEPRECATION_WARNING=1
@@ -47,5 +50,7 @@ test -r ~/.bashrc && . ~/.bashrc
 
 tmux ls
 
-
 export PATH="$HOME/.poetry/bin:$PATH"
+
+#source ~/.profile.anaconda
+. "$HOME/.cargo/env"

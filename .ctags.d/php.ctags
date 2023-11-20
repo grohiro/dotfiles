@@ -1,1 +1,2 @@
 --php-kinds=cfidt-av
+--regex-php=/^\s*enum ([a-zA-Z0-9_]+)/\1/c,class/

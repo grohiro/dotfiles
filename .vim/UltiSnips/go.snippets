@@ -12,7 +12,7 @@ if err != nil {
 endsnippet
 
 snippet sp "fmt.Sprint"
-s$1 := fmt.Sprint(${1})
+s := fmt.Sprint(${1})
 endsnippet
 
 snippet atoi "str.Atoi"
@@ -77,4 +77,11 @@ snippet ifnn "if non nil"
 if ${1:var} != nil {
 	$0
 }
+endsnippet
+
+snippet ife "if error"
+if err != nil {
+	${1}
+}
+${0}
 endsnippet

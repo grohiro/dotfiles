@@ -8,7 +8,8 @@ set rtp+=~/src/vim-nulab-backlog
 
 " Do not use matchparen
 " http://itchyny.hatenablog.com/entry/2016/03/30/210000
-let g:loaded_matchparen = 1
+"let g:loaded_matchparen = 1
+runtime macros/matchit.vim
 let g:quickrun_no_default_key_mappings = 1
 
 " vimrc.local {{{
@@ -56,32 +57,37 @@ Plug 'junegunn/vim-easy-align'
 "Plug 'mattn/emmet-vim'
 Plug  '~/src/emmet-vim'
 "Plug 'microsoft/python-language-server'
-"Plug 'posva/vim-vue'
+Plug 'posva/vim-vue'
 "Plug 'leafOfTree/vim-vue-plugin'
+"
 "Plug 'prabirshrestha/async.vim'
 "Plug 'prabirshrestha/asyncomplete.vim'
 "Plug 'prabirshrestha/asyncomplete-lsp.vim'
 "Plug 'prabirshrestha/asyncomplete-ultisnips.vim'
+"
 Plug 'prabirshrestha/vim-lsp'
+Plug 'mattn/vim-lsp-settings'
+"Plug 'thomasfaingnaert/vim-lsp-snippets'
+"Plug 'thomasfaingnaert/vim-lsp-ultisnips'
+"
 "Plug 'roxma/nvim-yarp'
 "Plug 'roxma/vim-hug-neovim-rpc'
 "Plug 'ryanoasis/vim-devicons'
 "Plug 'andymass/vim-matchup'
 Plug 'scrooloose/nerdtree'
 Plug 'thinca/vim-quickrun'
-"Plug 'thomasfaingnaert/vim-lsp-snippets'
-"Plug 'thomasfaingnaert/vim-lsp-ultisnips'
 Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'vim-scripts/taglist.vim'
 Plug 'vim-scripts/yanktmp.vim'
 
+"Plug 'dense-analysis/ale'
+
 " GNU global (gtags)
 Plug 'vim-scripts/gtags.vim'
-"Plug 'zebult/auto-gtags.vim'
+Plug 'zebult/auto-gtags.vim'
 
-Plug 'mattn/vim-lsp-settings'
 "Plug 'tpope/vim-rails'
 
 " text-obj
@@ -222,6 +228,8 @@ nnoremap <leader>wl <C-W>l
 nnoremap <leader>wh <C-W>h
 nnoremap <leader>ww <C-W>w
 
+nmap <C-y>j ysit<CR>
+
 " 配列みたいな文字列を,の後で改行する
 nnoremap ,, :s/,/,\r/g<CR>
 
@@ -292,3 +300,5 @@ set bg=dark
 " }}}
 
 let g:backlog_folding = 1
+
+set grepprg=ag

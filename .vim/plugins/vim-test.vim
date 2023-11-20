@@ -3,6 +3,8 @@
 "
 let test#strategy         = 'make'
 let test#strategy         = 'basic'
+let test#strategy         = 'vimproc'
+let test#strategy         = 'vimterminal'
 let test#strategy         = 'dispatch'
 "let g:test#custom_runners = {'Solidity': ['Truffle']}
 

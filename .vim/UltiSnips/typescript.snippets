@@ -5,3 +5,19 @@ endsnippet
 snippet clog
 console.log($1);
 endsnippet
+
+snippet jss "" i
+JSON.stringify(${0})
+endsnippet
+
+snippet fnl "closure" wi
+(${1}) => {${2}}${0}
+endsnippet
+
+snippet tryc "try/catch"
+try {
+	${0}
+} catch (${1:ex}) {
+	throw ex;
+}
+endsnippet

@@ -9,6 +9,12 @@ let g:quickrun_config["typescript"] = {
   \ "exec": "%c %o %s",
   \ "quickfix/errorformat": "%+A\ %#%f\ %#(%l\\,%c):\ %m,%C%m",
   \}
+let g:quickrun_config["typescript"] = {
+  \ "command": "tsx",
+  \ "cmdopt": "",
+  \ "exec": "%c %o %s",
+  \ "quickfix/errorformat": "%+A\ %#%f\ %#(%l\\,%c):\ %m,%C%m",
+  \}
 
 let g:quickrun_config["lint/typescript"] = {
   \ "command": "`npm bin`/tslint",
