@@ -1,0 +1,119 @@
+source "/Users/grohiro/opt/anyenv/libexec/../completions/anyenv.bash"
+anyenv() {
+  typeset command
+  command="$1"
+  if [ "$#" -gt 0 ]; then
+    shift
+  fi
+  command anyenv "$command" "$@"
+}
+export GOENV_ROOT="/Users/grohiro/.anyenv/envs/goenv"
+export PATH="/Users/grohiro/.anyenv/envs/goenv/bin:$PATH"
+export GOENV_SHELL=bash
+export GOENV_ROOT=/Users/grohiro/.anyenv/envs/goenv
+if [ "${PATH#*$GOENV_ROOT/shims}" = "${PATH}" ]; then
+  export PATH="$PATH:$GOENV_ROOT/shims"
+fi
+source '/Users/grohiro/.anyenv/envs/goenv/libexec/../completions/goenv.bash'
+command goenv rehash 2>/dev/null
+goenv() {
+  local command
+  command="$1"
+  if [ "$#" -gt 0 ]; then
+    shift
+  fi
+
+  case "$command" in
+  rehash|shell)
+    eval "$(goenv "sh-$command" "$@")";;
+  *)
+    command goenv "$command" "$@";;
+  esac
+}
+goenv rehash --only-manage-paths
+export NODENV_ROOT="/Users/grohiro/.anyenv/envs/nodenv"
+export PATH="/Users/grohiro/.anyenv/envs/nodenv/bin:$PATH"
+export PATH="/Users/grohiro/.anyenv/envs/nodenv/shims:${PATH}"
+export NODENV_SHELL=bash
+source '/Users/grohiro/.anyenv/envs/nodenv/libexec/../completions/nodenv.bash'
+command nodenv rehash 2>/dev/null
+nodenv() {
+  local command
+  command="${1:-}"
+  if [ "$#" -gt 0 ]; then
+    shift
+  fi
+
+  case "$command" in
+  rehash|shell)
+    eval "$(nodenv "sh-$command" "$@")";;
+  *)
+    command nodenv "$command" "$@";;
+  esac
+}
+export PHPENV_ROOT="/Users/grohiro/.anyenv/envs/phpenv"
+export PATH="/Users/grohiro/.anyenv/envs/phpenv/bin:$PATH"
+export PATH="/Users/grohiro/.anyenv/envs/phpenv/shims:${PATH}"
+source "/Users/grohiro/.anyenv/envs/phpenv/libexec/../completions/phpenv.bash"
+phpenv rehash 2>/dev/null
+phpenv() {
+  local command
+  command="$1"
+  if [ "$#" -gt 0 ]; then
+    shift
+  fi
+
+  case "$command" in
+  shell)
+    eval `phpenv "sh-$command" "$@"`;;
+  *)
+    command phpenv "$command" "$@";;
+  esac
+}
+export PYENV_ROOT="/Users/grohiro/.anyenv/envs/pyenv"
+export PATH="/Users/grohiro/.anyenv/envs/pyenv/bin:$PATH"
+PATH="$(bash --norc -ec 'IFS=:; paths=($PATH); for i in ${!paths[@]}; do if [[ ${paths[i]} == "'/Users/grohiro/.anyenv/envs/pyenv/shims'" ]]; then unset '\''paths[i]'\''; fi; done; echo "${paths[*]}"')"
+export PATH="/Users/grohiro/.anyenv/envs/pyenv/shims:${PATH}"
+command pyenv rehash 2>/dev/null
+PATH="$(bash --norc -ec 'IFS=:; paths=($PATH); for i in ${!paths[@]}; do if [[ ${paths[i]} == "'/Users/grohiro/.anyenv/envs/pyenv/shims'" ]]; then unset '\''paths[i]'\''; fi; done; echo "${paths[*]}"')"
+export PATH="/Users/grohiro/.anyenv/envs/pyenv/shims:${PATH}"
+export PYENV_SHELL=bash
+source '/Users/grohiro/.anyenv/envs/pyenv/libexec/../completions/pyenv.bash'
+command pyenv rehash 2>/dev/null
+pyenv() {
+  local command
+  command="${1:-}"
+  if [ "$#" -gt 0 ]; then
+    shift
+  fi
+
+  case "$command" in
+  rehash|shell)
+    eval "$(pyenv "sh-$command" "$@")"
+    ;;
+  *)
+    command pyenv "$command" "$@"
+    ;;
+  esac
+}
+export RBENV_ROOT="/Users/grohiro/.anyenv/envs/rbenv"
+export PATH="/Users/grohiro/.anyenv/envs/rbenv/bin:$PATH"
+export PATH="/Users/grohiro/.anyenv/envs/rbenv/bin:${PATH}"
+export PATH="/Users/grohiro/.anyenv/envs/rbenv/shims:${PATH}"
+export RBENV_SHELL=bash
+source '/Users/grohiro/.anyenv/envs/rbenv/completions/rbenv.bash'
+command rbenv rehash 2>/dev/null
+rbenv() {
+  local command
+  command="${1:-}"
+  if [ "$#" -gt 0 ]; then
+    shift
+  fi
+
+  case "$command" in
+  rehash|shell)
+    eval "$(rbenv "sh-$command" "$@")";;
+  *)
+    command rbenv "$command" "$@";;
+  esac
+}
