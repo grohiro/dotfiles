@@ -53,4 +53,7 @@ tmux ls
 export PATH="$HOME/.poetry/bin:$PATH"
 
 #source ~/.profile.anaconda
-. "$HOME/.cargo/env"
+if [ -e $HOME/.cargo/env ]
+then
+  . "$HOME/.cargo/env"
+fi
