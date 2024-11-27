@@ -45,6 +45,9 @@ alias gb='git checkout $(git branch | fzf --reverse)'
 alias gc='git checkout'
 alias gg='git graph'
 alias ga='git add .'
+alias gd='git diff'
+alias gdc='git diff --cached'
+alias gpp='git pull --prune'
 
 # Subversion
 alias ss='svn status'
@@ -92,7 +95,7 @@ alias uuidhp="uuid | tr -d - | pbcopy"
 
 alias hub='gh'
 
-alias d='docker-compose'
+alias d='docker compose'
 alias dk='docker'
 alias dke='docker exec -it'
 alias dksh='docker exec -it $(docker ps | sed -e 1d | fzf --reverse | awk '\''{print $1}'\'' -) sh'
@@ -128,3 +131,5 @@ alias goog='w3m https://google.com'
 
 alias cwlogs='aws logs tail --follow "$(aws logs describe-log-groups | jq -r ".logGroups[].logGroupName" | fzf)"'
 alias svl='serverless'
+alias md='open -a "One Markdown"'
+alias pf='open -a "Finder"'

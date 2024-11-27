@@ -1,0 +1,52 @@
+snippet get
+${1:/api/path}:
+	get:
+		summary: ${2}
+		description: ${3}
+		tags:
+			- ${4:default}
+		responses:
+			'200':
+				description: OK
+endsnippet
+
+snippet post
+${1:/api/path}:
+	post:
+		summary: ${2}
+		description: ${3}
+		tags:
+			- ${4:default}
+		responses:
+			'200':
+				description: OK
+endsnippet
+
+snippet request
+requestBody:
+	content:
+		application/json:
+			schema:
+				type: object
+				properties:
+					${1:property}:
+						type: ${2:string}
+				required:
+					- ${1}
+endsnippet
+
+snippet str
+${1:property}:
+	type: string
+endsnippet
+
+snippet int
+${1:property}:
+	type: integer
+endsnippet
+
+snippet obj
+${1:property}:
+	type: object
+	properties:
+endsnippet

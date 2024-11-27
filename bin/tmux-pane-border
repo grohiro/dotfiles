@@ -1,0 +1,4 @@
+#!/bin/bash
+
+git_branch=$(cd $1 && git-branch-ref)
+echo $git_branch

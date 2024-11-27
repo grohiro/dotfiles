@@ -1,9 +1,9 @@
 # Environment variables
 
 if [ -z "$PROMPT_COMMAND" ]; then
-  export PROMPT_COMMAND="source ~/dotfiles/bin/lsdir-push"
+  export PROMPT_COMMAND="source ~/dotfiles/bin/lsdir-push; test -n \"\$TMUX\" && tmux refresh-client -S"
 else
-  export PROMPT_COMMAND="$PROMPT_COMMAND; source ~/dotfiles/bin/lsdir-push"
+  export PROMPT_COMMAND="$PROMPT_COMMAND; source ~/dotfiles/bin/lsdir-push; test -n \"\$TMUX\" && tmux refresh-client -S"
 fi
 
 export SCREENDIR=~/.screen/session

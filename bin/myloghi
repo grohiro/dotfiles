@@ -2,16 +2,30 @@
 # MySQL query log highlight
 # Usage: tail -f /var/log/mysql/query.log | myloghi
 
-cat -u - | gsed -r \
+cat -u - | sed -r \
   -e "/Prepare/d" \
   -e "/Close stmt/d" \
   -e "/Quit/d" \
   -e "/Connect/d" \
-  -e "/Query\s*use /d" \
+  -e "/Query *use /d" \
   -e "s/(START TRANSACTION|BEGIN|COMMIT|ROLLBACK)/[31m\1[m/i" \
-  -e "s/(^[0-9a-zA-Z:.-]*\s*[0-9]* (Query|Init DB|Connect|Quit|Prepare|Close|Execute))/[32m\1[m/" \
-  -e "s/(INSERT\s+INTO\s+[a-zA-Z0-9_\`]*)/[1;33m\1[m/i" \
-  -e "s/(UPDATE\s+[a-zA-Z0-9_\`]*)/[1;34m\1[m/i" \
-  -e "s/(DELETE\s+FROM\s+[a-zA-Z0-9_\`]*)/[1;35m\1[m/i" \
-  -e "s/(SELECT\s+[a-zA-Z0-9.,_\(\)\*\` \\t]*\s+FROM\s*[a-zA-Z0-9_\`]*)/[1;36m\1[m/i"
+  -e "s/(^[0-9a-zA-Z:.-][^ ]*[ \t]*[0-9]* (Query|Init DB|Connect|Quit|Prepare|Close|Execute))/[33m\1[m/" \
+  -e "s/(INSERT +INTO +[a-zA-Z0-9_\`]*)/[1;32m\1[m/i" \
+  -e "s/(UPDATE +[a-zA-Z0-9_\`]*)/[1;34m\1[m/i" \
+  -e "s/(DELETE +FROM +[a-zA-Z0-9_\`]*)/[1;36m\1[m/i" \
+  -e "s/(SELECT +[a-zA-Z0-9.,_\(\)\*\` \\t]* +FROM *[a-zA-Z0-9_\`]*)/[1;35m\1[m/i"
+
+# For GNU sed
+#cat -u - | sed -r \
+  #-e "/Prepare/d" \
+  #-e "/Close stmt/d" \
+  #-e "/Quit/d" \
+  #-e "/Connect/d" \
+  #-e "/Query\s*use /d" \
+  #-e "s/(START TRANSACTION|BEGIN|COMMIT|ROLLBACK)/[31m\1[m/i" \
+  #-e "s/(^[0-9a-zA-Z:.-]*\s*[0-9]* (Query|Init DB|Connect|Quit|Prepare|Close|Execute))/[32m\1[m/" \
+  #-e "s/(INSERT\s+INTO\s+[a-zA-Z0-9_\`]*)/[1;33m\1[m/i" \
+  #-e "s/(UPDATE\s+[a-zA-Z0-9_\`]*)/[1;34m\1[m/i" \
+  #-e "s/(DELETE\s+FROM\s+[a-zA-Z0-9_\`]*)/[1;35m\1[m/i" \
+  #-e "s/(SELECT\s+[a-zA-Z0-9.,_\(\)\*\` \\t]*\s+FROM\s*[a-zA-Z0-9_\`]*)/[1;36m\1[m/i"
 

@@ -108,7 +108,6 @@ endsnippet
 
 snippet migbl "Migration Boolean"
 $table->boolean('${1:column}')->nullable(${2:false})->default(${3:true});
-$table->dropColumn('$1');
 endsnippet
 
 snippet migid "Migration ID"
@@ -117,37 +116,30 @@ endsnippet
 
 snippet migbid "Migration bigInteger ID"
 $table->bigIncrements('id');
-$table->dropColumn('$1');
 endsnippet
 
 snippet migstr "Migration string"
 $table->string('${1}', ${2:255})->nullable(${3:false});${0}
-$table->dropColumn('$1');
 endsnippet
 
 snippet migint "Migration integer"
 $table->integer('${1}')->nullable(${2:false});${0}
-$table->dropColumn('$1');
 endsnippet
 
 snippet migtxt "Migration text"
 $table->text('${1}')->nullable(${2:false});${0}
-$table->dropColumn('$1');
 endsnippet
 
 snippet migbint "Migration bigInteger"
 $table->bigInteger('${1}')->nullable(${2:false});${0}
-$table->dropColumn('$1');
 endsnippet
 
 snippet migts "Migration timestamps"
 $table->timestamps();${0}
-$table->dropColumn('$1');
 endsnippet
 
 snippet migdt "Migration Datetime"
 $table->datetime('${1}')->nullable(${2:true});
-$table->dropColumn('$1');
 endsnippet
 
 snippet migdrop "Drop column"
