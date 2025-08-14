@@ -31,8 +31,6 @@ PATH=/usr/local/postgresql83/bin:$PATH
 
 # User path
 PATH=$HOME/.anyenv/bin:$PATH
-#eval "$(anyenv init -)"
-. ~/.anyenvrc
 
 #PATH=$PATH:$GOPATH/bin
 #PATH=~/.composer/vendor/bin:$PATH
@@ -47,8 +45,6 @@ export BASH_SILENCE_DEPRECATION_WARNING=1
 
 test -r ~/.bashrc && . ~/.bashrc
 #test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
-
-tmux ls
 
 export PATH="$HOME/.poetry/bin:$PATH"
 

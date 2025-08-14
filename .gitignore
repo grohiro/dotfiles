@@ -10,6 +10,8 @@ GPATH
 GRTAGS
 
 .vimrc.local
+# https://github.com/is0n/jaq-nvim
+.jaq.json
 
 .DS_Store
 
@@ -50,3 +52,6 @@ gtags.conf
 .phpstorm.meta.php
 _ide_helper.php
 _ide_helper_models.php
+
+__pycache__
+_typos.toml

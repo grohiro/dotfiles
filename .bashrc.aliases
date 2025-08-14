@@ -43,7 +43,7 @@ alias br='bundle exec ruby -Isrc'
 alias gs='git status'
 alias gb='git checkout $(git branch | fzf --reverse)'
 alias gc='git checkout'
-alias gg='git graph'
+alias gg='git graph --all'
 alias ga='git add .'
 alias gd='git diff'
 alias gdc='git diff --cached'
@@ -74,7 +74,6 @@ alias dt='dirtree'
 # Laravel
 alias artisan='php "$(_get_artisan_dir)/artisan" --ansi'
 
-alias mvn2='mvn'
 alias ctags-laravel='ctags -R --languages=php app/ tests/ config/ vendor/'
 alias ctags-rails='ctags -R --languages=ruby app/ vendor/bundle'
 
@@ -114,6 +113,8 @@ alias java8='echo JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_192.jdk/C
 alias my='mysql -h $DB_HOST --port $DB_PORT -u $DB_USERNAME -p$DB_PASSWORD $DB_DATABASE'
 
 alias a='export AWS_PROFILE=$(aws configure list-profiles | fzf)'
+alias g='export CLOUDSDK_ACTIVE_CONFIG_NAME=$(gcloud config configurations list | fzf --reverse | awk '\''{print $1}'\'')'
+alias gcp='gcloud auth application-default login'
 alias venv='source .venv/bin/activate'
 
 alias tf='terraform'
@@ -133,3 +134,5 @@ alias cwlogs='aws logs tail --follow "$(aws logs describe-log-groups | jq -r ".l
 alias svl='serverless'
 alias md='open -a "One Markdown"'
 alias pf='open -a "Finder"'
+
+alias mm='micromamba'

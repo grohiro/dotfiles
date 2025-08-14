@@ -1,8 +1,6 @@
 [alias]
-  graph = log --graph --date-order -C -M --pretty=format:\"<%h> %ad [%cn] %Cgreen%d%Creset %s\" --all --date=iso
+  graph = log --graph --date-order -C -M --pretty=format:\"%Cblue%h%Creset %ad [%cn] %Cgreen%d%Creset %s\" --date=short
   p = !git push origin `git rev-parse --abbrev-ref HEAD`
-
-
 [user]
   name = grohiro
   email = khirokawa@growk.jp
