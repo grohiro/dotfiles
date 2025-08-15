@@ -1,11 +1,5 @@
 # Environment variables
 
-if [ -z "$PROMPT_COMMAND" ]; then
-  export PROMPT_COMMAND="source ~/dotfiles/bin/lsdir-push; test -n \"\$TMUX\" && tmux refresh-client -S"
-else
-  export PROMPT_COMMAND="$PROMPT_COMMAND; source ~/dotfiles/bin/lsdir-push; test -n \"\$TMUX\" && tmux refresh-client -S"
-fi
-
 export SCREENDIR=~/.screen/session
 export JAVA_HOME=`/usr/libexec/java_home`
 export EDITOR="vim"
@@ -43,7 +37,7 @@ export PATH
 
 export BASH_SILENCE_DEPRECATION_WARNING=1
 
-test -r ~/.bashrc && . ~/.bashrc
+#test -r ~/.bashrc && . ~/.bashrc
 #test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
 
 export PATH="$HOME/.poetry/bin:$PATH"
