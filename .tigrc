@@ -1,4 +1,4 @@
-bind generic <Ctrl-u> move-page-up
+#bind generic <Ctrl-u> move-page-up
 bind generic b move-page-up
 bind generic <Ctrl-b> move-page-up
 bind generic <Ctrl-f> move-page-down
