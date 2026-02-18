@@ -58,3 +58,5 @@ _typos.toml
 mutagen.yml
 mutagen.yml.lock
 .DS_Store
+.claude/
+claude-specs

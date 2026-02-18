@@ -24,4 +24,4 @@ then
   source ~/.bashrc.local
 fi
 
-source ~/.safe-chain/scripts/init-posix.sh # Safe-chain bash initialization script
+#source ~/.safe-chain/scripts/init-posix.sh # Safe-chain bash initialization script

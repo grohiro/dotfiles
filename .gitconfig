@@ -3,7 +3,6 @@
   p = !git push origin `git rev-parse --abbrev-ref HEAD`
 [user]
   name = grohiro
-  email = khirokawa@growk.jp
 [http]
 	sslVerify = true
   receivepack = true 
@@ -18,7 +17,7 @@
   cmd = opendiff \"$LOCAL\" \"$REMOTE\"
   path = 
 [diff]
-  tool = vimdiff
+	tool = nvimdiff
 [credential]
 [credential]
   helper = osxkeychain

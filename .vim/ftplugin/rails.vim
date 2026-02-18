@@ -1,1 +1,0 @@
-autocmd User Rails.view* 
